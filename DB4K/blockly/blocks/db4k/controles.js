@@ -39,9 +39,9 @@ Blockly.Blocks['sempre'] = {
   init: function() {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_delay_parar);
-    this.appendDummyInput("repita_sempre")
-      .setAlign(Blockly.ALIGN_CENTRE)
-      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/sempre.png", 100, 40, "*"));
+    this.appendValueInput("repita_sempre")
+      // .setAlign(Blockly.ALIGN_CENTRE)
+       .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/sempre.png", 100, 40, "*"));
     this.setNextStatement(true, null);
     this.setTooltip('REPITA PARA SEMPRE');
   }
@@ -54,11 +54,13 @@ Blockly.Blocks['delay'] = {
     this.appendDummyInput("milisegundos")
         .setAlign(Blockly.ALIGN_CENTRE)
         .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/delay.png", 100, 40, "*"))
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        //this.setOutput(true, null);
     this.setTooltip('Faz o programa esperar alguns segundos antes de executar o próximo comando');
   }
 };
+
 
 
 Blockly.Blocks['repetir'] = {
