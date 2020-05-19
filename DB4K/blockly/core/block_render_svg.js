@@ -693,89 +693,89 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
       }
      this.width += Blockly.BlockSvg.JAGGED_TEETH_WIDTH;
     } 
-    // else if (row.type == Blockly.BlockSvg.INLINE) {
-    //   // Inline inputs.
-    //   for (var x = 0, input; input = row[x]; x++) {
-    //     var fieldX = cursorX;
-    //     var fieldY = cursorY;
-    //     if (row.thicker) {
-    //       // Lower the field slightly.
-    //       fieldY += Blockly.BlockSvg.INLINE_PADDING_Y;
-    //     }
-    //     // TODO: Align inline field rows (left/right/centre).
-    //     cursorX = this.renderFields_(input.fieldRow, fieldX, fieldY);
-    //     if (input.type != Blockly.DUMMY_INPUT) {
-    //       cursorX += input.renderWidth + Blockly.BlockSvg.SEP_SPACE_X;
-    //     }
-    //     // aqui é criado o campo de conexão interno do bloco
-    //     // desativado temporariamente;
-    //     // if (input.type == Blockly.INPUT_VALUE) {
-    //     //   inlineSteps.push('M', (cursorX - Blockly.BlockSvg.SEP_SPACE_X) +
-    //     //                    ',' + (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y));
-    //     //   inlineSteps.push('h', Blockly.BlockSvg.TAB_WIDTH - 2 -
-    //     //                    input.renderWidth);
-    //     //   inlineSteps.push(Blockly.BlockSvg.TAB_PATH_DOWN);
-    //     //   inlineSteps.push('v', input.renderHeight + 1 -
-    //     //                         Blockly.BlockSvg.TAB_HEIGHT);
-    //     //   inlineSteps.push('h', input.renderWidth + 2 -
-    //     //                    Blockly.BlockSvg.TAB_WIDTH);
-    //     //   inlineSteps.push('z');
-    //     //   if (this.RTL) {
-    //     //     // Highlight right edge, around back of tab, and bottom.
-    //     //     highlightInlineSteps.push('M',
-    //     //         (cursorX - Blockly.BlockSvg.SEP_SPACE_X - 2.5 +
-    //     //          Blockly.BlockSvg.TAB_WIDTH - input.renderWidth) + ',' +
-    //     //         (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y + 0.5));
-    //     //     highlightInlineSteps.push(
-    //     //         Blockly.BlockSvg.TAB_PATH_DOWN_HIGHLIGHT_RTL);
-    //     //     highlightInlineSteps.push('v',
-    //     //         input.renderHeight - Blockly.BlockSvg.TAB_HEIGHT + 2.5);
-    //     //     highlightInlineSteps.push('h',
-    //     //         input.renderWidth - Blockly.BlockSvg.TAB_WIDTH + 2);
-    //     //   } else {
-    //     //     // Highlight right edge, bottom.
-    //     //     highlightInlineSteps.push('M',
-    //     //         (cursorX - Blockly.BlockSvg.SEP_SPACE_X + 0.5) + ',' +
-    //     //         (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y + 0.5));
-    //     //     highlightInlineSteps.push('v', input.renderHeight + 1);
-    //     //     highlightInlineSteps.push('h', Blockly.BlockSvg.TAB_WIDTH - 2 -
-    //     //                                    input.renderWidth);
-    //     //     // Short highlight glint at bottom of tab.
-    //     //     highlightInlineSteps.push('M',
-    //     //         (cursorX - input.renderWidth - Blockly.BlockSvg.SEP_SPACE_X +
-    //     //          0.9) + ',' + (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y +
-    //     //          Blockly.BlockSvg.TAB_HEIGHT - 0.7));
-    //     //     highlightInlineSteps.push('l',
-    //     //         (Blockly.BlockSvg.TAB_WIDTH * 0.46) + ',-2.1');
-    //     //   }
-    //     //   // Create inline input connection.
-    //     //   if (this.RTL) {
-    //     //     connectionX = connectionsXY.x - cursorX -
-    //     //         Blockly.BlockSvg.TAB_WIDTH + Blockly.BlockSvg.SEP_SPACE_X +
-    //     //         input.renderWidth + 1;
-    //     //   } else {
-    //     //     connectionX = connectionsXY.x + cursorX +
-    //     //         Blockly.BlockSvg.TAB_WIDTH - Blockly.BlockSvg.SEP_SPACE_X -
-    //     //         input.renderWidth - 1;
-    //     //   }
-    //     //   connectionY = connectionsXY.y + cursorY +
-    //     //       Blockly.BlockSvg.INLINE_PADDING_Y + 1;
-    //     //   input.connection.moveTo(connectionX, connectionY);
-    //     //   if (input.connection.isConnected()) {
-    //     //     input.connection.tighten_();
-    //     //   }
-    //     // }
-    //   }
+    else if (row.type == Blockly.BlockSvg.INLINE) {
+      // Inline inputs.
+      for (var x = 0, input; input = row[x]; x++) {
+        var fieldX = cursorX;
+        var fieldY = cursorY;
+        if (row.thicker) {
+          // Lower the field slightly.
+          fieldY += Blockly.BlockSvg.INLINE_PADDING_Y;
+        }
+        // TODO: Align inline field rows (left/right/centre).
+        cursorX = this.renderFields_(input.fieldRow, fieldX, fieldY);
+        if (input.type != Blockly.DUMMY_INPUT) {
+          cursorX += input.renderWidth + Blockly.BlockSvg.SEP_SPACE_X;
+        }
+        // aqui é criado o campo de conexão interno do bloco
+        // desativado temporariamente;
+        if (input.type == Blockly.INPUT_VALUE) {
+          inlineSteps.push('M', (cursorX - Blockly.BlockSvg.SEP_SPACE_X) +
+                           ',' + (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y));
+          inlineSteps.push('h', Blockly.BlockSvg.TAB_WIDTH - 2 -
+                           input.renderWidth);
+          inlineSteps.push(Blockly.BlockSvg.TAB_PATH_DOWN);
+          inlineSteps.push('v', input.renderHeight + 1 -
+                                Blockly.BlockSvg.TAB_HEIGHT);
+          inlineSteps.push('h', input.renderWidth + 2 -
+                           Blockly.BlockSvg.TAB_WIDTH);
+          inlineSteps.push('z');
+          if (this.RTL) {
+            // Highlight right edge, around back of tab, and bottom.
+            highlightInlineSteps.push('M',
+                (cursorX - Blockly.BlockSvg.SEP_SPACE_X - 2.5 +
+                 Blockly.BlockSvg.TAB_WIDTH - input.renderWidth) + ',' +
+                (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y + 0.5));
+            highlightInlineSteps.push(
+                Blockly.BlockSvg.TAB_PATH_DOWN_HIGHLIGHT_RTL);
+            highlightInlineSteps.push('v',
+                input.renderHeight - Blockly.BlockSvg.TAB_HEIGHT + 2.5);
+            highlightInlineSteps.push('h',
+                input.renderWidth - Blockly.BlockSvg.TAB_WIDTH + 2);
+          } else {
+            // Highlight right edge, bottom.
+            highlightInlineSteps.push('M',
+                (cursorX - Blockly.BlockSvg.SEP_SPACE_X + 0.5) + ',' +
+                (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y + 0.5));
+            highlightInlineSteps.push('v', input.renderHeight + 1);
+            highlightInlineSteps.push('h', Blockly.BlockSvg.TAB_WIDTH - 2 -
+                                           input.renderWidth);
+            // Short highlight glint at bottom of tab.
+            highlightInlineSteps.push('M',
+                (cursorX - input.renderWidth - Blockly.BlockSvg.SEP_SPACE_X +
+                 0.9) + ',' + (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y +
+                 Blockly.BlockSvg.TAB_HEIGHT - 0.7));
+            highlightInlineSteps.push('l',
+                (Blockly.BlockSvg.TAB_WIDTH * 0.46) + ',-2.1');
+          }
+          // Create inline input connection.
+          if (this.RTL) {
+            connectionX = connectionsXY.x - cursorX -
+                Blockly.BlockSvg.TAB_WIDTH + Blockly.BlockSvg.SEP_SPACE_X +
+                input.renderWidth + 1;
+          } else {
+            connectionX = connectionsXY.x + cursorX +
+                Blockly.BlockSvg.TAB_WIDTH - Blockly.BlockSvg.SEP_SPACE_X -
+                input.renderWidth - 1;
+          }
+          connectionY = connectionsXY.y + cursorY +
+              Blockly.BlockSvg.INLINE_PADDING_Y + 1;
+          input.connection.moveTo(connectionX, connectionY);
+          if (input.connection.isConnected()) {
+            input.connection.tighten_();
+          }
+        }
+      }
 
-    //   cursorX = Math.max(cursorX, inputRows.rightEdge);
-    //   this.width = Math.max(this.width, cursorX);
-    //   steps.push('H', cursorX);
-    //   highlightSteps.push('H', cursorX - 0.5);
-    //   steps.push('v', row.height);
-    //   if (this.RTL) {
-    //     highlightSteps.push('v', row.height - 1);
-    //   }
-    // } 
+      cursorX = Math.max(cursorX, inputRows.rightEdge);
+      this.width = Math.max(this.width, cursorX);
+      steps.push('H', cursorX);
+      highlightSteps.push('H', cursorX - 0.5);
+      steps.push('v', row.height);
+      if (this.RTL) {
+        highlightSteps.push('v', row.height - 1);
+      }
+    } 
     else if (row.type == Blockly.INPUT_VALUE) {
       // External input.
       var input = row[0];
