@@ -65,12 +65,12 @@ Blockly.BlockSvg.TAB_WIDTH = 8;
  * Width of vertical tab (inc left margin).
  * @const
  */
-Blockly.BlockSvg.NOTCH_WIDTH = 30;
+Blockly.BlockSvg.NOTCH_WIDTH = 30; //posição borda
 /**
  * Rounded corner radius.
  * @const
  */
-Blockly.BlockSvg.CORNER_RADIUS = 8;
+Blockly.BlockSvg.CORNER_RADIUS = 30; //ARREDONDAMENTO DO CANTO
 /**
  * Do blocks with no previous or output connections have a 'hat' on top?
  * @const
