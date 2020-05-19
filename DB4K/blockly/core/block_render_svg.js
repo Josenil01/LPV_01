@@ -33,44 +33,52 @@ goog.require('Blockly.BlockSvg');
 // UI constants for rendering blocks.
 /**
  * Horizontal space between elements.
+ * Espaço horizontal entre os elementos de qualquer bloco
  * @const
  */
 Blockly.BlockSvg.SEP_SPACE_X = 10;
 /**
  * Vertical space between elements.
+ * Espaço vertical entre os elementos de qualquer bloco.
  * @const
  */
 Blockly.BlockSvg.SEP_SPACE_Y = 10;
 /**
  * Vertical padding around inline elements.
+ * Preenchimento vertical ao redor dos elementos.
  * @const
  */
 Blockly.BlockSvg.INLINE_PADDING_Y = 5;
 /**
  * Minimum height of a block.
+ * Altura minima de um bloco.
  * @const
  */
 Blockly.BlockSvg.MIN_BLOCK_Y = 25;
 /**
  * Height of horizontal puzzle tab.
+ * Altura do conector valor paddrão é 20
  * @const
  */
-Blockly.BlockSvg.TAB_HEIGHT = 20;
+Blockly.BlockSvg.TAB_HEIGHT = 25;
 /**
  * Width of horizontal puzzle tab.
+ * largura do conector valor paddrão é 8
  * @const
  */
 Blockly.BlockSvg.TAB_WIDTH = 8;
 /**
  * Width of vertical tab (inc left margin).
+ * Posiciona o conector vertical inferior do lado esquerdo
  * @const
  */
-Blockly.BlockSvg.NOTCH_WIDTH = 30; //posição borda
+Blockly.BlockSvg.NOTCH_WIDTH = 30;
 /**
  * Rounded corner radius.
+ * Deixa os cantos arredondados o valor padrão é 8
  * @const
  */
-Blockly.BlockSvg.CORNER_RADIUS = 30; //ARREDONDAMENTO DO CANTO
+Blockly.BlockSvg.CORNER_RADIUS = 10;
 /**
  * Do blocks with no previous or output connections have a 'hat' on top?
  * @const
@@ -80,7 +88,7 @@ Blockly.BlockSvg.START_HAT = false;
  * Height of the top hat.
  * @const
  */
-Blockly.BlockSvg.START_HAT_HEIGHT = 15;
+Blockly.BlockSvg.START_HAT_HEIGHT = 5;
 /**
  * Path of the top hat's curve.
  * @const
@@ -103,35 +111,45 @@ Blockly.BlockSvg.START_HAT_HIGHLIGHT_RTL =
 /**
  * Distance from shape edge to intersect with a curved corner at 45 degrees.
  * Applies to highlighting on around the inside of a curve.
+ * Cria uma crurva no canto esquerdo do bloco
  * @const
  */
 Blockly.BlockSvg.DISTANCE_45_INSIDE = (1 - Math.SQRT1_2) *
-    (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + 0.5;
+    (Blockly.BlockSvg.CORNER_RADIUS - 0.5) - 0.5;
 /**
  * Distance from shape edge to intersect with a curved corner at 45 degrees.
  * Applies to highlighting on around the outside of a curve.
+ * Cria uma crurva no canto esquerdo da animação do bloco
  * @const
  */
 Blockly.BlockSvg.DISTANCE_45_OUTSIDE = (1 - Math.SQRT1_2) *
     (Blockly.BlockSvg.CORNER_RADIUS + 0.5) - 0.5;
 /**
  * SVG path for drawing next/previous notch from left to right.
+ * SVG é o caminho svg para desenhar uma cova no bloco da esquerda
+ * para a direita, porem essa função deve estar asssociada a primeira
+ * parte do bloco. o valor desejado é l 6,4 3,0 25,0 6,-4
+ * 'l 6,4 3,0 6,-4'
  * @const
  */
-Blockly.BlockSvg.NOTCH_PATH_LEFT = 'l 6,4 3,0 6,-4';
+Blockly.BlockSvg.NOTCH_PATH_LEFT = 'l 6,4 3,0 25,0 6,-4';
 /**
  * SVG path for drawing next/previous notch from left to right with
  * highlighting.
+ * SVG é o caminho svg para desenhar uma cova no bloco da esquerda
+ * para a direita, porem essa função deve estar asssociada a primeira
+ * parte do bloco. o valor desejado é l 6,4 3,0 25,0 6,-4
+ * 'l 6,4 3,0 6,-4'
  * @const
  */
-Blockly.BlockSvg.NOTCH_PATH_LEFT_HIGHLIGHT = 'l 6,4 3,0 6,-4';
+Blockly.BlockSvg.NOTCH_PATH_LEFT_HIGHLIGHT = 'l 6,4 3,0 25,0 6,-4';
 /**
  * SVG path for drawing next/previous notch from right to left.
  * @const
  */
-Blockly.BlockSvg.NOTCH_PATH_RIGHT = 'l -6,4 -3,0 -6,-4';
+Blockly.BlockSvg.NOTCH_PATH_RIGHT = 'l -6,4 3,0 -25,0 -6 -4';
 /**
- * SVG path for drawing jagged teeth at the end of collapsed blocks.
+ * SVG path for drawing jagged teeth at the end of collapsed blocks.l 8,0 0,4 8,4 -16,8 8,4
  * @const
  */
 Blockly.BlockSvg.JAGGED_TEETH = 'l 8,0 0,4 8,4 -16,8 8,4';
@@ -157,7 +175,7 @@ Blockly.BlockSvg.TAB_PATH_DOWN = 'v 5 c 0,10 -' + Blockly.BlockSvg.TAB_WIDTH +
  * highlighting from the upper-right.
  * @const
  */
-Blockly.BlockSvg.TAB_PATH_DOWN_HIGHLIGHT_RTL = 'v 6.5 m -' +
+Blockly.BlockSvg.TAB_PATH_DOWN_HIGHLIGHT_RTL = 'v 5.5 m -' +
     (Blockly.BlockSvg.TAB_WIDTH * 0.97) + ',3 q -' +
     (Blockly.BlockSvg.TAB_WIDTH * 0.05) + ',10 ' +
     (Blockly.BlockSvg.TAB_WIDTH * 0.3) + ',9.5 m ' +
@@ -198,6 +216,9 @@ Blockly.BlockSvg.TOP_LEFT_CORNER_HIGHLIGHT =
     'A ' + (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ',' +
     (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ' 0 0,1 ' +
     Blockly.BlockSvg.CORNER_RADIUS + ',0.5';
+
+//Ezequiel - tentando deixar o lado direito arredondado
+
 /**
  * SVG path for drawing the top-left corner of a statement input.
  * Includes the top notch, a horizontal space, and the rounded inside corner.
@@ -581,8 +602,8 @@ Blockly.BlockSvg.prototype.renderDrawTop_ =
 
   // Top edge.
   if (this.previousConnection) {
-    steps.push('H', Blockly.BlockSvg.NOTCH_WIDTH - 15);
-    highlightSteps.push('H', Blockly.BlockSvg.NOTCH_WIDTH - 15);
+    steps.push('H', Blockly.BlockSvg.NOTCH_WIDTH + 15);
+    highlightSteps.push('H', Blockly.BlockSvg.NOTCH_WIDTH + 15);
     steps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT);
     highlightSteps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT_HIGHLIGHT);
     // Create previous block connection.
