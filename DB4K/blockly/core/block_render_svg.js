@@ -574,7 +574,7 @@ Blockly.BlockSvg.prototype.renderDraw_ = function(iconWidth, inputRows) {
   // the edge of the block by a pixel. So undersize all measurements by a pixel.
   var highlightSteps = [];
   var highlightInlineSteps = [];
-
+  
   this.renderDrawTop_(steps, highlightSteps, connectionsXY,
       inputRows.rightEdge);
   var cursorY = this.renderDrawRight_(steps, highlightSteps, inlineSteps,
