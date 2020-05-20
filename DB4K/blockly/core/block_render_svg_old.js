@@ -33,44 +33,52 @@ goog.require('Blockly.BlockSvg');
 // UI constants for rendering blocks.
 /**
  * Horizontal space between elements.
+ * Espaço horizontal entre os elementos de qualquer bloco
  * @const
  */
 Blockly.BlockSvg.SEP_SPACE_X = 10;
 /**
  * Vertical space between elements.
+ * Espaço vertical entre os elementos de qualquer bloco.
  * @const
  */
 Blockly.BlockSvg.SEP_SPACE_Y = 10;
 /**
  * Vertical padding around inline elements.
+ * Preenchimento vertical ao redor dos elementos.
  * @const
  */
 Blockly.BlockSvg.INLINE_PADDING_Y = 5;
 /**
  * Minimum height of a block.
+ * Altura minima de um bloco.
  * @const
  */
 Blockly.BlockSvg.MIN_BLOCK_Y = 25;
 /**
  * Height of horizontal puzzle tab.
+ * Altura do conector valor paddrão é 20
  * @const
  */
-Blockly.BlockSvg.TAB_HEIGHT = 20;
+Blockly.BlockSvg.TAB_HEIGHT = 25;
 /**
  * Width of horizontal puzzle tab.
+ * largura do conector valor paddrão é 8
  * @const
  */
 Blockly.BlockSvg.TAB_WIDTH = 8;
 /**
  * Width of vertical tab (inc left margin).
+ * Posiciona o conector vertical inferior do lado esquerdo
  * @const
  */
 Blockly.BlockSvg.NOTCH_WIDTH = 30;
 /**
  * Rounded corner radius.
+ * Deixa os cantos arredondados o valor padrão é 8
  * @const
  */
-Blockly.BlockSvg.CORNER_RADIUS = 8;
+Blockly.BlockSvg.CORNER_RADIUS = 10;
 /**
  * Do blocks with no previous or output connections have a 'hat' on top?
  * @const
@@ -80,7 +88,7 @@ Blockly.BlockSvg.START_HAT = false;
  * Height of the top hat.
  * @const
  */
-Blockly.BlockSvg.START_HAT_HEIGHT = 15;
+Blockly.BlockSvg.START_HAT_HEIGHT = 5;
 /**
  * Path of the top hat's curve.
  * @const
@@ -103,35 +111,45 @@ Blockly.BlockSvg.START_HAT_HIGHLIGHT_RTL =
 /**
  * Distance from shape edge to intersect with a curved corner at 45 degrees.
  * Applies to highlighting on around the inside of a curve.
+ * Cria uma crurva no canto esquerdo do bloco
  * @const
  */
 Blockly.BlockSvg.DISTANCE_45_INSIDE = (1 - Math.SQRT1_2) *
-    (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + 0.5;
+    (Blockly.BlockSvg.CORNER_RADIUS - 0.5) - 0.5;
 /**
  * Distance from shape edge to intersect with a curved corner at 45 degrees.
  * Applies to highlighting on around the outside of a curve.
+ * Cria uma crurva no canto esquerdo da animação do bloco
  * @const
  */
 Blockly.BlockSvg.DISTANCE_45_OUTSIDE = (1 - Math.SQRT1_2) *
     (Blockly.BlockSvg.CORNER_RADIUS + 0.5) - 0.5;
 /**
  * SVG path for drawing next/previous notch from left to right.
+ * SVG é o caminho svg para desenhar uma cova no bloco da esquerda
+ * para a direita, porem essa função deve estar asssociada a primeira
+ * parte do bloco. o valor desejado é l 6,4 3,0 25,0 6,-4
+ * 'l 6,4 3,0 6,-4'
  * @const
  */
-Blockly.BlockSvg.NOTCH_PATH_LEFT = 'l 6,4 3,0 6,-4';
+Blockly.BlockSvg.NOTCH_PATH_LEFT = 'l 6,4 3,0 25,0 6,-4';
 /**
  * SVG path for drawing next/previous notch from left to right with
  * highlighting.
+ * SVG é o caminho svg para desenhar uma cova no bloco da esquerda
+ * para a direita, porem essa função deve estar asssociada a primeira
+ * parte do bloco. o valor desejado é l 6,4 3,0 25,0 6,-4
+ * 'l 6,4 3,0 6,-4'
  * @const
  */
-Blockly.BlockSvg.NOTCH_PATH_LEFT_HIGHLIGHT = 'l 6,4 3,0 6,-4';
+Blockly.BlockSvg.NOTCH_PATH_LEFT_HIGHLIGHT = 'l 6,4 3,0 25,0 6,-4';
 /**
  * SVG path for drawing next/previous notch from right to left.
  * @const
  */
-Blockly.BlockSvg.NOTCH_PATH_RIGHT = 'l -6,4 -3,0 -6,-4';
+Blockly.BlockSvg.NOTCH_PATH_RIGHT = 'l -6,4 3,0 -25,0 -6 -4';
 /**
- * SVG path for drawing jagged teeth at the end of collapsed blocks.
+ * SVG path for drawing jagged teeth at the end of collapsed blocks.l 8,0 0,4 8,4 -16,8 8,4
  * @const
  */
 Blockly.BlockSvg.JAGGED_TEETH = 'l 8,0 0,4 8,4 -16,8 8,4';
@@ -152,20 +170,20 @@ Blockly.BlockSvg.JAGGED_TEETH_WIDTH = 15;
 Blockly.BlockSvg.TAB_PATH_DOWN = 'v 5 c 0,10 -' + Blockly.BlockSvg.TAB_WIDTH +
     ',-8 -' + Blockly.BlockSvg.TAB_WIDTH + ',7.5 s ' +
     Blockly.BlockSvg.TAB_WIDTH + ',-2.5 ' + Blockly.BlockSvg.TAB_WIDTH + ',7.5';
-console.log("orelha do lado direito",Blockly.BlockSvg.TAB_PATH_DOWN);
 /**
  * SVG path for drawing a horizontal puzzle tab from top to bottom with
  * highlighting from the upper-right.
  * @const
  */
-Blockly.BlockSvg.TAB_PATH_DOWN_HIGHLIGHT_RTL = 'v 6.5 m -' +
+Blockly.BlockSvg.TAB_PATH_DOWN_HIGHLIGHT_RTL = 'v 5.5 m -' +
     (Blockly.BlockSvg.TAB_WIDTH * 0.97) + ',3 q -' +
     (Blockly.BlockSvg.TAB_WIDTH * 0.05) + ',10 ' +
     (Blockly.BlockSvg.TAB_WIDTH * 0.3) + ',9.5 m ' +
     (Blockly.BlockSvg.TAB_WIDTH * 0.67) + ',-1.9 v 1.4';
 
 /**
- * SVG start point for drawing the top-left corner.
+ * SVG start point for drawing the top-left corner. 
+ * m 0,10
  * @const
  */
 Blockly.BlockSvg.TOP_LEFT_CORNER_START =
@@ -185,6 +203,7 @@ Blockly.BlockSvg.TOP_LEFT_CORNER_START_HIGHLIGHT_LTR =
     'm 0.5,' + (Blockly.BlockSvg.CORNER_RADIUS - 0.5);
 /**
  * SVG path for drawing the rounded top-left corner.
+ * A 10,10 0 0,1 10,0
  * @const
  */
 Blockly.BlockSvg.TOP_LEFT_CORNER =
@@ -192,16 +211,39 @@ Blockly.BlockSvg.TOP_LEFT_CORNER =
     Blockly.BlockSvg.CORNER_RADIUS + ' 0 0,1 ' +
     Blockly.BlockSvg.CORNER_RADIUS + ',0';
 /**
+ * SVG path for drawing the rounded top-right corner.
+ * A 10,10 0 0,1 120,10
+ * @const
+ */
+Blockly.BlockSvg.TOP_RIGHT_CORNER =
+    'A ' + Blockly.BlockSvg.CORNER_RADIUS + ',' +
+    Blockly.BlockSvg.CORNER_RADIUS + ' 0 0,1 ' ;
+    //aqui no lugar do radios tem que ser o tamanho total da
+   // rightEdge + ',10';
+
+/**
  * SVG path for drawing the highlight on the rounded top-left corner.
  * @const
  */
 Blockly.BlockSvg.TOP_LEFT_CORNER_HIGHLIGHT =
     'A ' + (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ',' +
-    (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ' 0 0,1 ' +
-    Blockly.BlockSvg.CORNER_RADIUS + ',0.5';
+    (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ' 0 0,1 ';
+     // Blockly.BlockSvg.CORNER_RADIUS + ',0.5';
+/**
+ * SVG path for drawing the highlight on the rounded top-right corner.
+ * @const
+ */
+Blockly.BlockSvg.TOP_RIGHT_CORNER_HIGHLIGHT =
+    'A ' + (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ',' +
+    (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ' 0 0,1 ';
+     // Blockly.BlockSvg.CORNER_RADIUS + ',0.5';
+
+//Ezequiel - tentando deixar o lado direito arredondado
+
 /**
  * SVG path for drawing the top-left corner of a statement input.
  * Includes the top notch, a horizontal space, and the rounded inside corner.
+ * Cria a parede esquerda do encaixe dos blocos
  * @const
  */
 Blockly.BlockSvg.INNER_TOP_LEFT_CORNER =
@@ -269,6 +311,7 @@ Blockly.BlockSvg.prototype.render = function(opt_bubble) {
     cursorX = -cursorX;
   }
   // Move the icons into position.
+  // Move os icones para a posição
   var icons = this.getIcons();
   for (var i = 0; i < icons.length; i++) {
     cursorX = icons[i].renderIcon(cursorX);
@@ -524,12 +567,14 @@ Blockly.BlockSvg.prototype.renderDraw_ = function(iconWidth, inputRows) {
   // Assemble the block's path.
   var steps = [];
   var inlineSteps = [];
+  //aqui é onde junta tudo que compõem o bloco portanto agora sei como
+  //arrumar essa budega.
   // The highlighting applies to edges facing the upper-left corner.
   // Since highlighting is a two-pixel wide border, it would normally overhang
   // the edge of the block by a pixel. So undersize all measurements by a pixel.
   var highlightSteps = [];
   var highlightInlineSteps = [];
-
+  
   this.renderDrawTop_(steps, highlightSteps, connectionsXY,
       inputRows.rightEdge);
   var cursorY = this.renderDrawRight_(steps, highlightSteps, inlineSteps,
@@ -542,7 +587,6 @@ Blockly.BlockSvg.prototype.renderDraw_ = function(iconWidth, inputRows) {
   this.svgPathDark_.setAttribute('d', pathString);
   pathString = highlightSteps.join(' ') + '\n' + highlightInlineSteps.join(' ');
   this.svgPathLight_.setAttribute('d', pathString);
-
   if (this.RTL) {
     // Mirror the block's path.
     this.svgPath_.setAttribute('transform', 'scale(-1 1)');
@@ -573,31 +617,46 @@ Blockly.BlockSvg.prototype.renderDrawTop_ =
     }
   } else {
     steps.push(Blockly.BlockSvg.TOP_LEFT_CORNER_START);
-    highlightSteps.push(this.RTL ?
+     highlightSteps.push(this.RTL ?
         Blockly.BlockSvg.TOP_LEFT_CORNER_START_HIGHLIGHT_RTL :
         Blockly.BlockSvg.TOP_LEFT_CORNER_START_HIGHLIGHT_LTR);
     // Top-left rounded corner.
-    steps.push(Blockly.BlockSvg.TOP_LEFT_CORNER);
-    highlightSteps.push(Blockly.BlockSvg.TOP_LEFT_CORNER_HIGHLIGHT);
+     steps.push(Blockly.BlockSvg.TOP_LEFT_CORNER);
+     highlightSteps.push(Blockly.BlockSvg.TOP_LEFT_CORNER_HIGHLIGHT);
   }
-
   // Top edge.
+  // essa conexão do topo precisa ser alterada para o lado direito
   if (this.previousConnection) {
-    //desenha a vala no topo do bloco.
-    //steps.push('H', Blockly.BlockSvg.NOTCH_WIDTH - 15);
-    // highlightSteps.push('H', Blockly.BlockSvg.NOTCH_WIDTH - 15);
+
+    //desenha a conexão superior
+    // steps.push(Blockly.BlockSvg.TOP_LEFT_CORNER);
+    // highlightSteps.push(Blockly.BlockSvg.TOP_LEFT_CORNER_HIGHLIGHT);
+    // steps.push('H', Blockly.BlockSvg.NOTCH_WIDTH + 20); //25 é um parametro para posicionar o conector superior
+    // highlightSteps.push('H', Blockly.BlockSvg.NOTCH_WIDTH + 20);
     // steps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT);
     // highlightSteps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT_HIGHLIGHT);
-    // Create previous block connection.
-    var connectionX = connectionsXY.x + (this.RTL ?
-        -Blockly.BlockSvg.NOTCH_WIDTH : Blockly.BlockSvg.NOTCH_WIDTH);
-    var connectionY = connectionsXY.y;
-    console.log("Posição do conector superior do bloco em x,y", connectionX+rightEdge, connectionY-50);
+    
+    
+
+    // Create previous block connection.    
+    var connectionX = connectionsXY.x + (
+      this.RTL ?- Blockly.BlockSvg.NOTCH_WIDTH : Blockly.BlockSvg.NOTCH_WIDTH);
+      
+    //verificar as posições a partir daqui e mover também no nextconnection
+    var connectionY = connectionsXY.y;    
+    console.log(connectionY);
+    console.log(connectionX);
     this.previousConnection.moveTo(connectionX-rightEdge-1, connectionY+50);
     // This connection will be tightened when the parent renders.
   }
-  steps.push('H', rightEdge);
-  highlightSteps.push('H', rightEdge - 0.5);
+  // rounded of top-right corner
+  //Arredondamento do canto superior direito
+  steps.push('H', rightEdge -10 );// add - 10
+  steps.push(Blockly.BlockSvg.TOP_RIGHT_CORNER + rightEdge + ',10'); 
+  //Aplicação do arrendodamento bloco_light
+  //Alterado para que a conexão fique na lateral
+  highlightSteps.push('H', rightEdge -10.5);
+  highlightSteps.push(Blockly.BlockSvg.TOP_RIGHT_CORNER_HIGHLIGHT + rightEdge + ',10');
   this.width = rightEdge;
 };
 
@@ -616,19 +675,19 @@ Blockly.BlockSvg.prototype.renderDrawTop_ =
  */
 Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
     inlineSteps, highlightInlineSteps, connectionsXY, inputRows, iconWidth) {
-  var cursorX;
+  var cursorX;9
   var cursorY = 0;
   var connectionX, connectionY;
-  for (var y = 0, row; row = inputRows[y]; y++) {
+  for (var y = 0, row; row = inputRows[y]; y++) 
+  {
     cursorX = Blockly.BlockSvg.SEP_SPACE_X;
     if (y == 0) {
-      cursorX += this.RTL ? -iconWidth : iconWidth;
-      
+      cursorX += this.RTL ? -iconWidth : iconWidth
     }
     highlightSteps.push('M', (inputRows.rightEdge - 0.5) + ',' +
         (cursorY + 0.5));
-    
-    if (this.isCollapsed()) {
+    if (this.isCollapsed()) 
+    {
       // Jagged right edge.
       var input = row[0];
       var fieldX = cursorX;
@@ -642,7 +701,7 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
         highlightSteps.push('v 3.9 l 7.2,3.4 m -14.5,8.9 l 7.3,3.5');
         highlightSteps.push('v', remainder - 0.7);
       }
-       
+     this.width += Blockly.BlockSvg.JAGGED_TEETH_WIDTH;
     } 
     else if (row.type == Blockly.BlockSvg.INLINE) {
       // Inline inputs.
@@ -655,10 +714,11 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
         }
         // TODO: Align inline field rows (left/right/centre).
         cursorX = this.renderFields_(input.fieldRow, fieldX, fieldY);
-
         if (input.type != Blockly.DUMMY_INPUT) {
           cursorX += input.renderWidth + Blockly.BlockSvg.SEP_SPACE_X;
         }
+        // aqui é criado o campo de conexão interno do bloco
+        // desativado temporariamente;
         if (input.type == Blockly.INPUT_VALUE) {
           inlineSteps.push('M', (cursorX - Blockly.BlockSvg.SEP_SPACE_X) +
                            ',' + (cursorY + Blockly.BlockSvg.INLINE_PADDING_Y));
@@ -740,10 +800,9 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
           fieldX += fieldRightX / 2;
         }
       }
-      //linhas para fazer o buraco no lado direita
       this.renderFields_(input.fieldRow, fieldX, fieldY);
       steps.push(Blockly.BlockSvg.TAB_PATH_DOWN);
-      var v = row.height - Blockly.BlockSvg.TAB_HEIGHT ;//- Blockly.BlockSvg.TAB_PATH_DOWN;
+      var v = row.height - Blockly.BlockSvg.TAB_HEIGHT;
       steps.push('v', v);
       if (this.RTL) {
         // Highlight around back of tab.
@@ -767,8 +826,7 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
             input.connection.targetBlock().getHeightWidth().width -
             Blockly.BlockSvg.TAB_WIDTH + 1);
       }
-    } 
-    else if (row.type == Blockly.DUMMY_INPUT) {
+    } else if (row.type == Blockly.DUMMY_INPUT) {
       // External naked field.
       var input = row[0];
       var fieldX = cursorX;
@@ -786,11 +844,9 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
         }
       }
       this.renderFields_(input.fieldRow, fieldX, fieldY);
-      steps.push('V', 7.5);
-      steps.push(Blockly.BlockSvg.TAB_PATH_DOWN);
-      steps.push('v', row.height-30);
+      steps.push('v', row.height);
       if (this.RTL) {
-        highlightSteps.push('v', row.height - 21);
+        highlightSteps.push('v', row.height - 1);
       }
     } else if (row.type == Blockly.NEXT_STATEMENT) {
       // Nested statement.
@@ -886,7 +942,6 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ =
     function(steps, highlightSteps, connectionsXY, cursorY) {
   this.height += cursorY + 1;  // Add one for the shadow.
   if (this.nextConnection) {
-    //desenha uma lombada na parte inferior do bloco.
     // steps.push('H', (Blockly.BlockSvg.NOTCH_WIDTH + (this.RTL ? 0.5 : - 0.5)) +
     //     ' ' + Blockly.BlockSvg.NOTCH_PATH_RIGHT);
     // Create next block connection.
@@ -897,39 +952,45 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ =
       connectionX = connectionsXY.x + Blockly.BlockSvg.NOTCH_WIDTH;
     }
     var connectionY = connectionsXY.y + cursorY + 1;
-    console.log("Posição do conector inferior do bloco em x,y", connectionX, connectionY);
+    console.log("next connection");
+    console.log(connectionX, connectionY);
     this.nextConnection.moveTo(connectionX, connectionY);
     if (this.nextConnection.isConnected()) {
       this.nextConnection.tighten_();
     }
     this.height += 4;  // Height of tab.
-  }
-
-  // Should the bottom-left corner be rounded or square?
-//   if (this.squareBottomLeftCorner_) {
-//     steps.push('H 0');
-//     if (!this.RTL) {
-//       highlightSteps.push('M', '0.5,' + (cursorY - 0.5));
-//     }
-//   } else {
-//     steps.push('H', Blockly.BlockSvg.CORNER_RADIUS);
-//     steps.push('a', Blockly.BlockSvg.CORNER_RADIUS + ',' +
-//                Blockly.BlockSvg.CORNER_RADIUS + ' 0 0,1 -' +
-//                Blockly.BlockSvg.CORNER_RADIUS + ',-' +
-//                Blockly.BlockSvg.CORNER_RADIUS);
-//     if (!this.RTL) {
-//       highlightSteps.push('M', Blockly.BlockSvg.DISTANCE_45_INSIDE + ',' +
-//           (cursorY - Blockly.BlockSvg.DISTANCE_45_INSIDE));
-//       highlightSteps.push('A', (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ',' +
-//           (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ' 0 0,1 ' +
-//           '0.5,' + (cursorY - Blockly.BlockSvg.CORNER_RADIUS));
-//     }
-//   }
     steps.push('H', Blockly.BlockSvg.CORNER_RADIUS);
     steps.push('a', Blockly.BlockSvg.CORNER_RADIUS + ',' +
                Blockly.BlockSvg.CORNER_RADIUS + ' 0 0,1 -' +
                Blockly.BlockSvg.CORNER_RADIUS + ',-' +
                Blockly.BlockSvg.CORNER_RADIUS);
+    highlightSteps.push('M', Blockly.BlockSvg.DISTANCE_45_INSIDE + ',' +
+               (cursorY - Blockly.BlockSvg.DISTANCE_45_INSIDE));
+    highlightSteps.push('A', (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ',' +
+               (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ' 0 0,1 ' +
+               '0.5,' + (cursorY - Blockly.BlockSvg.CORNER_RADIUS));
+  }
+
+  // Should the bottom-left corner be rounded or square?
+  if (this.squareBottomLeftCorner_) {
+    steps.push('H 0');
+    if (!this.RTL) {
+      highlightSteps.push('M', '0.5,' + (cursorY - 0.5));
+    }
+  } else {
+    steps.push('H', Blockly.BlockSvg.CORNER_RADIUS);
+    steps.push('a', Blockly.BlockSvg.CORNER_RADIUS + ',' +
+               Blockly.BlockSvg.CORNER_RADIUS + ' 0 0,1 -' +
+               Blockly.BlockSvg.CORNER_RADIUS + ',-' +
+               Blockly.BlockSvg.CORNER_RADIUS);
+    if (!this.RTL) {
+      highlightSteps.push('M', Blockly.BlockSvg.DISTANCE_45_INSIDE + ',' +
+          (cursorY - Blockly.BlockSvg.DISTANCE_45_INSIDE));
+      highlightSteps.push('A', (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ',' +
+          (Blockly.BlockSvg.CORNER_RADIUS - 0.5) + ' 0 0,1 ' +
+          '0.5,' + (cursorY - Blockly.BlockSvg.CORNER_RADIUS));
+    }
+  }
 };
 
 /**
@@ -942,14 +1003,6 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ =
  */
 Blockly.BlockSvg.prototype.renderDrawLeft_ =
     function(steps, highlightSteps, connectionsXY, cursorY) {
-        //criei para mostrar a conexão do lado esquerdo
-        if(this.previousConnection)
-        {
-            steps.push('V', this.height/2); // alterado para que a orelha fique no centro 
-            steps.push('c 0,-10 -' + Blockly.BlockSvg.TAB_WIDTH + ',8 -' +
-            Blockly.BlockSvg.TAB_WIDTH + ',-7.5 s ' + Blockly.BlockSvg.TAB_WIDTH +
-            ',2.5 ' + Blockly.BlockSvg.TAB_WIDTH + ',-7.5');
-        }
   if (this.outputConnection) {
     // Create output connection.
     this.outputConnection.moveTo(connectionsXY.x, connectionsXY.y);

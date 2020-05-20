@@ -140,11 +140,11 @@ Blockly.Field.prototype.init = function() {
     this.fieldGroup_.style.display = 'none';
   }
   this.borderRect_ = Blockly.createSvgElement('rect',
-      {'rx': 4,
-       'ry': 4,
-       'x': -Blockly.BlockSvg.SEP_SPACE_X / 2,
+      {'rx': 5,
+       'ry': 5,
+       'x': (-Blockly.BlockSvg.SEP_SPACE_X-40) / 2,
        'y': 0,
-       'height': 16}, this.fieldGroup_, this.sourceBlock_.workspace);
+       'height': 30}, this.fieldGroup_, this.sourceBlock_.workspace);
   /** @type {!Element} */
   this.textElement_ = Blockly.createSvgElement('text',
       {'class': 'blocklyText', 'y': this.size_.height - 12.5},
@@ -266,7 +266,7 @@ Blockly.Field.prototype.render_ = function() {
     }
     if (this.borderRect_) {
       this.borderRect_.setAttribute('width',
-          width + Blockly.BlockSvg.SEP_SPACE_X);
+          width + Blockly.BlockSvg.SEP_SPACE_X+10);
     }
   } else {
     var width = 0;
