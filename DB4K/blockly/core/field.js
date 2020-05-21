@@ -76,7 +76,7 @@ Blockly.Field.prototype.name = undefined;
  * Maximum characters of text to display before adding an ellipsis.
  * @type {number}
  */
-Blockly.Field.prototype.maxDisplayLength = 50;
+Blockly.Field.prototype.maxDisplayLength = 10;
 
 /**
  * Visible text to display.
@@ -134,6 +134,8 @@ Blockly.Field.prototype.init = function() {
     // Field has already been initialized once.
     return;
   }
+
+
   // Build the DOM.
   this.fieldGroup_ = Blockly.createSvgElement('g', {}, null);
   if (!this.visible_) {
@@ -142,13 +144,13 @@ Blockly.Field.prototype.init = function() {
   this.borderRect_ = Blockly.createSvgElement('rect',
       {'rx': 5,
        'ry': 5,
-       'x': (-Blockly.BlockSvg.SEP_SPACE_X-40) / 2,
-       'y': 0,
+       'x': -30, // alterei essa linha também
+       'y':50,
        'height': 30}, this.fieldGroup_, this.sourceBlock_.workspace);
   /** @type {!Element} */
-  this.textElement_ = Blockly.createSvgElement('text',
-      {'class': 'blocklyText', 'y': this.size_.height - 12.5},
-      this.fieldGroup_);
+   this.textElement_ = Blockly.createSvgElement('text',
+       {'class': 'blocklyText', 'y': this.size_.height + 45, 'x':-15},// aqui estava 12,5 por algum motivo que não lembro mais
+       this.fieldGroup_);
 
   this.updateEditable();
   this.sourceBlock_.getSvgRoot().appendChild(this.fieldGroup_);
@@ -266,7 +268,7 @@ Blockly.Field.prototype.render_ = function() {
     }
     if (this.borderRect_) {
       this.borderRect_.setAttribute('width',
-          width + Blockly.BlockSvg.SEP_SPACE_X+10);
+          40);//altera o tamanho do retângulo
     }
   } else {
     var width = 0;
@@ -343,7 +345,8 @@ Blockly.Field.prototype.setText = function(text) {
     return;
   }
   this.text_ = text;
-  this.updateTextNode_();
+//Commente a linha abaixo para evitar alterações de texto na label superior
+ // this.updateTextNode_();
 
   if (this.sourceBlock_ && this.sourceBlock_.rendered) {
     this.sourceBlock_.render();
@@ -363,7 +366,7 @@ Blockly.Field.prototype.updateTextNode_ = function() {
   var text = this.text_;
   if (text.length > this.maxDisplayLength) {
     // Truncate displayed string and add an ellipsis ('...').
-    text = text.substring(0, this.maxDisplayLength - 2) + '\u2026';
+    text = text.substring(0, this.maxDisplayLength - 1) + '\u2026';
   }
   // Empty the text element.
   goog.dom.removeChildren(/** @type {!Element} */ (this.textElement_));

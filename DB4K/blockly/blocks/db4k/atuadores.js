@@ -32,8 +32,8 @@ goog.require('Blockly.Blocks');
 *Blockly.FieldColour.COLUMNS = 4;
 */
 
-Blockly.FieldColour.COLOURS = ['#0f0','#ff0','#f00','#00f'];
-Blockly.FieldColour.COLUMNS = 4;
+Blockly.FieldColour.COLOURS = ['#0f0','#ff0','#f00'];
+Blockly.FieldColour.COLUMNS = 3;
 
 var cor_acender_led = 160;
 var cor_apagar_led = 140;
@@ -52,8 +52,10 @@ Blockly.Blocks['acender_led'] = {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_acender_led);
     this.appendDummyInput("acender_led")
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_on.png", 80, 40, "*"))
-        .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
+        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_on.png", 90, 60, "*"))
+        // .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
+        .appendField(new Blockly.FieldTextInput("oi"), "texto");
+        
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Acende o LED na porta indicada.');
@@ -65,8 +67,9 @@ Blockly.Blocks['apagar_led'] = {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_apagar_led);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_off_long.png", 80, 40, "*"))
+        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_off_long.png", 90, 60, "*"))
         .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
+        //.appendField(new Blockly.FieldDropdown([['D534535353413', "13"]]), "cor_led");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Apaga o LED na porta indicada.');

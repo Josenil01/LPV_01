@@ -164,16 +164,19 @@ Blockly.RenderedConnection.prototype.closest = function(maxLimit, dx, dy) {
 Blockly.RenderedConnection.prototype.highlight = function() {
   var steps;
   if (this.type == Blockly.INPUT_VALUE || this.type == Blockly.OUTPUT_VALUE) {
+      //destaque para a conexão do lado direito do bloco
+      //Originalmente esses valores eram invertidos.S
     var tabWidth = this.sourceBlock_.RTL ? -Blockly.BlockSvg.TAB_WIDTH :
         Blockly.BlockSvg.TAB_WIDTH;
-    steps = 'm 0,0 ' + Blockly.BlockSvg.TAB_PATH_DOWN + ' v 5';
+        steps = 'm -20,0 h 5 ' + Blockly.BlockSvg.NOTCH_PATH_LEFT + ' h 5';
 
   } else {
-    steps = 'm -20,0 h 5 ' + Blockly.BlockSvg.NOTCH_PATH_LEFT + ' h 5';
+      //destaque para parte inferior do bloco 
+       steps = 'm 0,0 ' + Blockly.BlockSvg.TAB_PATH_DOWN + ' v 5';
   }
   var xy = this.sourceBlock_.getRelativeToSurfaceXY();
-  var x = this.x_ - xy.x;
-  var y = this.y_ - xy.y;
+  var x = this.x_ - xy.x+100; //Os valores aqui podem ser ajustados aqui
+  var y = this.y_ - xy.y-51.5;//Os valores aqui podem ser ajustados aqui
   Blockly.Connection.highlightedPath_ = Blockly.createSvgElement('path',
       {'class': 'blocklyHighlightedConnectionPath',
        'd': steps,

@@ -52,7 +52,7 @@ goog.inherits(Blockly.FieldTextInput, Blockly.Field);
 /**
  * Point size of text.  Should match blocklyText's font-size in CSS.
  */
-Blockly.FieldTextInput.FONTSIZE = 11;
+Blockly.FieldTextInput.FONTSIZE = 11;// era 11
 
 /**
  * Mouse cursor style when over the hotspot that initiates the editor.
@@ -90,7 +90,7 @@ Blockly.FieldTextInput.prototype.setValue = function(text) {
       text = validated;
     }
   }
-  Blockly.Field.prototype.setValue.call(this, text);
+ Blockly.Field.prototype.setValue.call(this, text);
 };
 
 /**
@@ -221,13 +221,15 @@ Blockly.FieldTextInput.prototype.validate_ = function() {
 
 /**
  * Resize the editor and the underlying block to fit the text.
+ * Redimensiona o tamanho do editor de texto e a sua posição em relação ao bloco
  * @private
  */
 Blockly.FieldTextInput.prototype.resizeEditor_ = function() {
   var div = Blockly.WidgetDiv.DIV;
   var bBox = this.fieldGroup_.getBBox();
-  div.style.width = bBox.width * this.workspace_.scale + 'px';
-  div.style.height = bBox.height * this.workspace_.scale + 'px';
+  //O tamanho da textarea
+  div.style.width = '40px';
+  div.style.height = '40px'//bBox.height * this.workspace_.scale + 'px';
   var xy = this.getAbsoluteXY_();
   // In RTL mode block fields and LTR input fields the left edge moves,
   // whereas the right edge is fixed.  Reposition the editor.
@@ -247,6 +249,7 @@ Blockly.FieldTextInput.prototype.resizeEditor_ = function() {
   if (goog.userAgent.WEBKIT) {
     xy.y -= 3;
   }
+  //posiciona o editor onde ele deve aparecer no bloco
   div.style.left = xy.x + 'px';
   div.style.top = xy.y + 'px';
 };
@@ -258,6 +261,7 @@ Blockly.FieldTextInput.prototype.resizeEditor_ = function() {
  * @private
  */
 Blockly.FieldTextInput.prototype.widgetDispose_ = function() {
+  console.log("dentro do field");
   var thisField = this;
   return function() {
     var htmlInput = Blockly.FieldTextInput.htmlInput_;
