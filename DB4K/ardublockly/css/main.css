@@ -1,3 +1,14 @@
-body{
-    
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+* {
+  font-family: "Montserrat", sans-serif; }
+  * body {
+    padding: 0px !important;
+    background: white !important; }
+    * body .ajr-navbar nav {
+      background-color: #421a60;
+      box-shadow: 0px 0px 0px 0px transparent; }
+      * body .ajr-navbar nav a img {
+        height: 32px;
+        margin: 17px; }
+    * body #content_blocks {
+      box-shadow: 0px 0px 0px 0px transparent; }

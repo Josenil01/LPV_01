@@ -1,0 +1,39 @@
+// Estilização dos componentes arduino JR
+// 1. Navbar
+// 2. Workspace
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+* {
+    $purple-color: #421a60;
+    $orange-color: #f77b01;
+    $red-color: #fb3640;
+    $cyan-color: #17bebb;
+    $blue-color: #054a91;
+    $green-color: #00b229;
+
+    font-family: "Montserrat", sans-serif;
+
+    body {
+        padding: 0px !important;
+        background: white !important;
+
+        // 1. Navbar ===================================================
+        .ajr-navbar {
+            nav {
+                background-color: $purple-color;
+                box-shadow: 0px 0px 0px 0px transparent;
+                a {
+                    img {
+                        height: 32px;
+                        margin: 17px;
+                    }
+                }
+            }
+        }
+
+        // 2. Workspace  ===================================================
+        #content_blocks{
+            box-shadow:0px 0px 0px 0px transparent;
+        }
+    }
+}
