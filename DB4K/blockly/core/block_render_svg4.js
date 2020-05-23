@@ -531,9 +531,11 @@ Blockly.BlockSvg.prototype.renderDraw_ = function(iconWidth, inputRows) {
 
   this.renderDrawTop_(steps, highlightSteps, connectionsXY,
       inputRows.rightEdge);
+  var blockWidth = inputRows.rightEdge;
   var cursorY = this.renderDrawRight_(steps, highlightSteps, inlineSteps,
       highlightInlineSteps, connectionsXY, inputRows, iconWidth);
-  this.renderDrawBottom_(steps, highlightSteps, connectionsXY, cursorY);
+  var blockHeight = cursorY;
+  this.renderDrawBottom_(steps, highlightSteps, connectionsXY, cursorY,);
   this.renderDrawLeft_(steps, highlightSteps, connectionsXY, cursorY);
 
   var pathString = steps.join(' ') + '\n' + inlineSteps.join(' ');
@@ -541,13 +543,14 @@ Blockly.BlockSvg.prototype.renderDraw_ = function(iconWidth, inputRows) {
   this.svgPathDark_.setAttribute('d', pathString);
   pathString = highlightSteps.join(' ') + '\n' + highlightInlineSteps.join(' ');
   this.svgPathLight_.setAttribute('d', pathString);
-
   if (this.RTL) {
     // Mirror the block's path.
     this.svgPath_.setAttribute('transform', 'scale(-1 1)');
     this.svgPathLight_.setAttribute('transform', 'scale(-1 1)');
     this.svgPathDark_.setAttribute('transform', 'translate(1,1) scale(-1 1)');
   }
+  console.log('bloco em x',  blockWidth, 'bloco em y', blockHeight);
+
 };
 
 /**
@@ -871,7 +874,8 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
  * @private
  */
 Blockly.BlockSvg.prototype.renderDrawBottom_ =
-    function(steps, highlightSteps, connectionsXY, cursorY) {
+    function(steps, highlightSteps, connectionsXY, cursorY){
+      
   this.height += cursorY + 1;  // Add one for the shadow.
   if (this.nextConnection) {
     steps.push('H', (Blockly.BlockSvg.NOTCH_WIDTH + (this.RTL ? 0.5 : - 0.5)) +
@@ -889,6 +893,7 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ =
       this.nextConnection.tighten_();
     }
     this.height += 4;  // Height of tab.
+    
   }
 
   // Should the bottom-left corner be rounded or square?

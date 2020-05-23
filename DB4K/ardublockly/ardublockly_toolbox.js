@@ -17,6 +17,7 @@ Ardublockly.TOOLBOX_XML =
 '<category name="Controle">' +
 '   <block type="sempre"></block>' +
 '   <block type="delay"></block>' +
+'   <block type="condicional_simples"></block>' +
 '</category>' +
 '<category name="LED">' +
 '   <block type="acender_led"></block>' +
@@ -26,7 +27,7 @@ Ardublockly.TOOLBOX_XML =
 '</category>' +
 '<category name="Matematica">' +
 // '   <block type="soma"></block>' +
-// '   <block type="subtracao"></block>' +
+ '   <block type="subtracao"></block>' +
 // '   <block type="divisao"></block>' +
 // '   <block type="multiplicao"></block>' +
 // '   <block type="n0"></block>' +
@@ -41,7 +42,7 @@ Ardublockly.TOOLBOX_XML =
 // '   <block type="n9"></block>' +//*/
 '</category>' +
 '<category name="Motores">' +
-// '   <block type="mover_servomotor"></block>' +
+ '   <block type="mover_servomotor"></block>' +
 // '   <block type="girar_motor"></block>' +
 // '   <block type="parar_motor"></block>' +
 '</category>' +
@@ -59,7 +60,7 @@ Ardublockly.TOOLBOX_XML =
 '</category>' +
 '<category name="Sensores">' +
 // '   <block type="sensor_temperatura"></block>' +
-// '   <block type="sensor_distancia"></block>' +
+ '   <block type="sensor_distancia"></block>' +
 // '   <block type="sensor_luz"></block>' +
 // '   <block type="sensor_linha"></block>' +
 // '   <block type="potenciometro"></block>'+

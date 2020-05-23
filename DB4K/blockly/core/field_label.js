@@ -41,10 +41,11 @@ goog.require('goog.math.Size');
  */
 Blockly.FieldLabel = function(text, opt_class) {
   this.size_ = new goog.math.Size(0, 17.5);
+  console.log('class', opt_class);
   this.class_ = opt_class;
   this.setValue(text);
 };
-goog.inherits(Blockly.FieldLabel, Blockly.Field);
+ goog.inherits(Blockly.FieldLabel, Blockly.Field);
 
 /**
  * Editable fields are saved by the XML renderer, non-editable fields are not.
