@@ -1,0 +1,133 @@
+<div class="col s12 m12 l8" style="position:relative">
+    <!-- Toolbox visibility button -->
+    <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off"
+      style="display: none"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
+    <!-- Arduino IDE action buttons -->
+    <div id="ide_buttons_wrapper">
+      <!--*********************************************************************************-->
+      <!-- Button Stop ( Included by RLQ DB4K )-->
+      <a id="button_stop" class="waves-effect waves-light waves-circle btn-floating btn-large red z-depth-1-half"
+        title="Parar Execução do Programa na Placa"><i class="mdi-av-stop"></i></a>
+      <!-- Begging of stop spinner -->
+      <div id="button_stop_spinner" class="preloader-wrapper active stop_loader" style="display:none">
+        <div class="spinner-layer stop-spinner-orange">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+        <div class="spinner-layer stop-spinner-dark-teal">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+        <div class="spinner-layer stop-spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+        <div class="spinner-layer stop-spinner-light-teal">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <!-- desable stop button -->
+      <div id="button_stop_desable" class="preloader-wrapper active stop_loader" style="display:none"> </div>
+      <!-- End of stop Spinner-->
+      <!------------------------------------------------------------------------------------->
+      <!--*********************************************************************************-->
+      <!-- (modified by  RLQ DB4K ) button left and button middle -- included div display = none -->
+      <div style="display:none">
+        <a id="button_ide_left"
+          class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i
+            id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
+        <a id="button_ide_middle"
+          class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i
+            id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
+      </div>
+      <!--------------------------------------------------------------------------------------->
+      <a id="button_ide_large"
+        class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i
+          id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
+      <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
+        <div class="spinner-layer spinner-orange">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+        <div class="spinner-layer spinner-dark-teal">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+        <div class="spinner-layer spinner-light-teal">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--***************************************************************************************-->
+    <!--Included by RLQ DB4K - Defines a invisible button used to desable the ide_large_button -->
+    <div id="button_ide_desable" class="preloader-wrapper active ide_loader" style="display:none"> </div>
+    <!------------------------------------------------------------------------------------------->
+    <!-- Blockly Panel -->
+    <div class="card-panel white" style="padding: 0">
+      <div id="blocks_panel" class="content blocks_panel_large">
+        <div id="content_blocks" class="content z-depth-1"></div>
+      </div>
+    </div>
+  </div>
