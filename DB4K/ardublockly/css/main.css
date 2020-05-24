@@ -1,78 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
-* {
-  font-family: "Montserrat", sans-serif; }
-  * body {
-    padding: 0px !important;
-    background: white !important;
-    background: black !important; }
-    * body .ajr-navbar nav {
-      background-color: #421a60;
-      box-shadow: 0px 0px 0px 0px transparent; }
-      * body .ajr-navbar nav a img {
-        height: 32px;
-        margin: 17px; }
-    * body #content_blocks {
-      box-shadow: 0px 0px 0px 0px transparent; }
-    * body .blocklyMainBackground {
-      position: relative; }
-    * body .blocklyToolboxDiv {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      left: 0 !important;
-      /* height: 500px; */
-      top: auto !important;
-      background: transparent !important; }
-      * body .blocklyToolboxDiv div div div {
-        display: inline;
-        float: left; }
-    * body .menuLadoDireito {
-      position: fixed;
-      width: 300px;
-      height: 200px;
-      right: 0;
-      top: 64px;
-      z-index: 9999999999999999999999 !important; }
-      * body .menuLadoDireito button {
-        transition: ease all .25s;
-        color: white;
-        position: absolute;
-        margin: 1rem; }
-        * body .menuLadoDireito button.btn-circle {
-          border: none;
-          border-radius: 50%;
-          box-shadow: 0px 11px 20px -11px #0000002e; }
-        * body .menuLadoDireito button.second, * body .menuLadoDireito button.third, * body .menuLadoDireito button.fourth {
-          right: -50rem;
-          top: -50rem; }
-        * body .menuLadoDireito button.first {
-          right: 0;
-          top: 0;
-          background: #421a60;
-          width: 150px;
-          height: 150px; }
-      * body .menuLadoDireito:hover button.first, * body .menuLadoDireito:hover button.second, * body .menuLadoDireito:hover button.third, * body .menuLadoDireito:hover button.fourth {
-        opacity: 1; }
-      * body .menuLadoDireito:hover button.second {
-        left: 40px !important;
-        top: 10px !important;
-        right: auto !important;
-        background: #17bebb;
-        width: 75px;
-        height: 75px; }
-      * body .menuLadoDireito:hover button.third {
-        left: 58px !important;
-        bottom: -12px !important;
-        top: auto !important;
-        right: auto !important;
-        background: #f77b01;
-        width: 75px;
-        height: 75px; }
-      * body .menuLadoDireito:hover button.fourth {
-        left: 160px !important;
-        bottom: -65px !important;
-        top: auto !important;
-        right: auto !important;
-        background: #fb3640;
-        width: 75px;
-        height: 75px; }
+* { font-family: "Montserrat", sans-serif; }
+
+* body { padding: 0px !important; background: white !important; background: black !important; }
+
+* body .ajr-navbar nav { background-color: #421a60; box-shadow: 0px 0px 0px 0px transparent; }
+
+* body .ajr-navbar nav a img { height: 32px; margin: 17px; }
+
+* body #content_blocks { box-shadow: 0px 0px 0px 0px transparent; }
+
+* body .blocklyMainBackground { position: relative; }
+
+* body .blocklyToolboxDiv { position: absolute; bottom: 0; width: 100%; left: 0 !important; /* height: 500px; */ top: auto !important; background: transparent !important; }
+
+* body .blocklyToolboxDiv div div div { display: inline; float: left; }
+
+* body .menuLadoDireito { position: fixed; width: 300px; height: 200px; right: 0; top: 64px; z-index: 9999999999999999999999 !important; }
+
+* body .menuLadoDireito button { transition: ease all .25s; color: white; position: absolute; margin: 1rem; }
+
+* body .menuLadoDireito button.btn-circle { border: none; border-radius: 50%; box-shadow: inset 0px -10px 14px 0px #0000006b, 0px 7px 20px 8px #0000008f; }
+
+* body .menuLadoDireito button.second, * body .menuLadoDireito button.third, * body .menuLadoDireito button.fourth { right: -50rem; top: -50rem; }
+
+* body .menuLadoDireito button.first { right: 0; top: 0; background: #421a60; width: 150px; height: 150px; }
+
+* body .menuLadoDireito:hover button.first, * body .menuLadoDireito:hover button.second, * body .menuLadoDireito:hover button.third, * body .menuLadoDireito:hover button.fourth { opacity: 1; }
+
+* body .menuLadoDireito:hover button.second { left: 40px !important; top: 10px !important; right: auto !important; background: #17bebb; width: 75px; height: 75px; }
+
+* body .menuLadoDireito:hover button.third { left: 58px !important; bottom: -12px !important; top: auto !important; right: auto !important; background: #f77b01; width: 75px; height: 75px; }
+
+* body .menuLadoDireito:hover button.fourth { left: 160px !important; bottom: -65px !important; top: auto !important; right: auto !important; background: #fb3640; width: 75px; height: 75px; }
