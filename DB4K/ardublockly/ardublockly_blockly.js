@@ -27,7 +27,7 @@ Ardublockly.xmlTree = null;
  * @param {!string} toolboxXml String containing the toolbox XML content.
  * @param {!string} blocklyPath String containing the Blockly directory path.
  */
-Ardublockly.injectBlockly = function(blocklyEl, toolboxXml, blocklyPath) {
+Ardublockly.injectBlockly = function(blocklyEl, toolboxXml, blocklyPath, typeclass='') {
   // Remove any trailing slashes in the blockly path
   if (blocklyPath.substr(-1) === '/') {
     blocklyPath = blocklyPath.slice(0, -1);
