@@ -1,0 +1,30 @@
+{
+  "name": "arduinojr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "materialize-css": "^1.0.0-rc.2",
+    "node-sass": "^4.14.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ../ -p 8080",
+    "build-css":"node-sass -w scss/main.scss -o css/ --output-style compressed --watch",
+    "build": "webpack --config webpack.config.js" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Josenil01/LPV_01.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Josenil01/LPV_01/issues"
+  },
+  "homepage": "https://github.com/Josenil01/LPV_01#readme"
+}

@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#00878F">
+  <link rel="icon" href="img/logo_purple.png">
+  <title class="translatable_title">Arduíno Jr | Hello Yotta</title>
+  <!-- <script src="js/include.js"></script>
+  <script src="js/db4k_setup.js"></script>
+  <script src="js/en.js"></script> -->
+  <!-- Materialize, Prettify, and Ardublockly CSS -->
+  <!-- <link rel="stylesheet" href="materialize/materialize.css" media="screen,projection"> -->
+
+  <link rel="stylesheet" href="css/arduino.css">
+  <link rel="stylesheet" href="css/ardublockly.css" media="screen,projection">
+
+  <!-- PAULO CODE  -->
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<!--********************************************************************************-->
+<!--  ( Modified by RLQ DB4K )  Included background image -->
+
+<body>
+  <div class="container-fluid">
+    <div include-html="components/navbar.html"></div>
+  </div>
+
+  <div include-html="components/sidenav.html" class="hide"></div>
+  <!-- Content -->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Toolbox visibility button -->
+      <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off"
+        style="display: none"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
+      <!-- Arduino IDE action buttons -->
+      <div id="ide_buttons_wrapper">
+        <!--*********************************************************************************-->
+        <!-- Button Stop ( Included by RLQ DB4K )-->
+        <a id="button_stop" class="waves-effect waves-light waves-circle btn-floating btn-large red z-depth-1-half"
+          title="Parar Execução do Programa na Placa"><i class="mdi-av-stop"></i></a>
+        <!-- Begging of stop spinner -->
+        <div id="button_stop_spinner" class="preloader-wrapper active stop_loader" style="display:none">
+          <div class="spinner-layer stop-spinner-orange">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer stop-spinner-dark-teal">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer stop-spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer stop-spinner-light-teal">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <!-- desable stop button -->
+        <div id="button_stop_desable" class="preloader-wrapper active stop_loader" style="display:none"> </div>
+        <!-- End of stop Spinner-->
+        <!------------------------------------------------------------------------------------->
+        <!--*********************************************************************************-->
+        <!-- (modified by  RLQ DB4K ) button left and button middle -- included div display = none -->
+        <div style="display:none">
+          <a id="button_ide_left"
+            class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i
+              id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
+          <a id="button_ide_middle"
+            class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i
+              id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
+        </div>
+        <!--------------------------------------------------------------------------------------->
+        <a id="button_ide_large"
+          class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i
+            id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
+        <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
+          <div class="spinner-layer spinner-orange">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-dark-teal">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-light-teal">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--***************************************************************************************-->
+      <!--Included by RLQ DB4K - Defines a invisible button used to desable the ide_large_button -->
+      <div id="button_ide_desable" class="preloader-wrapper active ide_loader" style="display:none"> </div>
+      <!------------------------------------------------------------------------------------------->
+      <!-- Blockly Panel -->
+      <div class="card-panel white z-depth-0 style=" padding: 0">
+        <div id="blocks_panel" class="content blocks_panel_large">
+          <div id="content_blocks" class="content z-depth-0 border-0"></div>
+        </div>
+      </div>
+      <div include-html="components/toolbox.html" class="hide"></div>
+    </div>
+  </div>
+
+  <!-- <div include-html="components/settings.html"></div> -->
+  <div include-html="components/debugger.html"></div>
+  <div include-html="components/about.html"></div>
+  <div include-html="components/alert_prompt.old.html"></div>
+  <div include-html="components/alerta.old.html"></div>
+  <div include-html="components/block_menu.html"></div>
+
+  <!--********************************************************************************-->
+  <!--( Modified by RLQ DB4K )  Translated labels and hidden some options
+    Settings: Displayed as a Materialize Modal -->
+  <div id="settings_dialog" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4><span class="translatable_settings">Configurações</span></h4>
+      <div class="modal_section">
+        <label><span class="translatable_compilerLocation">Localização do Compilador Arduino
+            (arduino_debug.exe)</span>:</label>
+        <input type="text" id="settings_compiler_location">
+      </div>
+      <div class="modal_section">
+        <label><span class="translatable_sketchFolder">Pasta do Programa .ino</span>:</label>
+        <input type="text" id="settings_sketch_location">
+      </div>
+      <div class="modal_section">
+        <label><span class="translatable_arduinoBoard">Placa Arduino</span>:</label>
+        <select name="settings_board" id="board">
+          <option value="uno" class="translatable_arduinoBoardDefault">Placa Desconhecida</option>
+        </select>
+      </div>
+      <div class="modal_section">
+        <label><span class="translatable_comPort">Porta COM<span>:</label>
+        <select name="settings_serial" id="serial_port">
+          <option value="COMX" class="translatable_comPortDefault">Porta COM desconhecida</option>
+        </select>
+      </div>
+      <!--Modified by RLQ DB4K - style="display:none" -->
+      <div class="modal_section" style="display:none">
+        <!--div class="modal_section"-->
+        <label><span class="translatable_defaultIdeButton">Default IDE button</span>:</label>
+        <select name="settings_ide" id="ide_settings">
+          <option value="verify" class="translatable_defaultIdeButtonDefault">IDE options unknown</option>
+        </select>
+      </div>
+      <!--Modified by RLQ DB4K - style="display:none" -->
+      <div class="modal_section" style="display:none">
+        <label><span class="translatable_language">Language</span>:</label>
+        <select name="settings_language" id="language"></select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="waves-effect btn-flat modal-close"><span class="translatable_return">OK</span></a>
+    </div>
+  </div>
+
+  <div class="menuLadoDireito">
+    <button id="" class="btn-circle first">Teste</button>
+    <button id="" class="btn-circle second">Teste</button>
+    <button id="" class="btn-circle third">Teste</button>
+    <button id="" class="btn-circle fourth">Teste</button>
+  </div>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    window.addEventListener('load', function load(event) {
+      window.removeEventListener('load', load, false);
+      // Ardublockly.init();
+    });
+  </script>
+  <div include-html="components/about.html"></div>
+  <script>
+    window.addEventListener('load', function () {
+      // includeHTML();
+    });
+  </script>
+</body>
+
+</html>

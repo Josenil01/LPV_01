@@ -1,0 +1,94 @@
+#content_blocks {
+    box-shadow: 0px 0px 0px 0px transparent;
+}
+.blocklyMainBackground {
+    position: relative;
+}
+.blocklyToolboxDiv {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0 !important;
+    /* height: 500px; */
+    top: auto !important;
+    background: transparent !important;
+    div {
+        div {
+            div {
+                display: inline;
+                float: left;
+            }
+        }
+    }
+}
+.menuLadoDireito {
+    position: fixed;
+    width: 300px;
+    height: 200px;
+    right: 0;
+    top: 64px;
+    z-index: 9999999999999999999999 !important;
+    button {
+        &.btn-circle {
+            border: none;
+            border-radius: 50%;
+            // box-shadow:0px 11px 20px -11px #0000002e;
+            box-shadow: inset 0px -10px 14px 0px #0000006b, 0px 7px 20px 8px #0000008f;
+        }
+        transition: ease all 0.25s;
+        color: white;
+        position: absolute;
+        margin: 1rem;
+        &.second,
+        &.third,
+        &.fourth {
+            right: -50rem;
+            top: -50rem;
+            // opacity: 0;
+        }
+
+        &.first {
+            right: 0;
+            top: 0;
+            background: $purple-color;
+            width: 150px;
+            height: 150px;
+        }
+    }
+    &:hover {
+        button {
+            &.first,
+            &.second,
+            &.third,
+            &.fourth {
+                opacity: 1;
+            }
+            &.second {
+                left: 40px !important;
+                top: 10px !important;
+                right: auto !important;
+                background: $cyan-color;
+                width: 75px;
+                height: 75px;
+            }
+            &.third {
+                left: 58px !important;
+                bottom: -12px !important;
+                top: auto !important;
+                right: auto !important;
+                background: $orange-color;
+                width: 75px;
+                height: 75px;
+            }
+            &.fourth {
+                left: 160px !important;
+                bottom: -65px !important;
+                top: auto !important;
+                right: auto !important;
+                background: $red-color;
+                width: 75px;
+                height: 75px;
+            }
+        }
+    }
+}
