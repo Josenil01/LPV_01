@@ -27,7 +27,7 @@ Ardublockly.materializeJsInit = function () {
   $('.button-collapse').sideNav({
     menuWidth: 240,
     activationWidth: 70,
-    edge: 'left'
+    edge: 'right'
   });
   // Drop down menus
   $('.dropdown-button').dropdown({ hover: false });
@@ -251,7 +251,7 @@ Ardublockly.displayToolbox = function (show) {
   jQuery('<div/>', {
     id: 'toolboxButtonScreen',
     css: {
-      position: 'relative',
+      position: 'fixed',
       top: elLocation.top,
       left: elLocation.left,
       height: $('#button_toggle_toolbox').height(),

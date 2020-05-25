@@ -185,7 +185,7 @@ Blockly.Toolbox.prototype.init = function() {
   tree.setShowRootNode(false);
   tree.setShowLines(false);
   tree.setShowExpandIcons(false);
-  tree.setSelectedItem(null);
+  tree.setSelectedItem(document.getElementById(':1'));
   this.populate_(workspace.options.languageTree);
   tree.render(this.HtmlDiv);
   this.addColour_();
@@ -495,6 +495,7 @@ Blockly.Toolbox.TreeControl.prototype.createNode = function(opt_html) {
  */
 Blockly.Toolbox.TreeControl.prototype.setSelectedItem = function(node) {
   var toolbox = this.toolbox_;
+  console.log(node);
   if (node == this.selectedItem_ || node == toolbox.tree_) {
     return;
   }
@@ -571,6 +572,7 @@ Blockly.Toolbox.TreeNode.prototype.getExpandIconSafeHtml = function() {
  * @param {!goog.events.BrowserEvent} e The browser event.
  * @override
  */
+
 Blockly.Toolbox.TreeNode.prototype.onMouseDown = function(e) {
   // Expand icon.
   if (this.hasChildren() && this.isUserCollapsible_) {
@@ -642,7 +644,7 @@ function changeMenuItensColor(){
 
 		//Captura os elementos de tela cujos atributos serão alterados
     // os id são gerados automaticamente pelo sistema
-		var menuControle=document.getElementById(":1"); //Controle
+    var menuControle=document.getElementById(":1"); //Controle
 		var textomenuControle = document.getElementById(":1.label"); //TextoControle
     var menuMatematica=document.getElementById(":2"); //Matemática
 		var textomenuMatematica = document.getElementById(":2.label"); //textoMatemática

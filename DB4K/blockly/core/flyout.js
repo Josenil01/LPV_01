@@ -172,7 +172,7 @@ Blockly.Flyout.prototype.init = function(targetWorkspace) {
   // Add scrollbar.
   this.scrollbar_ = new Blockly.Scrollbar(this.workspace_,
       this.horizontalLayout_, false);
-
+      
   this.hide();
 
   Array.prototype.push.apply(this.eventWrappers_,
@@ -509,7 +509,7 @@ Blockly.Flyout.prototype.isVisible = function() {
  * Hide and empty the flyout.
  */
 Blockly.Flyout.prototype.hide = function() {
-  if (!this.isVisible()) {
+  if (this.isVisible()) {
     return;
   }
   this.svgGroup_.style.display = 'none';
@@ -532,6 +532,7 @@ Blockly.Flyout.prototype.hide = function() {
  *     Variables and procedures have a custom set of blocks.
  */
 Blockly.Flyout.prototype.show = function(xmlList) {
+  // this.show();
   this.hide();
   this.clearOldBlocks_();
 
