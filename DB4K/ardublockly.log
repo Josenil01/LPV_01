@@ -7797,3 +7797,269 @@ Launch Server:
 
 2020-05-12T21:15:23.569Z - info: [ServerMgr] Server stopped.
 2020-05-12T21:15:23.631Z - warn: [ArdublocklyElec] Page failed to load (0). The server is probably not yet running. Trying again in 200 ms.
+2020-05-25T13:20:33.974Z - info: [ArdublocklyElec] Starting Ardublockly version: 4.0.0
+2020-05-25T13:20:33.979Z - info: [ArdublocklyElec] Ardublockly root dir: C:\LPV_01\DB4K
+2020-05-25T13:20:33.979Z - info: [ArdublocklyElec] OS detected: win32
+2020-05-25T13:20:34.479Z - info: [ServerMgr] Command: C:\LPV_01\DB4K\arduexec\server\start.exe --findprojectroot --nobrowser
+2020-05-25T13:20:39.497Z - info: [ArdublocklySrv] Running Python 3.4.3 (64 bit) on Windows-10.0.18362
+Not using local-packages, likely running packaged.
+
+======= Parsing Command line arguments =======
+Parsed "--findprojectroot" flag. The ardublockly project root will be set as the server root directory.
+Parsed "--nobrowser" flag. No browser will be opened.
+
+======= Resolving server and project paths =======
+Ardublockly root directory:
+	C:\LPV_01\DB4K
+Current working directory set to:
+	C:\LPV_01\DB4K
+Selected server root:
+	C:\LPV_01\DB4K
+Selected server ip:
+	localhost
+Selected server port:
+	8001
+
+======= Loading Settings =======
+Settings loaded from:
+	C:\LPV_01\DB4K\ServerCompilerSettings.ini
+Settings file Serial Port is not currently available:
+	None
+Default Serial Port set:
+	None
+Final settings loaded:
+	Compiler directory: C:\Program Files (x86)\Arduino\arduino_debug.exe
+	Arduino Board Key: Duemilanove 328p
+	Arduino Board Value: arduino:avr:diecimila
+	Serial Port Value: None
+	Sketch Name: DB4KSketch
+	Sketch Directory: C:\DB4K-SA
+	Load IDE option: upload
+Settings file saved to:
+	C:\LPV_01\DB4K\ServerCompilerSettings.ini
+
+======= Starting Server =======
+Setting HTTP Server Document Root to:
+	C:\LPV_01\DB4K
+Launch Server:
+
+2020-05-25T13:20:48.486Z - info: [Renderer "http://localhost:8001/ardublockly/ardublockly_lang.js:Ardublockly.getLocalStr():L180"] Localised text string ID "null" does not exists!
+2020-05-25T13:20:48.487Z - info: [Renderer "http://localhost:8001/ardublockly/ardublockly_lang.js:Ardublockly.getLocalStr():L180"] Localised text string ID "null" does not exists!
+2020-05-25T13:20:48.488Z - info: [Renderer "http://localhost:8001/ardublockly/ardublockly_lang.js:Ardublockly.getLocalStr():L180"] Localised text string ID "null" does not exists!
+2020-05-25T13:20:48.489Z - info: [Renderer "http://localhost:8001/ardublockly/ardublockly_lang.js:Ardublockly.getLocalStr():L180"] Localised text string ID "null" does not exists!
+2020-05-25T13:20:48.489Z - info: [Renderer "http://localhost:8001/ardublockly/ardublockly_lang.js:Ardublockly.getLocalStr():L180"] Localised text string ID "null" does not exists!
+2020-05-25T13:20:48.490Z - info: [Renderer "http://localhost:8001/ardublockly/ardublockly_lang.js:Ardublockly.getLocalStr():L180"] Localised text string ID "null" does not exists!
+2020-05-25T13:20:48.491Z - info: [Renderer "http://localhost:8001/ardublockly/ardublockly_lang.js:Ardublockly.getLocalStr():L180"] Localised text string ID "null" does not exists!
+2020-05-25T13:20:48.492Z - info: [Renderer "http://localhost:8001/ardublockly/ardublockly_lang.js:Ardublockly.getLocalStr():L180"] Localised text string ID "null" does not exists!
+2020-05-25T13:20:49.019Z - error: [Renderer "http://localhost:8001/closure-library/closure/goog/base.js:goog.logToConsole_():L870"] goog.require could not find: Blockly.Msg.en
+2020-05-25T13:20:49.023Z - error: [Renderer "http://localhost:8001/closure-library/closure/goog/base.js:goog.logToConsole_():L870"] goog.require could not find: Blockly.Msg.en
+2020-05-25T13:20:52.488Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:52.489Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:52.493Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:52.495Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:52.496Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.497Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.502Z - info: [Renderer "http://localhost:8001/blockly/core/field_label.js:Blockly.FieldLabel():L44"] class
+2020-05-25T13:20:52.503Z - info: [Renderer "http://localhost:8001/blockly/core/field_label.js:Blockly.FieldLabel():L44"] class
+2020-05-25T13:20:52.507Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:52.507Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:52.509Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:52.510Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L648"] Inline
+2020-05-25T13:20:52.511Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.512Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.513Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L663"] input value
+2020-05-25T13:20:52.514Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.515Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:52.516Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L775"] next_state
+2020-05-25T13:20:52.518Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:52.519Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:52.520Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:52.520Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:52.521Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.522Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.524Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:52.525Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:52.526Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:52.527Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L648"] Inline
+2020-05-25T13:20:52.528Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.531Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.532Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L663"] input value
+2020-05-25T13:20:52.533Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:52.535Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:52.536Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L775"] next_state
+2020-05-25T13:20:55.415Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:55.416Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:55.417Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:55.418Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:55.419Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.419Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.421Z - info: [Renderer "http://localhost:8001/blockly/core/field_label.js:Blockly.FieldLabel():L44"] class
+2020-05-25T13:20:55.422Z - info: [Renderer "http://localhost:8001/blockly/core/field_label.js:Blockly.FieldLabel():L44"] class
+2020-05-25T13:20:55.424Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:55.425Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:55.425Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:55.426Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L648"] Inline
+2020-05-25T13:20:55.427Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.428Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.429Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L663"] input value
+2020-05-25T13:20:55.429Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.430Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:55.431Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L775"] next_state
+2020-05-25T13:20:55.433Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:55.434Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:55.435Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:55.436Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:55.436Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.437Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.438Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:55.439Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:55.440Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:55.441Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L648"] Inline
+2020-05-25T13:20:55.441Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.442Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.443Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L663"] input value
+2020-05-25T13:20:55.444Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:55.444Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:55.445Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L775"] next_state
+2020-05-25T13:20:56.269Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:56.270Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:56.272Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:56.273Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:56.274Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.275Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.277Z - info: [Renderer "http://localhost:8001/blockly/core/field_label.js:Blockly.FieldLabel():L44"] class
+2020-05-25T13:20:56.278Z - info: [Renderer "http://localhost:8001/blockly/core/field_label.js:Blockly.FieldLabel():L44"] class
+2020-05-25T13:20:56.280Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:56.282Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:56.283Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:56.284Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L648"] Inline
+2020-05-25T13:20:56.285Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.286Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.288Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L663"] input value
+2020-05-25T13:20:56.289Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.290Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:56.291Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L775"] next_state
+2020-05-25T13:20:56.293Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:56.294Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:56.295Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:56.296Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:56.297Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.298Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.299Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:56.300Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:56.301Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:56.302Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L648"] Inline
+2020-05-25T13:20:56.303Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.305Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.306Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L663"] input value
+2020-05-25T13:20:56.306Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.307Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:56.308Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L775"] next_state
+2020-05-25T13:20:56.957Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:56.957Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:56.958Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:56.959Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:56.960Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:56.961Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.205Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:57.206Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:57.207Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:57.208Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:57.209Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.210Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.924Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:57.925Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:57.926Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:57.929Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:57.929Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.931Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.933Z - info: [Renderer "http://localhost:8001/blockly/core/field_label.js:Blockly.FieldLabel():L44"] class
+2020-05-25T13:20:57.935Z - info: [Renderer "http://localhost:8001/blockly/core/field_label.js:Blockly.FieldLabel():L44"] class
+2020-05-25T13:20:57.937Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:57.937Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:57.938Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:57.939Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L648"] Inline
+2020-05-25T13:20:57.940Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.941Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.942Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L663"] input value
+2020-05-25T13:20:57.943Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.943Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:57.944Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L775"] next_state
+2020-05-25T13:20:57.945Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:57.946Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:57.946Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:57.947Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:57.948Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.949Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.950Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:57.950Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:57.952Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:57.953Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L648"] Inline
+2020-05-25T13:20:57.954Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.955Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.956Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L663"] input value
+2020-05-25T13:20:57.956Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:57.957Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:57.958Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L775"] next_state
+2020-05-25T13:20:58.404Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:58.405Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:58.406Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:58.407Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:58.408Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:58.409Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:59.531Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:59.532Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:59.534Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:59.534Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:59.536Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:59.536Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:59.538Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:59.539Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] * Olá
+2020-05-25T13:20:59.540Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:59.541Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:59.542Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:59.543Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:59.543Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:20:59.544Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:20:59.545Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:20:59.546Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:20:59.547Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:20:59.548Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:00.796Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:21:00.797Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:21:00.798Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:21:00.799Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:21:00.800Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:00.801Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.355Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:21:01.356Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:21:01.356Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:21:01.359Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:21:01.359Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.360Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.362Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:21:01.363Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:21:01.364Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:21:01.364Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:21:01.365Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.366Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.947Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:21:01.947Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:21:01.948Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:21:01.949Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:21:01.949Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.951Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.952Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:21:01.953Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] * Olá
+2020-05-25T13:21:01.954Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:21:01.954Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:21:01.955Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.956Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.957Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L511"] bloco em x
+2020-05-25T13:21:01.957Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDraw_():L526"] null
+2020-05-25T13:21:01.958Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L645"] bloco ======>  
+2020-05-25T13:21:01.959Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderDrawRight_():L758"] Dummy
+2020-05-25T13:21:01.960Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T13:21:01.960Z - info: [Renderer "http://localhost:8001/blockly/core/block_render_svg.js:Blockly.BlockSvg.renderFields_():L341"] x
+2020-05-25T15:46:57.873Z - info: [ServerMgr] Server stopped.
+2020-05-25T15:46:58.986Z - info: [ArdublocklySrv] Process exited with code null

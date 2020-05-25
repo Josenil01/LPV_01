@@ -62,7 +62,7 @@ Blockly.Flyout = function(workspaceOptions) {
    * @type {boolean}
    * @private
    */
-  this.horizontalLayout_ = workspaceOptions.horizontalLayout;
+  this.horizontalLayout_ =true;
 
   /**
    * Position of the toolbox and flyout relative to the workspace.
@@ -171,8 +171,8 @@ Blockly.Flyout.prototype.init = function(targetWorkspace) {
   this.workspace_.targetWorkspace = targetWorkspace;
   // Add scrollbar.
   this.scrollbar_ = new Blockly.Scrollbar(this.workspace_,
-      this.horizontalLayout_, false);
-
+      true, false);
+   
   this.hide();
 
   Array.prototype.push.apply(this.eventWrappers_,
@@ -349,8 +349,9 @@ Blockly.Flyout.prototype.position = function() {
     y += metrics.viewHeight;
     y -= this.height_;
   }
-
-  this.svgGroup_.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  //aterado  manualmente a posição
+  // this.svgGroup_.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  this.svgGroup_.setAttribute('transform', 'translate(' + 150 + ',' + 250 + ')');
 
   // Record the height for Blockly.Flyout.getMetrics_, or width if the layout is
   // horizontal.
@@ -358,6 +359,7 @@ Blockly.Flyout.prototype.position = function() {
     this.width_ = metrics.viewWidth;
   } else {
     this.height_ = metrics.viewHeight;
+    //this.width_ = metrics.viewWidth;
   }
 
   // Update the scrollbar (if one exists).
@@ -391,6 +393,7 @@ Blockly.Flyout.prototype.setBackgroundPath_ = function(width, height) {
  *     rounded corners.
  * @private
  */
+//aterado o caminho do svg
 Blockly.Flyout.prototype.setBackgroundPathVertical_ = function(width, height) {
   var atRight = this.toolboxPosition_ == Blockly.TOOLBOX_AT_RIGHT;
   // Decide whether to start on the left or right.
@@ -413,6 +416,8 @@ Blockly.Flyout.prototype.setBackgroundPathVertical_ = function(width, height) {
   path.push('h', -width);
   path.push('z');
   this.svgBackground_.setAttribute('d', path.join(' '));
+
+ 
 };
 
 /**
@@ -426,6 +431,8 @@ Blockly.Flyout.prototype.setBackgroundPathVertical_ = function(width, height) {
  */
 Blockly.Flyout.prototype.setBackgroundPathHorizontal_ =
     function(width, height) {
+  var width = 800;//alterei manualmente o tamanho da area dos blocos em x
+  var height= 200;//alterei manualmente o tamanho da area dos blocos em y
   var atTop = this.toolboxPosition_ == Blockly.TOOLBOX_AT_TOP;
   // Start at top left.
   var path = ['M 0,' + (atTop ? 0 : this.CORNER_RADIUS)];
@@ -588,6 +595,7 @@ Blockly.Flyout.prototype.show = function(xmlList) {
   this.filterForCapacity_();
 
   // Fire a resize event to update the flyout's scrollbar.
+  console.log('workespaço',this.workspace_);
   Blockly.svgResize(this.workspace_);
   this.reflowWrapper_ = this.reflow.bind(this);
   this.workspace_.addChangeListener(this.reflowWrapper_);
@@ -601,8 +609,9 @@ Blockly.Flyout.prototype.show = function(xmlList) {
  */
 Blockly.Flyout.prototype.layoutBlocks_ = function(blocks, gaps) {
   var margin = this.MARGIN * this.workspace_.scale;
-  var cursorX = this.RTL ? margin : margin + Blockly.BlockSvg.TAB_WIDTH;
+  var cursorX = margin + Blockly.BlockSvg.TAB_WIDTH;
   var cursorY = margin;
+  var oldHeight = 0;
   for (var i = 0, block; block = blocks[i]; i++) {
     var allBlocks = block.getDescendants();
     for (var j = 0, child; child = allBlocks[j]; j++) {
@@ -614,18 +623,29 @@ Blockly.Flyout.prototype.layoutBlocks_ = function(blocks, gaps) {
     block.render();
     var root = block.getSvgRoot();
     var blockHW = block.getHeightWidth();
+    if(oldHeight < blockHW.height)
+    {
+      oldHeight = blockHW.height + gaps[i]
+      console.log("oldheight",oldHeight);
+    }
     var tab = block.outputConnection ? Blockly.BlockSvg.TAB_WIDTH : 0;
     if (this.horizontalLayout_) {
       cursorX += tab;
     }
-    block.moveBy((this.horizontalLayout_ && this.RTL) ? -cursorX : cursorX,
-        cursorY);
+    block.moveBy(cursorX,cursorY);
     if (this.horizontalLayout_) {
+      
+      if(i == 5 )
+      {
+        cursorY += oldHeight-20;
+        cursorX = margin + Blockly.BlockSvg.TAB_WIDTH;
+      }
       cursorX += (blockHW.width + gaps[i] - tab);
     } else {
-      cursorY += blockHW.height + gaps[i];
+       
+     cursorY += blockHW.height + gaps[i];
     }
-
+    
     // Create an invisible rectangle under the block to act as a button.  Just
     // using the block as a button is poor, since blocks have holes in them.
     var rect = Blockly.createSvgElement('rect', {'fill-opacity': 0}, null);

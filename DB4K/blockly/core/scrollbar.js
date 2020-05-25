@@ -157,7 +157,7 @@ Blockly.ScrollbarPair.prototype.set = function(x, y) {
 
   this.workspace_.setMetrics(xyRatio);
   this.hScroll.svgKnob_.setAttribute('x', hKnobValue);
-  this.vScroll.svgKnob_.setAttribute('y', vKnobValue);
+  this.vScroll.svgKnob_.setAttribute('y', vKnobValue+50);
 };
 
 /**
@@ -192,13 +192,13 @@ Blockly.Scrollbar = function(workspace, horizontal, opt_pair) {
   this.horizontal_ = horizontal;
 
   this.createDom_();
-
+  //controla a posição do scrollbar em x,y
   if (horizontal) {
     this.svgBackground_.setAttribute('height',
         Blockly.Scrollbar.scrollbarThickness);
     this.svgKnob_.setAttribute('height',
         Blockly.Scrollbar.scrollbarThickness - 5);
-    this.svgKnob_.setAttribute('y', 2.5);
+    this.svgKnob_.setAttribute('y', 50);
   } else {
     this.svgBackground_.setAttribute('width',
         Blockly.Scrollbar.scrollbarThickness);
