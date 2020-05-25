@@ -1,0 +1,45 @@
+  <!--********************************************************************************-->
+  <!--( Modified by RLQ DB4K )  Translated labels and hidden some options
+    Settings: Displayed as a Materialize Modal -->
+    <div id="settings_dialog" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4><span class="translatable_settings">Configurações</span></h4>
+          <div class="modal_section">
+            <label><span class="translatable_compilerLocation">Localização do Compilador Arduino
+                (arduino_debug.exe)</span>:</label>
+            <input type="text" id="settings_compiler_location">
+          </div>
+          <div class="modal_section">
+            <label><span class="translatable_sketchFolder">Pasta do Programa .ino</span>:</label>
+            <input type="text" id="settings_sketch_location">
+          </div>
+          <div class="modal_section">
+            <label><span class="translatable_arduinoBoard">Placa Arduino</span>:</label>
+            <select name="settings_board" id="board">
+              <option value="uno" class="translatable_arduinoBoardDefault">Placa Desconhecida</option>
+            </select>
+          </div>
+          <div class="modal_section">
+            <label><span class="translatable_comPort">Porta COM<span>:</label>
+            <select name="settings_serial" id="serial_port">
+              <option value="COMX" class="translatable_comPortDefault">Porta COM desconhecida</option>
+            </select>
+          </div>
+          <!--Modified by RLQ DB4K - style="display:none" -->
+          <div class="modal_section" style="display:none">
+            <!--div class="modal_section"-->
+            <label><span class="translatable_defaultIdeButton">Default IDE button</span>:</label>
+            <select name="settings_ide" id="ide_settings">
+              <option value="verify" class="translatable_defaultIdeButtonDefault">IDE options unknown</option>
+            </select>
+          </div>
+          <!--Modified by RLQ DB4K - style="display:none" -->
+          <div class="modal_section" style="display:none">
+            <label><span class="translatable_language">Language</span>:</label>
+            <select name="settings_language" id="language"></select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="waves-effect btn-flat modal-close"><span class="translatable_return">OK</span></a>
+        </div>
+      </div>

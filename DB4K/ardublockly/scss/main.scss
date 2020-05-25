@@ -32,29 +32,29 @@
         }
 
         // 2. Workspace  ===================================================
-        #content_blocks {
-            box-shadow: 0px 0px 0px 0px transparent;
-        }
-        .blocklyMainBackground {
-            position: relative;
-        }
-        .blocklyToolboxDiv {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            left: 0 !important;
-            /* height: 500px; */
-            top: auto !important;
-            background: transparent !important;
-            div {
-                div {
-                    div {
-                        display: inline;
-                        float: left;
-                    }
-                }
-            }
-        }
+        // #content_blocks {
+        //     box-shadow: 0px 0px 0px 0px transparent;
+        // }
+        // .blocklyMainBackground {
+        //     position: relative;
+        // }
+        // .blocklyToolboxDiv {
+        //     position: absolute;
+        //     bottom: 0;
+        //     width: 100%;
+        //     left: 0 !important;
+        //     /* height: 500px; */
+        //     top: auto !important;
+        //     background: transparent !important;
+        //     div {
+        //         div {
+        //             div {
+        //                 display: inline;
+        //                 float: left;
+        //             }
+        //         }
+        //     }
+        // } 
         .menuLadoDireito {
             position: fixed;
             width: 300px;
