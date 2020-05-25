@@ -3,14 +3,7 @@
 // 2. Workspace
 @import 'materialize';      
 @import 'variables';  
+@import 'fonts'; 
 // @import 'workspace'; 
 @import 'navbar'; 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
-* {
-    font-family: "Montserrat", sans-serif;
- 
-    body {
-        padding: 0px !important;
-        background: white !important;
-    } 
-}
+
