@@ -372,6 +372,7 @@ Blockly.BlockSvg.prototype.renderCompute_ = function(iconWidth)
     if (!input.isVisible()) {
       continue;
     }
+    console.log('numero de campos', i);
     var row;
     if (!isInline || !lastType ||
         lastType == Blockly.NEXT_STATEMENT ||
@@ -523,7 +524,6 @@ Blockly.BlockSvg.prototype.renderDraw_ = function(iconWidth, inputRows) {
     // If this block is in the middle of a stack, square the corners.
     if (this.previousConnection) {
       var prevBlock = this.previousConnection.targetBlock();
-      console.log(prevBlock);
       if (prevBlock && prevBlock.getNextBlock() == this) {
         this.squareTopLeftCorner_ = true;
        }
@@ -562,8 +562,6 @@ this.svgPath_.setAttribute('d', pathString);
 this.svgPathDark_.setAttribute('d', pathString);
 pathString = highlightSteps.join(' ') + '\n' + highlightInlineSteps.join(' ');
 this.svgPathLight_.setAttribute('d', pathString);
-
-
 };
 
 
@@ -579,9 +577,12 @@ this.svgPathLight_.setAttribute('d', pathString);
  * @param {number} rightEdge Minimum width of block.
  * Tamanho minimo do bloco
  * @private
- */
+ */steps, highlightSteps, connectionsXY, rightEdge,type
 Blockly.BlockSvg.prototype.renderDrawTop_ =
-    function(steps, highlightSteps, connectionsXY, rightEdge,type) {
+    function(steps, highlightSteps,
+      inlineSteps, highlightInlineSteps, connectionsXY, 
+      inputRows, iconWidth,rightEdge,type) 
+      {
   // Position the cursor at the top-left starting point.
   if (this.squareTopLeftCorner_) {
     steps.push('m 0,0');
