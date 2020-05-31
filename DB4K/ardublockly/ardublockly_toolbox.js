@@ -15,19 +15,33 @@ Ardublockly.TOOLBOX_XML =
 '<xml>'+
 '<sep></sep>' +
 '<category name="Controle">' +
-'   <block type="sempre"></block>' +
-'   <block type="delay"></block>' +
+// '   <block type="sempre"></block>' +
+ '   <block type="delay"></block>' +
 '   <block type="condicional_simples"></block>' +
+'   <block type="soma"></block>' +
+'   <block type="subtracao"></block>' +
+'   <block type="divisao"></block>' +
+'   <block type="multiplicao"></block>' +
+'   <block type="n0"></block>' +
+'   <block type="n1"></block>' +
+'   <block type="n2"></block>' +
+'   <block type="n3"></block>' +
+'   <block type="n4"></block>' +
+'   <block type="n5"></block>' +
+'   <block type="n6"></block>' +
+'   <block type="n7"></block>' +
+'   <block type="n8"></block>' +
+'   <block type="n9"></block>' +//*/
 '</category>' +
 '<category name="LED">' +
-'   <block type="acender_led"></block>' +
-'   <block type="apagar_led"></block>' +
+// '   <block type="acender_led"></block>' +
+// '   <block type="apagar_led"></block>' +
 //'   <block type="piscar_led"></block>' +
 //'<block type="led_rgb"></block>' +
 '</category>' +
 '<category name="Matematica">' +
 // '   <block type="soma"></block>' +
- '   <block type="subtracao"></block>' +
+// '   <block type="subtracao"></block>' +
 // '   <block type="divisao"></block>' +
 // '   <block type="multiplicao"></block>' +
 // '   <block type="n0"></block>' +
@@ -42,7 +56,7 @@ Ardublockly.TOOLBOX_XML =
 // '   <block type="n9"></block>' +//*/
 '</category>' +
 '<category name="Motores">' +
- '   <block type="mover_servomotor"></block>' +
+ //'   <block type="mover_servomotor"></block>' +
 // '   <block type="girar_motor"></block>' +
 // '   <block type="parar_motor"></block>' +
 '</category>' +
@@ -60,7 +74,7 @@ Ardublockly.TOOLBOX_XML =
 '</category>' +
 '<category name="Sensores">' +
 // '   <block type="sensor_temperatura"></block>' +
- '   <block type="sensor_distancia"></block>' +
+//'   <block type="sensor_distancia"></block>' +
 // '   <block type="sensor_luz"></block>' +
 // '   <block type="sensor_linha"></block>' +
 // '   <block type="potenciometro"></block>'+

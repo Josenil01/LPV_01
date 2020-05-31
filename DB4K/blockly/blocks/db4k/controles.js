@@ -103,12 +103,12 @@ Blockly.Blocks['condicional_simples'] = {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_selecao );
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/interrogacao_se.png", 40, 40, "*"));
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/interrogacao_se.png", 40, 40, "*"));
     this.appendValueInput("condicao")
-        .appendField("Se");
+       .appendField("Se");
     this.appendDummyInput()
         .appendField("então");
-		   // .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/interrogacao_se.png", 40, 40, "*"));
+		   //.appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/interrogacao_se.png", 40, 40, "*"));
     this.appendStatementInput("codigo_condicional");
     this.setInputsInline(true);
     this.setPreviousStatement(true);

@@ -38,7 +38,7 @@ Ardublockly.injectBlockly = function(blocklyEl, toolboxXml, blocklyPath, typecla
   Ardublockly.workspace = Blockly.inject(blocklyEl, {
       collapse: true,
       comments: true,
-      css: true,
+      css: true ,
       disable: true,
       grid: false,
       maxBlocks: Infinity,

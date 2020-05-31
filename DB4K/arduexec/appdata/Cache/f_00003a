@@ -217,7 +217,8 @@ Blockly.Css.CONTENT = [
     'cursor: default;',
     'fill: #fff;',
     'font-family: sans-serif;',
-    'font-size: 11pt;',
+    'font-size:9pt;',
+  
   '}',
 
   '.blocklyNonEditableText>text {',
@@ -227,7 +228,9 @@ Blockly.Css.CONTENT = [
   '.blocklyNonEditableText>rect,',
   '.blocklyEditableText>rect {',
     'fill: #fff;',
-    'fill-opacity: .6;',
+    'fill-opacity: 50.1;',
+     'stroke:black;',
+     'stroke-width:2;',
   '}',
 
   '.blocklyNonEditableText>text,',
@@ -236,7 +239,7 @@ Blockly.Css.CONTENT = [
   '}',
 
   '.blocklyEditableText:hover>rect {',
-    'stroke: #fff;',
+    'stroke: #ffbf00;',
     'stroke-width: 2;',
   '}',
 

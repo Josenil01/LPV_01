@@ -1,870 +1,929 @@
 /**
- * @license
- * Visual Blocks Editor
+ * @license Licensed under the Apache License, Version 2.0 (the "License"):
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Copyright 2012 Google Inc.
- * https://developers.google.com/blockly/
+ * @fileoverview CSS file for the Ardublockly application.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * There are a lot of '!important' tags in this file as a lot of the rules set
+ * here go against the css rules from the Materialize framework.
  */
-
-/**
- * @fileoverview Procedure blocks for Blockly.
- * @author fraser@google.com (Neil Fraser)
- */
-'use strict';
-
-goog.provide('Blockly.Blocks.procedures');
-
-goog.require('Blockly.Blocks');
-goog.require('Blockly.Types');
+/******************/
+/*  Font sources  */
+/******************/
+@font-face {
+  font-family: "Droid Sans Mono";
+  src: url("font/droid/DroidSansMono.ttf") format("truetype");
+}
 
 
-/**
- * Common HSV hue for all blocks in this category.
- */
-Blockly.Blocks.procedures.HUE = 290;
+/**********/
+/*  HTML  */
+/**********/
+html,
+body {
+  height: 100% !important;
+  padding: 0;
+  margin: 0;
+}
 
-Blockly.Blocks['procedures_defnoreturn'] = {
-  /**
-   * Block for defining a procedure with no return value.
-   * @this Blockly.Block
-   */
-  init: function() {
-    var nameField = new Blockly.FieldTextInput(
-        Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE,
-        Blockly.Procedures.rename);
-    nameField.setSpellcheck(false);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE)
-        .appendField(nameField, 'NAME')
-        .appendField('', 'PARAMS');
-    //this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
-    if (Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT) {
-      this.setCommentText(Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT);
-    }
-    this.setColour(Blockly.Blocks.procedures.HUE);
-    this.setTooltip(Blockly.Msg.PROCEDURES_DEFNORETURN_TOOLTIP);
-    this.setHelpUrl(Blockly.Msg.PROCEDURES_DEFNORETURN_HELPURL);
-    this.arguments_ = [];
-    this.setStatements_(true);
-    this.statementConnection_ = null;
-  },
-  /**
-   * Initialization of the block has completed, clean up anything that may be
-   * inconsistent as a result of the XML loading.
-   * @this Blockly.Block
-   */
-  validate: function () {
-    var name = Blockly.Procedures.findLegalName(
-        this.getFieldValue('NAME'), this);
-    this.setFieldValue(name, 'NAME');
-  },
-  /**
-   * Add or remove the statement block from this function definition.
-   * @param {boolean} hasStatements True if a statement block is needed.
-   * @this Blockly.Block
-   */
-  setStatements_: function(hasStatements) {
-    if (this.hasStatements_ === hasStatements) {
-      return;
-    }
-    if (hasStatements) {
-      this.appendStatementInput('STACK')
-          .appendField(Blockly.Msg.PROCEDURES_DEFNORETURN_DO);
-      if (this.getInput('RETURN')) {
-        this.moveInputBefore('STACK', 'RETURN');
-      }
-    } else {
-      this.removeInput('STACK', true);
-    }
-    this.hasStatements_ = hasStatements;
-  },
-  /**
-   * Update the display of parameters for this procedure definition block.
-   * Display a warning if there are duplicately named parameters.
-   * @private
-   * @this Blockly.Block
-   */
-  updateParams_: function() {
-    // Check for duplicated arguments.
-    var badArg = false;
-    var hash = {};
-    for (var i = 0; i < this.arguments_.length; i++) {
-      if (hash['arg_' + this.arguments_[i].toLowerCase()]) {
-        badArg = true;
-        break;
-      }
-      hash['arg_' + this.arguments_[i].toLowerCase()] = true;
-    }
-    if (badArg) {
-      this.setWarningText(Blockly.Msg.PROCEDURES_DEF_DUPLICATE_WARNING);
-    } else {
-      this.setWarningText(null);
-    }
-    // Merge the arguments into a human-readable list.
-    var paramString = '';
-    if (this.arguments_.length) {
-      paramString = Blockly.Msg.PROCEDURES_BEFORE_PARAMS +
-          ' ' + this.arguments_.join(', ');
-    }
-    // The params field is deterministic based on the mutation,
-    // no need to fire a change event.
-    Blockly.Events.disable();
-    this.setFieldValue(paramString, 'PARAMS');
-    Blockly.Events.enable();
-  },
-  /**
-   * Create XML to represent the argument inputs.
-   * @param {=boolean} opt_paramIds If true include the IDs of the parameter
-   *     quarks.  Used by Blockly.Procedures.mutateCallers for reconnection.
-   * @return {!Element} XML storage element.
-   * @this Blockly.Block
-   */
-  mutationToDom: function(opt_paramIds) {
-    var container = document.createElement('mutation');
-    if (opt_paramIds) {
-      container.setAttribute('name', this.getFieldValue('NAME'));
-    }
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var parameter = document.createElement('arg');
-      parameter.setAttribute('name', this.arguments_[i]);
-      if (opt_paramIds && this.paramIds_) {
-        parameter.setAttribute('paramId', this.paramIds_[i]);
-      }
-      container.appendChild(parameter);
-    }
+body {
+  background-color: #eeeeee;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
-    // Save whether the statement input is visible.
-    if (!this.hasStatements_) {
-      container.setAttribute('statements', 'false');
-    }
-    return container;
-  },
-  /**
-   * Parse XML to restore the argument inputs.
-   * @param {!Element} xmlElement XML storage element.
-   * @this Blockly.Block
-   */
-  domToMutation: function(xmlElement) {
-    this.arguments_ = [];
-    for (var i = 0, childNode; childNode = xmlElement.childNodes[i]; i++) {
-      if (childNode.nodeName.toLowerCase() == 'arg') {
-        this.arguments_.push(childNode.getAttribute('name'));
-      }
-    }
-    this.updateParams_();
-    Blockly.Procedures.mutateCallers(this);
 
-    // Show or hide the statement input.
-    this.setStatements_(xmlElement.getAttribute('statements') !== 'false');
-  },
-  /**
-   * Populate the mutator's dialog with this block's components.
-   * @param {!Blockly.Workspace} workspace Mutator's workspace.
-   * @return {!Blockly.Block} Root block in mutator.
-   * @this Blockly.Block
-   */
-  decompose: function(workspace) {
-    var containerBlock = workspace.newBlock('procedures_mutatorcontainer');
-    containerBlock.initSvg();
+/*********************/
+/*  Arduino Colours  */
+/*********************/
+.arduino_teal {
+  background-color: #00979C;
+}
+.arduino_teal_dark {
+  background-color: #006468;
+  /* background-color: #00878F; from community logo */
+}
+.arduino_teal_light {
+  background-color: #62AEB2;
+}
+.arduino_orange {
+  background-color: #E47128;
+}
+.arduino_yellow {
+  background-color: rgba(255, 204, 51, 1);
+  /* background-color: #FFCC33; */
+  /* background-color: #E5AD24; from community logo */
+}
+.arduino_brown {
+  background-color: #8C7965;
+}
 
-    // Check/uncheck the allow statement box.
-    if (this.getInput('RETURN')) {
-      containerBlock.setFieldValue(this.hasStatements_ ? 'TRUE' : 'FALSE',
-                                   'STATEMENTS');
-    } else {
-      containerBlock.getInput('STATEMENT_INPUT').setVisible(false);
-    }
 
-    // Parameter list.
-    var connection = containerBlock.getInput('STACK').connection;
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var paramBlock = workspace.newBlock('procedures_mutatorarg');
-      paramBlock.initSvg();
-      paramBlock.setFieldValue(this.arguments_[i], 'NAME');
-      // Store the old location.
-      paramBlock.oldLocation = i;
-      connection.connect(paramBlock.previousConnection);
-      connection = paramBlock.nextConnection;
-    }
-    // Initialize procedure's callers with blank IDs.
-    Blockly.Procedures.mutateCallers(this);
-    return containerBlock;
-  },
-  /**
-   * Reconfigure this block based on the mutator dialog's components.
-   * @param {!Blockly.Block} containerBlock Root block in mutator.
-   * @this Blockly.Block
-   */
-  compose: function(containerBlock) {
-    // Parameter list.
-    this.arguments_ = [];
-    this.paramIds_ = [];
-    var paramBlock = containerBlock.getInputTargetBlock('STACK');
-    while (paramBlock) {
-      this.arguments_.push(paramBlock.getFieldValue('NAME'));
-      this.paramIds_.push(paramBlock.id);
-      paramBlock = paramBlock.nextConnection &&
-          paramBlock.nextConnection.targetBlock();
-    }
-    this.updateParams_();
-    Blockly.Procedures.mutateCallers(this);
-
-    // Show/hide the statement input.
-    var hasStatements = containerBlock.getFieldValue('STATEMENTS');
-    if (hasStatements !== null) {
-      hasStatements = hasStatements == 'TRUE';
-      if (this.hasStatements_ != hasStatements) {
-        if (hasStatements) {
-          this.setStatements_(true);
-          // Restore the stack, if one was saved.
-          Blockly.Mutator.reconnect(this.statementConnection_, this, 'STACK');
-          this.statementConnection_ = null;
-        } else {
-          // Save the stack, then disconnect it.
-          var stackConnection = this.getInput('STACK').connection;
-          this.statementConnection_ = stackConnection.targetConnection;
-          if (this.statementConnection_) {
-            var stackBlock = stackConnection.targetBlock();
-            stackBlock.unplug();
-            stackBlock.bumpNeighbours_();
-          }
-          this.setStatements_(false);
-        }
-      }
-    }
-  },
-  /**
-   * Dispose of any callers.
-   * @this Blockly.Block
-   */
-  dispose: function() {
-    var name = this.getFieldValue('NAME');
-    Blockly.Procedures.disposeCallers(name, this.workspace);
-    // Call parent's destructor.
-    this.constructor.prototype.dispose.apply(this, arguments);
-  },
-  /**
-   * Return the signature of this procedure definition.
-   * @return {!Array} Tuple containing three elements:
-   *     - the name of the defined procedure,
-   *     - a list of all its arguments,
-   *     - that it DOES NOT have a return value.
-   * @this Blockly.Block
-   */
-  getProcedureDef: function() {
-    return [this.getFieldValue('NAME'), this.arguments_, false];
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return this.arguments_;
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    var change = false;
-    for (var i = 0; i < this.arguments_.length; i++) {
-      if (Blockly.Names.equals(oldName, this.arguments_[i])) {
-        this.arguments_[i] = newName;
-        change = true;
-      }
-    }
-    if (change) {
-      this.updateParams_();
-      // Update the mutator's variables if the mutator is open.
-      if (this.mutator.isVisible()) {
-        var blocks = this.mutator.workspace_.getAllBlocks();
-        for (var i = 0, block; block = blocks[i]; i++) {
-          if (block.type == 'procedures_mutatorarg' &&
-              Blockly.Names.equals(oldName, block.getFieldValue('NAME'))) {
-            block.setFieldValue(newName, 'NAME');
-          }
-        }
-      }
-    }
-  },
-  /**
-   * Add custom menu options to this block's context menu.
-   * @param {!Array} options List of menu options to add to.
-   * @this Blockly.Block
-   */
-  customContextMenu: function(options) {
-    // Add option to create caller.
-    var option = {enabled: true};
-    var name = this.getFieldValue('NAME');
-    option.text = Blockly.Msg.PROCEDURES_CREATE_DO.replace('%1', name);
-    var xmlMutation = goog.dom.createDom('mutation');
-    xmlMutation.setAttribute('name', name);
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var xmlArg = goog.dom.createDom('arg');
-      xmlArg.setAttribute('name', this.arguments_[i]);
-      xmlMutation.appendChild(xmlArg);
-    }
-    var xmlBlock = goog.dom.createDom('block', null, xmlMutation);
-    xmlBlock.setAttribute('type', this.callType_);
-    option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
-    options.push(option);
-
-    // Add options to create getters for each parameter.
-    if (!this.isCollapsed()) {
-      for (var i = 0; i < this.arguments_.length; i++) {
-        var option = {enabled: true};
-        var name = this.arguments_[i];
-        option.text = Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', name);
-        var xmlField = goog.dom.createDom('field', null, name);
-        xmlField.setAttribute('name', 'VAR');
-        var xmlBlock = goog.dom.createDom('block', null, xmlField);
-        xmlBlock.setAttribute('type', 'variables_get');
-        option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
-        options.push(option);
-      }
-    }
-  },
-  callType_: 'procedures_callnoreturn',
-  /** @return {!string} This block does not define type, so 'undefined' */
-  getVarType: function(varName) {
-    return Blockly.Types.UNDEF;
-  },
-  /** Contains the type of the arguments added with mutators. */
-  argsTypes: {},
-  /**
-   * Searches through a list of variables with type to assign the type of the
-   * arguments.
-   * @this Blockly.Block
-   * @param {Array<string>} existingVars Associative array variable already
-   *     defined, names as key, type as value.
-   */
-  setArgsType: function(existingVars) {
-    var varNames = this.arguments_;
-
-    // Check if variable has been defined already and save type
-    for (var name in existingVars) {
-      for (var i = 0, length_ = varNames.length; i < length_; i++) {
-        if (name === varNames[i]) {
-          this.argsTypes[name] = existingVars[name];
-        }
-      }
-    }
-  },
-  /**
-   * Retrieves the type of the arguments, types defined at setArgsType.
-   * @this Blockly.Block
-   * @return {string} Type of the argument indicated in the input.
-   */
-  getArgType: function(varName) {
-    for (var name in this.argsTypes) {
-      if (name == varName) {
-        return this.argsTypes[varName];
-      }
-    }
-    return null;
+/********************/
+/*  Navigation bar  */
+/********************/
+.nav-fixed {
+  border-radius: 0;
+  position: inherit;
+  margin-bottom: 30px;
+  z-index: 997 !important;
+}
+@media only screen and (min-width : 993px) {
+  body {
+    padding-top: 100px;
   }
-};
-
-Blockly.Blocks['procedures_defreturn'] = {
-  /**
-   * Block for defining a procedure with a return value.
-   * @this Blockly.Block
-   */
-  init: function() {
-    var nameField = new Blockly.FieldTextInput(
-        Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE,
-        Blockly.Procedures.rename);
-    nameField.setSpellcheck(false);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.PROCEDURES_DEFRETURN_TITLE)
-        .appendField(nameField, 'NAME')
-        .appendField('', 'PARAMS');
-    this.appendValueInput('RETURN')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN);
-    //this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
-    if (Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT) {
-      this.setCommentText(Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT);
-    }
-    this.setColour(Blockly.Blocks.procedures.HUE);
-    this.setTooltip(Blockly.Msg.PROCEDURES_DEFRETURN_TOOLTIP);
-    this.setHelpUrl(Blockly.Msg.PROCEDURES_DEFRETURN_HELPURL);
-    this.arguments_ = [];
-    this.setStatements_(true);
-    this.statementConnection_ = null;
-  },
-  setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
-  validate: Blockly.Blocks['procedures_defnoreturn'].validate,
-  updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
-  mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
-  domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
-  decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
-  compose: Blockly.Blocks['procedures_defnoreturn'].compose,
-  dispose: Blockly.Blocks['procedures_defnoreturn'].dispose,
-  /**
-   * Return the signature of this procedure definition.
-   * @return {!Array} Tuple containing three elements:
-   *     - the name of the defined procedure,
-   *     - a list of all its arguments,
-   *     - that it DOES have a return value.
-   * @this Blockly.Block
-   */
-  getProcedureDef: function() {
-    return [this.getFieldValue('NAME'), this.arguments_, true];
-  },
-  getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
-  renameVar: Blockly.Blocks['procedures_defnoreturn'].renameVar,
-  customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
-  callType_: 'procedures_callreturn',
-  getVarType: Blockly.Blocks['procedures_defnoreturn'].getVarType,
-  argsTypes: {},
-  setArgsType: Blockly.Blocks['procedures_defnoreturn'].setArgsType,
-  getArgType: Blockly.Blocks['procedures_defnoreturn'].getArgType,
-  /**
-   * Searches through the nested blocks in the return input to find a variable
-   * type or returns NULL.
-   * @this Blockly.Block
-   * @return {string} String to indicate the type or NULL.
-   */
-  getReturnType: function() {
-    var returnType = Blockly.Types.NULL;
-    var returnBlock = this.getInputTargetBlock('RETURN');
-    if (returnBlock) {
-      // First check if the block itself has a type already
-      if (returnBlock.getBlockType) {
-        returnType = returnBlock.getBlockType();
-      } else {
-        returnType = Blockly.Types.getChildBlockType(returnBlock);
-      }
-    }
-    return returnType;
+  .nav-fixed {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    margin-bottom: 0px;
+    z-index: 997;
   }
-};
+}
 
-Blockly.Blocks['procedures_mutatorcontainer'] = {
-  /**
-   * Mutator block for procedure container.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TITLE);
-    this.appendStatementInput('STACK');
-    this.appendDummyInput('STATEMENT_INPUT')
-        .appendField(Blockly.Msg.PROCEDURES_ALLOW_STATEMENTS)
-        .appendField(new Blockly.FieldCheckbox('TRUE'), 'STATEMENTS');
-    this.setColour(Blockly.Blocks.procedures.HUE);
-    this.setTooltip(Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TOOLTIP);
-    this.contextMenu = false;
+/* menu sandwich   */
+ul.side-nav li.logo {
+  text-align: center;
+  margin: 0px !important;
+  padding: 0px 0px !important;
+  border: none !important;
+  /**************************************************************************************/
+  /* (Modified by RLQ DB4K)  - Old height = 145px */ 
+  height: 112px;
+  background-color: transparent;
+}
+ul.side-nav li.logo:hover {
+  background-color: transparent;
+}
+ul.side-nav li.side-menu-end {
+  background-color: #eeeeee;
+  border-radius: 0px 0px 25px 0px;
+  border-left: 4px solid #ffffff;
+  border-bottom: 4px solid #dddddd;
+  border-right: 4px solid #dddddd;
+  border-bottom: 4px solid #dddddd;
+  line-height: 25px;
+}
+
+/************************************/
+/*  Blocks, Arduino, and XML areas  */
+/************************************/
+.content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #ffffff;
+}
+.height_transition {
+  transition: height 0.2s ease-out;
+  -ms-transition: height 0.2s ease-out;
+  -moz-transition: height 0.2s ease-out;
+  -webkit-transition: height 0.2s ease-out;
+}
+
+#blocks_panel {
+  padding: 0px;
+  position: relative !important;
+  min-height: 480px;
+}
+.blocks_panel_large {
+  height: -moz-calc(100vh - 190px);     /* Firefox  */
+  height: -webkit-calc(100vh - 190px);  /* WebKit   */
+  height: -o-calc(100vh - 190px);       /* Opera    */
+  height: calc(100vh - 190px);          /* Standard */
+}
+.blocks_panel_small {
+  height: -moz-calc(100vh - 350px);     /* Firefox  */
+  height: -webkit-calc(100vh - 350px);  /* WebKit   */
+  height: -o-calc(100vh - 350px);       /* Opera    */
+  height: calc(100vh - 350px);          /* Standard */
+}
+#content_blocks {
+  margin: 0;
+  padding: 0;
+  min-height: 480px;
+  height: -moz-calc(100vh - 190px);     /* Firefox  */
+  height: -webkit-calc(100vh - 190px);  /* WebKit   */
+  height: -o-calc(100vh - 190px);       /* Opera    */
+  height: calc(100vh - 190px);          /* Standard */
+}
+
+#content_xml {
+  resize: none;
+  outline: none;
+  border: none;
+  padding: 0px 5px;
+  font-family: monospace;
+  font-size: smaller;
+  overflow: scroll;
+  font-style: 0.2em !important;
+  min-height: 384px;
+}
+.content_xml_large {
+  height: -moz-calc(100vh - 286px);     /* Firefox  */
+  height: -webkit-calc(100vh - 286px);  /* WebKit   */
+  height: -o-calc(100vh - 286px);       /* Opera    */
+  height: calc(100vh - 286px);          /* Standard */
+}
+.content_xml_small {
+  height: -moz-calc(100vh - 446px);     /* Firefox  */
+  height: -webkit-calc(100vh - 446px);  /* WebKit   */
+  height: -o-calc(100vh - 446px);       /* Opera    */
+  height: calc(100vh - 446px);          /* Standard */
+}
+
+/* The materialize framework changes height of the div to show or hide */
+/* the collapsible elements. */
+#content_arduino {
+  resize: none;
+  outline: none;
+  border: none;
+  padding: 0px 5px;
+  font-size: 0.9rem;
+  font-family: "Droid Sans Mono", monospace;
+  overflow: auto;
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  min-height: 388px;
+}
+.content_arduino_large {
+  height: -moz-calc(100vh - 280px);     /* Firefox  */
+  height: -webkit-calc(100vh - 280px);  /* WebKit   */
+  height: -o-calc(100vh - 280px);       /* Opera    */
+  height: calc(100vh - 280px);          /* Standard */
+}
+.content_arduino_small {
+  height: -moz-calc(100vh - 440px);     /* Firefox  */
+  height: -webkit-calc(100vh - 440px);  /* WebKit   */
+  height: -o-calc(100vh - 440px);       /* Opera    */
+  height: calc(100vh - 440px);          /* Standard */
+}
+
+/****************/
+/*  IDE output  */
+/****************/
+.ide_output_wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  bottom: -16px;
+  z-index: 10;
+}
+
+.ide_output_collapsible {
+  box-shadow: 0 0px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-left: 0;
+  border-right: 0;
+}
+.ide_output_header_normal {
+  background-color: #006468;
+  color: #ffffff;
+  -moz-transition: background-color 0.6s ease-in;;
+  -o-transition: background-color 0.6s ease-in;
+  -webkit-transition: background-color 0.6s ease-in;
+}
+.ide_output_header_highlight {
+  background-color: #62AEB2;
+  color: #ffffff;
+  -moz-transition: background-color 0.6s ease-in;;
+  -o-transition: background-color 0.6s ease-in;
+  -webkit-transition: background-color 0.6s ease-in;
+}
+.ide_output_header_error {
+  background-color: #E47128;
+  color: #ffffff;
+  -moz-transition: background-color 0.6s ease-in;;
+  -o-transition: background-color 0.6s ease-in;
+  -webkit-transition: background-color 0.6s ease-in;
+}
+
+#content_ide_output {
+  resize: none;
+  outline: none;
+  border: none;
+  padding: 0px 5px;
+  font-family: monospace;
+  overflow: auto;
+  font-style: 0.2em !important;
+  min-height: 160px;
+  max-height: 160px;
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  background-color: #303030;
+  color: #ffffff;
+}
+/* IDE output content text formatting */
+#content_ide_output .arduino_dialog_success {
+  color: #00979C;   /* arduino light teal */
+  font-size: 1.2rem;
+  margin: 16px 0px 8px 0px;
+}
+#content_ide_output .arduino_dialog_failure {
+  color: #E47128;   /* arduino orange */
+  font-size: 1.2rem;
+  margin: 16px 0px 8px 0px;
+}
+#content_ide_output .arduino_dialog_out {
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+#content_ide_output .arduino_dialog_out_error {
+  color: #E47128;   /* arduino orange */
+  font-size: 0.9rem;
+  padding-top: 8px;
+  display: block;
+}
+
+/* Spacer is used to not leave any content behind the collapsible header */
+#ide_output_spacer {
+  height: 40px;
+}
+@media only screen and (min-width: 0) {
+  #ide_output_spacer {
+    height: 20px;
   }
-};
-
-Blockly.Blocks['procedures_mutatorarg'] = {
-  /**
-   * Mutator block for procedure argument.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.PROCEDURES_MUTATORARG_TITLE)
-        .appendField(new Blockly.FieldTextInput('x', this.validator_), 'NAME');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(Blockly.Blocks.procedures.HUE);
-    this.setTooltip(Blockly.Msg.PROCEDURES_MUTATORARG_TOOLTIP);
-    this.contextMenu = false;
-  },
-  /**
-   * Obtain a valid name for the procedure.
-   * Merge runs of whitespace.  Strip leading and trailing whitespace.
-   * Beyond this, all names are legal.
-   * @param {string} newVar User-supplied name.
-   * @return {?string} Valid name, or null if a name was not specified.
-   * @private
-   * @this Blockly.Block
-   */
-  validator_: function(newVar) {
-    newVar = newVar.replace(/[\s\xa0]+/g, ' ').replace(/^ | $/g, '');
-    return newVar || null;
+}
+@media only screen and (min-width: 601px) {
+  #ide_output_spacer {
+    height: 30px;
   }
-};
-
-Blockly.Blocks['procedures_callnoreturn'] = {
-  /**
-   * Block for calling a procedure with no return value.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.appendDummyInput('TOPROW')
-        .appendField(this.id, 'NAME');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(Blockly.Blocks.procedures.HUE);
-    // Tooltip is set in renameProcedure.
-    this.setHelpUrl(Blockly.Msg.PROCEDURES_CALLNORETURN_HELPURL);
-    this.arguments_ = [];
-    this.quarkConnections_ = {};
-    this.quarkIds_ = null;
-  },
-  /**
-   * Returns the name of the procedure this block calls.
-   * @return {string} Procedure name.
-   * @this Blockly.Block
-   */
-  getProcedureCall: function() {
-    // The NAME field is guaranteed to exist, null will never be returned.
-    return /** @type {string} */ (this.getFieldValue('NAME'));
-  },
-  /**
-   * Notification that a procedure is renaming.
-   * If the name matches this block's procedure, rename it.
-   * @param {string} oldName Previous name of procedure.
-   * @param {string} newName Renamed procedure.
-   * @this Blockly.Block
-   */
-  renameProcedure: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getProcedureCall())) {
-      this.setFieldValue(newName, 'NAME');
-      this.setTooltip(
-          (this.outputConnection ? Blockly.Msg.PROCEDURES_CALLRETURN_TOOLTIP :
-           Blockly.Msg.PROCEDURES_CALLNORETURN_TOOLTIP)
-          .replace('%1', newName));
-    }
-  },
-  /**
-   * Notification that the procedure's parameters have changed.
-   * @param {!Array.<string>} paramNames New param names, e.g. ['x', 'y', 'z'].
-   * @param {!Array.<string>} paramIds IDs of params (consistent for each
-   *     parameter through the life of a mutator, regardless of param renaming),
-   *     e.g. ['piua', 'f8b_', 'oi.o'].
-   * @private
-   * @this Blockly.Block
-   */
-  setProcedureParameters_: function(paramNames, paramIds) {
-    // Data structures:
-    // this.arguments = ['x', 'y']
-    //     Existing param names.
-    // this.quarkConnections_ {piua: null, f8b_: Blockly.Connection}
-    //     Look-up of paramIds to connections plugged into the call block.
-    // this.quarkIds_ = ['piua', 'f8b_']
-    //     Existing param IDs.
-    // Note that quarkConnections_ may include IDs that no longer exist, but
-    // which might reappear if a param is reattached in the mutator.
-    var defBlock = Blockly.Procedures.getDefinition(this.getProcedureCall(),
-        this.workspace);
-    var mutatorOpen = defBlock && defBlock.mutator &&
-        defBlock.mutator.isVisible();
-    if (!mutatorOpen) {
-      this.quarkConnections_ = {};
-      this.quarkIds_ = null;
-    }
-    if (!paramIds) {
-      // Reset the quarks (a mutator is about to open).
-      return;
-    }
-    if (goog.array.equals(this.arguments_, paramNames)) {
-      // No change.
-      this.quarkIds_ = paramIds;
-      return;
-    }
-    if (paramIds.length != paramNames.length) {
-      throw 'Error: paramNames and paramIds must be the same length.';
-    }
-    this.setCollapsed(false);
-    if (!this.quarkIds_) {
-      // Initialize tracking for this block.
-      this.quarkConnections_ = {};
-      if (paramNames.join('\n') == this.arguments_.join('\n')) {
-        // No change to the parameters, allow quarkConnections_ to be
-        // populated with the existing connections.
-        this.quarkIds_ = paramIds;
-      } else {
-        this.quarkIds_ = [];
-      }
-    }
-    // Switch off rendering while the block is rebuilt.
-    var savedRendered = this.rendered;
-    this.rendered = false;
-    // Update the quarkConnections_ with existing connections.
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var input = this.getInput('ARG' + i);
-      if (input) {
-        var connection = input.connection.targetConnection;
-        this.quarkConnections_[this.quarkIds_[i]] = connection;
-        if (mutatorOpen && connection &&
-            paramIds.indexOf(this.quarkIds_[i]) == -1) {
-          // This connection should no longer be attached to this block.
-          connection.disconnect();
-          connection.getSourceBlock().bumpNeighbours_();
-        }
-      }
-    }
-    // Rebuild the block's arguments.
-    this.arguments_ = [].concat(paramNames);
-    this.updateShape_();
-    this.quarkIds_ = paramIds;
-    // Reconnect any child blocks.
-    if (this.quarkIds_) {
-      for (var i = 0; i < this.arguments_.length; i++) {
-        var quarkId = this.quarkIds_[i];
-        if (quarkId in this.quarkConnections_) {
-          var connection = this.quarkConnections_[quarkId];
-          if (!Blockly.Mutator.reconnect(connection, this, 'ARG' + i)) {
-            // Block no longer exists or has been attached elsewhere.
-            delete this.quarkConnections_[quarkId];
-          }
-        }
-      }
-    }
-    // Restore rendering and show the changes.
-    this.rendered = savedRendered;
-    if (this.rendered) {
-      this.render();
-    }
-  },
-  /**
-   * Modify this block to have the correct number of arguments.
-   * @private
-   * @this Blockly.Block
-   */
-  updateShape_: function() {
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var field = this.getField('ARGNAME' + i);
-      if (field) {
-        // Ensure argument name is up to date.
-        // The argument name field is deterministic based on the mutation,
-        // no need to fire a change event.
-        Blockly.Events.disable();
-        field.setValue(this.arguments_[i]);
-        Blockly.Events.enable();
-      } else {
-        // Add new input.
-        field = new Blockly.FieldLabel(this.arguments_[i]);
-        var input = this.appendValueInput('ARG' + i)
-            .setAlign(Blockly.ALIGN_RIGHT)
-            .appendField(field, 'ARGNAME' + i);
-        input.init();
-      }
-    }
-    // Remove deleted inputs.
-    while (this.getInput('ARG' + i)) {
-      this.removeInput('ARG' + i);
-      i++;
-    }
-    // Add 'with:' if there are parameters, remove otherwise.
-    var topRow = this.getInput('TOPROW');
-    if (topRow) {
-      if (this.arguments_.length) {
-        if (!this.getField('WITH')) {
-          topRow.appendField(Blockly.Msg.PROCEDURES_CALL_BEFORE_PARAMS, 'WITH');
-          topRow.init();
-        }
-      } else {
-        if (this.getField('WITH')) {
-          topRow.removeField('WITH');
-        }
-      }
-    }
-  },
-  /**
-   * Create XML to represent the (non-editable) name and arguments.
-   * @return {!Element} XML storage element.
-   * @this Blockly.Block
-   */
-  mutationToDom: function() {
-    var container = document.createElement('mutation');
-    container.setAttribute('name', this.getProcedureCall());
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var parameter = document.createElement('arg');
-      parameter.setAttribute('name', this.arguments_[i]);
-      container.appendChild(parameter);
-    }
-    return container;
-  },
-  /**
-   * Parse XML to restore the (non-editable) name and parameters.
-   * @param {!Element} xmlElement XML storage element.
-   * @this Blockly.Block
-   */
-  domToMutation: function(xmlElement) {
-    var name = xmlElement.getAttribute('name');
-    this.renameProcedure(this.getProcedureCall(), name);
-    var args = [];
-    var paramIds = [];
-    for (var i = 0, childNode; childNode = xmlElement.childNodes[i]; i++) {
-      if (childNode.nodeName.toLowerCase() == 'arg') {
-        args.push(childNode.getAttribute('name'));
-        paramIds.push(childNode.getAttribute('paramId'));
-      }
-    }
-    this.setProcedureParameters_(args, paramIds);
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    for (var i = 0; i < this.arguments_.length; i++) {
-      if (Blockly.Names.equals(oldName, this.arguments_[i])) {
-        this.arguments_[i] = newName;
-        this.getField('ARGNAME' + i).setValue(newName);
-      }
-    }
-  },
-  /**
-   * Add menu option to find the definition block for this call.
-   * @param {!Array} options List of menu options to add to.
-   * @this Blockly.Block
-   */
-  customContextMenu: function(options) {
-    var option = {enabled: true};
-    option.text = Blockly.Msg.PROCEDURES_HIGHLIGHT_DEF;
-    var name = this.getProcedureCall();
-    var workspace = this.workspace;
-    option.callback = function() {
-      var def = Blockly.Procedures.getDefinition(name, workspace);
-      def && def.select();
-    };
-    options.push(option);
+}
+@media only screen and (min-width: 993px) {
+  #ide_output_spacer {
+    height: 40px;
   }
-};
+}
 
-Blockly.Blocks['procedures_callreturn'] = {
-  /**
-   * Block for calling a procedure with a return value.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.appendDummyInput('TOPROW')
-        .appendField('', 'NAME');
-    this.setOutput(true);
-    this.setColour(Blockly.Blocks.procedures.HUE);
-    // Tooltip is set in domToMutation.
-    this.setHelpUrl(Blockly.Msg.PROCEDURES_CALLRETURN_HELPURL);
-    this.arguments_ = [];
-    this.quarkConnections_ = {};
-    this.quarkIds_ = null;
-  },
-  getProcedureCall: Blockly.Blocks['procedures_callnoreturn'].getProcedureCall,
-  renameProcedure: Blockly.Blocks['procedures_callnoreturn'].renameProcedure,
-  setProcedureParameters_:
-      Blockly.Blocks['procedures_callnoreturn'].setProcedureParameters_,
-  updateShape_: Blockly.Blocks['procedures_callnoreturn'].updateShape_,
-  mutationToDom: Blockly.Blocks['procedures_callnoreturn'].mutationToDom,
-  domToMutation: Blockly.Blocks['procedures_callnoreturn'].domToMutation,
-  renameVar: Blockly.Blocks['procedures_callnoreturn'].renameVar,
-  customContextMenu:
-      Blockly.Blocks['procedures_callnoreturn'].customContextMenu,
-  /** @return {!string} Return value type from the function definition block. */
-  getBlockType: function() {
-    var defBlock = Blockly.Procedures.getDefinition(this.getProcedureCall(),
-        this.workspace);
-    return defBlock.getReturnType();
+
+/*************/
+/*  Buttons  */
+/*************/
+#ide_buttons_wrapper {
+  position: absolute;
+  right: 25px;
+  top: -20px;
+  height: 55px;
+  width: 160px;
+  z-index: 12;
+}
+#button_ide_large {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 55px;
+  height: 55px;
+}
+#button_ide_large i {
+  font-size: 2.4rem !important;
+  line-height: 55px;
+}
+#button_ide_middle {
+  position: absolute;
+  right: 72px;
+  top: 10px;
+  visibility: hidden;
+  opacity: 0;
+  -moz-transition: visibility 0.3s linear, opacity 0.3s linear;
+  -webkit-transition: visibility 0.3s linear, opacity 0.3s linear;
+  -o-transition: visibility 0.3s linear, opacity 0.3s linear;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+}
+#button_ide_left {
+  position: absolute;
+  right: 126px;
+  top: 10px;
+  visibility: hidden;
+  opacity: 0;
+  -moz-transition: visibility 0.3s linear, opacity 0.3s linear;
+  -webkit-transition: visibility 0.3s linear, opacity 0.3s linear;
+  -o-transition: visibility 0.3s linear, opacity 0.3s linear;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+}
+#button_ide_large:hover:before,
+#button_ide_middle:hover:before,
+#button_ide_left:hover:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255, 0.25);
+  transition: all .3s linear;
+}
+
+#button_load_xml {
+  position: absolute;
+  right: 36px;
+  bottom: 36px;
+  display: none;
+}
+#button_load_xml .mdi-action-extension {
+  font-size: 2.1rem !important;
+}
+
+/* These floating buttons needs to be at a higher z index than card when */
+/* floating and lower when clicked.  */
+#button_ide_large:hover,
+#button_ide_middle:hover,
+#button_ide_left:hover,
+#button_load_xml:hover {
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#button_ide_large:active,
+#button_ide_middle:active,
+#button_ide_left:active,
+#button_load_xml:active {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+/****************************************************************************************/
+/*Included by RLQ - DB4K */
+
+#button_stop {
+  position: absolute;
+  right: 70px;
+  top: 0px;
+}
+#button_stop:hover {
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#button_stop:hover:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255, 0.25);
+  transition: all .3s linear;
+}
+
+#button_stop:active {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.stop_loader {
+  position: absolute !important;
+  right: 70px !important;
+  top: 0px !important;
+  width: 55px !important;
+  height: 55px !important; 
+  z-index: 5;
+}
+.stop-spinner-orange {
+  border-color: #E47128;
+}
+.active .spinner-layer.stop-spinner-orange {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+.spinner-stop-dark-teal {
+  border-color: #00878F;
+}
+.active .spinner-layer.sotop-spinner-dark-teal {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+.stop-spinner-yellow {
+  border-color: rgba(255, 204, 51, 1);
+}
+.active .spinner-layer.stop-spinner-yellow {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+.stop-spinner-light-teal {
+  border-color: #62AEB2;
+}
+.active .spinner-layer.stop-spinner-light-teal {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+.sotop-spinner-purple {
+  border-color: #8e24aa;
+}
+.active .spinner-layer.stop-spinner-purple {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+
+/*************************************************************************************/
+
+
+
+/* Toggle the toolbox on and off button */
+.button_toggle_toolbox_on {
+  position: absolute;
+  margin: 0 !important;
+  padding: 0 !important;
+  left: 12px;
+  top: 8px;
+  text-align: center;
+  font-size: 1.5rem !important;
+  z-index: 5;
+  border-color: #e0e0e0 !important;
+  border-width: 1px !important;
+  -webkit-border-radius: 4px 4px 4px 4px !important;
+  -moz-border-radius: 4px 4px 4px 4px !important;
+  border-radius: 4px 4px 4px 4px !important;
+  background: rgba(98, 174, 178, .2) !important;  /* Arduino Light Teal */
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); 
+  transition: background 0.3s linear, box-shadow 0.3s linear, border-width 0.3s linear;
+  -ms-transition: background 0.3s linear, box-shadow 0.3s linear, border-width 0.3s linear;
+  -moz-transition: background 0.3s linear, -moz-box-shadow 0.3s linear, border-width 0.3s linear;
+  -webkit-transition: background 0.3s linear, -webkit-box-shadow 0.3s linear, border-width 0.3s linear;
+}
+.button_toggle_toolbox_off {
+  position: absolute;
+  margin: 0 !important;
+  padding: 0px !important;
+  left: 12px;
+  top: 8px;
+  text-align: center;
+  font-size: 1.5rem !important;
+  z-index: 5;
+}
+
+
+/*****************************/
+/*  Spinner and new colours  */
+/*****************************/
+.ide_loader {
+  position: absolute !important;
+  right: 0px !important;
+  top: 0px !important;
+  width: 55px !important;
+  height: 55px !important; 
+  z-index: 5;
+}
+.spinner-orange {
+  border-color: #E47128;
+}
+.active .spinner-layer.spinner-orange {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+.spinner-dark-teal {
+  border-color: #00878F;
+}
+.active .spinner-layer.spinner-dark-teal {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+.spinner-yellow {
+  border-color: rgba(255, 204, 51, 1);
+}
+.active .spinner-layer.spinner-yellow {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+.spinner-light-teal {
+  border-color: #62AEB2;
+}
+.active .spinner-layer.spinner-light-teal {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+.spinner-purple {
+  border-color: #8e24aa;
+}
+.active .spinner-layer.spinner-purple {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+
+/************************/
+/*  Modals and content  */
+/************************/
+/* Large modal section blocks */
+.modal_section {
+  margin: 24px 0px;
+  width: 100%;
+}
+
+/* Blocks tick label as a title */
+.modal_label_title {
+  font-size: 1.6rem !important;
+  color: black;
+}
+
+/* Blocks modal divider */
+#blocks_menu_body .divider {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+/* Arduino output modal dialog */
+#arduino_dialog_body {
+  padding-top: 25px;
+}
+.arduino_dialog_out {}
+.arduino_dialog_out_error {
+  color: #E47128;   /* arduino orange */
+  padding-top: 25px;
+  display: block;
+}
+.arduino_dialog_success {
+  color: #00979C;   /* arduino light teal */
+}
+.arduino_dialog_failure {
+  color: #E47128;   /* arduino orange */
+}
+
+/* Footer buttons padding */
+.modal_right_button {
+  margin: 0px 0px 0px 48px !important;
+}
+
+/* Small modal responsive design */
+.modal_small {
+  height: auto !important;
+  min-height: 200px;
+}
+.modal_small .modal-content {
+  margin-top: 0;
+  padding-top: 12px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.modal_small input {
+  width: 100%;
+}
+@media only screen and (min-width: 0) {
+  .modal_small {
+    max-width: 75% !important;
+    width: 75% !important;
   }
-};
+}
+@media only screen and (min-width: 601px) {
+  .modal_small {
+    max-width: 55% !important;
+    width: 55% !important;
+  }
+}
+@media only screen and (min-width: 993px) {
+  .modal_small {
+    max-width: 35% !important;
+    width: 35% !important;
+  }
+}
 
-Blockly.Blocks['procedures_ifreturn'] = {
-  /**
-   * Block for conditionally returning a value from a procedure.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.appendValueInput('CONDITION')
-        .setCheck(Blockly.Types.BOOLEAN.checkList)
-        .appendField(Blockly.Msg.CONTROLS_IF_MSG_IF);
-    this.appendValueInput('VALUE')
-        .appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN);
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(Blockly.Blocks.procedures.HUE);
-    this.setTooltip(Blockly.Msg.PROCEDURES_IFRETURN_TOOLTIP);
-    this.setHelpUrl(Blockly.Msg.PROCEDURES_IFRETURN_HELPURL);
-    this.hasReturnValue_ = true;
-  },
-  /**
-   * Create XML to represent whether this block has a return value.
-   * @return {!Element} XML storage element.
-   * @this Blockly.Block
-   */
-  mutationToDom: function() {
-    var container = document.createElement('mutation');
-    container.setAttribute('value', Number(this.hasReturnValue_));
-    return container;
-  },
-  /**
-   * Parse XML to restore whether this block has a return value.
-   * @param {!Element} xmlElement XML storage element.
-   * @this Blockly.Block
-   */
-  domToMutation: function(xmlElement) {
-    var value = xmlElement.getAttribute('value');
-    this.hasReturnValue_ = (value == 1);
-    if (!this.hasReturnValue_) {
-      this.removeInput('VALUE');
-      this.appendDummyInput('VALUE')
-        .appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN);
-    }
-  },
-  /**
-   * Called whenever anything on the workspace changes.
-   * Add warning if this flow block is not nested inside a loop.
-   * @param {!Blockly.Events.Abstract} e Change event.
-   * @this Blockly.Block
-   */
-  onchange: function(e) {
-    var legal = false;
-    // Is the block nested in a procedure?
-    var block = this;
-    do {
-      if (this.FUNCTION_TYPES.indexOf(block.type) != -1) {
-        legal = true;
-        break;
-      }
-      block = block.getSurroundParent();
-    } while (block);
-    if (legal) {
-      // If needed, toggle whether this block has a return value.
-      if (block.type == 'procedures_defnoreturn' && this.hasReturnValue_) {
-        this.removeInput('VALUE');
-        this.appendDummyInput('VALUE')
-          .appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN);
-        this.hasReturnValue_ = false;
-      } else if (block.type == 'procedures_defreturn' &&
-                 !this.hasReturnValue_) {
-        this.removeInput('VALUE');
-        this.appendValueInput('VALUE')
-          .appendField(Blockly.Msg.PROCEDURES_DEFRETURN_RETURN);
-        this.hasReturnValue_ = true;
-      }
-      this.setWarningText(null);
-    } else {
-      this.setWarningText(Blockly.Msg.PROCEDURES_IFRETURN_WARNING);
-    }
-  },
-  /**
-   * List of block types that are functions and thus do not need warnings.
-   * To add a new function type add this to your code:
-   * Blockly.Blocks['procedures_ifreturn'].FUNCTION_TYPES.push('custom_func');
-   */
-  FUNCTION_TYPES: ['procedures_defnoreturn', 'procedures_defreturn']
-};
+
+/*****************/
+/*  Sketch name  */
+/*****************/
+.sketch_name_wrapper {
+  display: inline-block;
+  padding-left: 5px;
+}
+.sketch_name_icon {
+  display: inline !important;
+  font-size: 1.2rem !important;
+  float: right;
+  padding-top: 3px;
+}
+.sketch_name {
+  width: auto !important;
+  max-width: 400px;
+  line-height: 64px;
+  height: 3rem !important;
+  font-size: 1.5rem !important;
+  border-bottom: 0px solid #EEE !important;
+  font-style: italic;
+}
+.sketch_name:focus {
+    border-bottom: 1px solid #EEE !important;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .sketch_name {
+    max-width: 200px;
+  }
+  /* Remove the "Ardublockly title only leaving the sketch name */
+  .app_title {
+    display: none;
+  }
+}
+@media only screen and (min-width : 600px) {
+  .sketch_name {
+    max-width: 275px;
+  }
+}
+@media only screen and (min-width : 993px) {
+  .sketch_name {
+    max-width: 350px;
+  }
+}
+
+
+/************/
+/*  Others  */
+/************/
+/* Edit logo for code and xml collapsibles */
+.collapsible_logo {
+  width: 3rem;
+  font-size: 1.6rem;
+  line-height: 3rem;
+  font-weight: bold;
+  display: block;
+  float: left;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+/* Colours for the new and deleted code highlighting */
+.code_highlight_new {
+  background-color: rgba(255, 204, 51, 0.5); /* Arduino yellow 50% */
+}
+.code_highlight_deleted {
+  background-color: #FDBEBE;
+}
+
+
+/*****************************/
+/*  Overwriting Blockly CSS  */
+/*****************************/
+/* Blockly text for the following components:  */
+.blocklyTreeLabel,           /* Toolbox        */
+.blocklyText,                /* Block          */
+.goog-menuitem-content {     /* Drop down menu */
+  font-family: "Roboto", sans-serif!important;
+  font-weight: 500; /* Modified by RLQ DB4K (included font-weight) */
+}
+
+/* Entire Blockly area, Toolbox dranw on top */
+.blocklySvg {
+  border-width: 0 !important;
+}
+
+/* Toolbox */
+.blocklyToolboxDiv {
+  border-color: #e0e0e0 !important;
+  border-width: 0px 1px 0px 0px !important;
+  -webkit-border-radius: 0px 4px 4px 0px !important;
+  -moz-border-radius: 4px 4px 0px 0px !important;
+  border-radius: 0px 4px 4px 0px !important;
+  border: none !important;
+  margin: 0px !important;
+  padding: 0px 0px 0px 0px !important;
+  background: rgba(98, 174, 178, .2) !important;  /* Arduino Light Teal */
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  overflow: hidden !important;
+}
+.blocklyTreeRoot {
+  background: none !important;
+  border: none !important;
+  margin: 36px 0px 0px 0px !important;
+  padding: 0px 1px !important;
+  height: -moz-calc(100% - 37px);     /* Firefox  */
+  height: -webkit-calc(100% - 37px);  /* WebKit   */
+  height: -o-calc(100% - 37px);       /* Opera    */
+  height: calc(100% - 37px);          /* Standard */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.blocklyTreeRow {
+  background: none !important;
+  border: none !important;
+  margin: 0px 0px !important;
+  padding: 7px 16px 7px 0px !important;
+  box-sizing: content-box !important;
+}
+//**************************************************************************************************
+.blocklyTreeSelected {
+  /* Modified by RLQ DB4k - background-color seted to "none" (older:#E47128) - arduino orange */ 
+  background-color:none !important;  
+}
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+  /* Modified by RLQ DB4k - background-color seted to "none" (older:rgba(255, 204, 51, 1)) -  arduino yellow */
+  background-color:none !important; 
+}
+//---------------------------------------------------------------------------------------------------
+.blocklyTreeLabel {
+}
+.blocklyTreeSeparator{
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+/* Toolbox second column with blocks*/
+.blocklyFlyoutBackground {
+  fill: #DEEEEF !important;
+  fill-opacity: 0.7 !important;
+  -webkit-border-radius: 0px 4px 4px 0px !important;
+  -moz-border-radius: 0px 4px 4px 0px !important;
+  border-radius: 0px 4px 4px 0px !important;
+}
+
+/* Blockly scrollbars */
+.blocklyScrollbarKnob {
+  fill: #00878F !important;
+  fill-opacity: 0.7 !important;
+}
+.blocklyScrollbarBackground {
+  stroke-width: 0px !important;
+  fill: none !important;
+}
+
+/* Edit select colour to Arduino yellow. (Edited out as already this colour)
+.blocklyHighlightedConnectionPath,
+.blocklySelected>.blocklyPath {
+  stroke: rgba(255, 204, 51, 1) !important;
+} */
+
+/*********************************/
+/*  Overwriting Materialize CSS  */
+/*********************************/
+/* Modify container to have a larger width in all resolutions */
+.container {
+  width: 90%;
+  max-width: initial !important;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media only screen and (min-width : 601px) {
+  .container {
+    width: 95%;
+  }
+}
+@media only screen and (min-width : 993px) {
+  .container {
+    width: 100%;
+  }
+}
+@media only screen and (min-width : 1380px) {
+  .container {
+    width: 90%;
+  }
+}
+
+/* Maximize horizontal space for mobile */
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  body {
+    padding-top: 0px;
+  }
+  /* Expand to all visible horizontal space */
+  .container {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  nav {
+    margin: 0 !important;
+    padding: 0px 12px !important;
+  }
+  /* remove space between cards and navigation bar */
+  .col {
+    margin-top: -8px;
+  }
+}
+
+/* Increase the text size of the side menu */
+ul.side-nav {
+  padding: 0px !important;
+  line-height: 64px !important;
+}
+ul.side-nav i {
+  font-size: 1.8rem !important;
+}
+ul.side-nav .collapsible {
+  margin: 0 !important;
+}
+/* Set the background effect in the side menu */
+ul.side-nav {
+  background-color: transparent;
+  box-shadow: none !important;
+}
+ul.side-nav li {
+  background-color: #eeeeee;
+}
+ul.side-nav li {
+  background-color: #eeeeee;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-right: 2px solid #dddddd;
+  border-left: 2px solid #ffffff;
+}
+ul.side-nav li ul li ul {
+  cursor: pointer;
+  border: none !important;
+}
+ul.side-nav li ul li ul li {
+  border: none !important;
+}
+
+/* Add extra margin to the side menu button*/
+.button-collapse {
+  margin-right: 16px;
+}
+
+/* Increase the size of Materialize Modal in small resolutions */
+@media only screen and (max-width : 600px) {
+  .modal {
+    width: 80% !important;
+    max-width: 80% !important;
+  }
+}
+
+/* Why the hell does button large has a predefined background colour !! */
+.btn-large:hover {
+  background-color: inherit;
+}
+
+/* Circle clipper (loading animation) thickness */
+.circle-clipper .circle {
+  border-width: 4px !important;
+}
+
+/* Materialize messes with these, so reset them here */
+.blocklyHtmlInput {
+  border: none !important;
+  border-radius: 4px !important;
+  font-family: sans-serif !important;
+  height: 100% !important;
+  margin: 0 !important;
+  outline: none !important;
+  padding: 0 1px !important;
+  width: 100% !important;
+  background-color: white !important;
+}
