@@ -1,11 +1,11 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './import.js',
     mode: 'development',
     output: {
         filename: 'js/main.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '.'),
     },
     node: {
         fs: 'empty',

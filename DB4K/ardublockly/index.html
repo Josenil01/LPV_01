@@ -7,8 +7,10 @@
   <meta name="theme-color" content="#00878F">
   <link rel="icon" href="img/logo_purple.png">
   <title class="translatable_title">Arduíno Jr | Hello Yotta</title>
+  <script src="js_libs/jquery-2.1.3.min.js"></script>
   <script src="js_libs/include.js"></script>
   <script src="db4k_setup.js"></script>
+
   <!-->
 
   <!-- Ardublockly - These three files contain the compress version>
@@ -219,7 +221,7 @@
       <div id="button_ide_desable" class="preloader-wrapper active ide_loader" style="display:none"> </div>
       <!------------------------------------------------------------------------------------------->
       <!-- Blockly Panel -->
-      <div class="card-panel white z-depth-0 style="padding: 0">
+      <div class="card-panel white z-depth-0 style=" padding: 0">
         <div id="blocks_panel" class="content blocks_panel_large">
           <div id="content_blocks" class="content z-depth-0 border-0"></div>
         </div>
@@ -282,26 +284,44 @@
   </div>
 
   <div class="menuLadoDireito">
-    <button id="" class="btn-circle first">Teste</button>
-    <button id="" class="btn-circle second">Teste</button>
-    <button id="" class="btn-circle third">Teste</button>
-    <button id="" class="btn-circle fourth">Teste</button>
+    <button id="" class="btn-circle first">
+      <span class="material-icons lg">
+        touch_app
+      </span>
+    </button>
+    <button id="btn_opencode" class="btn-circle second">
+      <span class="material-icons lg">
+        code
+      </span>
+    </button>
+    <button id="" class="btn-circle third">
+      <span class="material-icons lg">
+        play_circle_outline
+      </span>
+    </button>
+    <button id="" class="btn-circle fourth">
+      <span class="material-icons lg">
+        replay
+      </span>
+    </button>
   </div>
+  <div include-html="components/about.html"></div>
 
   <!-- Desktop version of Ardublockly JS, needs to be loaded first. -->
   <script src="ardublockly_desktop.js"></script>
   <!-- jQuery and Materialize JS -->
-  <script src="js_libs/jquery-2.1.3.min.js"></script>
-  <script src="materialize/materialize.js"></script>
+  <script src="js/main.js"></script>
+
   <!-- FileSaver JS -->
   <script src="js_libs/FileSaver.min.js"></script>
   <!-- JS Diff -->
   <script src="js_libs/diff.js"></script>
 
 
+
   <!-- Prettify JS -->
   <script src="prettify/prettify.js"></script>
-  
+
   <!-- Ardublockly app -->
   <script src="ardublocklyserver_ajax.js"></script>
   <script src="ardublockly_lang.js"></script>
@@ -309,20 +329,16 @@
   <script src="ardublockly_toolbox.js"></script>
   <script src="ardublockly_blockly.js"></script>
   <script src="ardublockly.js"></script>
+  <script src="js/right_menu_config.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 
   <script>
     window.addEventListener('load', function load(event) {
       window.removeEventListener('load', load, false);
       Ardublockly.init();
     });
-  </script>
-  <div include-html="components/about.html"></div>
-  <script>
-    window.addEventListener('load', function () {
-      includeHTML();
-    });
+    includeHTML();
   </script>
 </body>
 </html>
