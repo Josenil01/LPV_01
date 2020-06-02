@@ -41,8 +41,8 @@ Blockly.Blocks['sempre'] = {
     this.setColour(cor_delay_parar);
     this.appendValueInput("repita_sempre")
      // .setAlign(Blockly.ALIGN_CENTRE)
-      .appendField(" ")
-      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/sempre.png", 30, 60, "*"));
+      //.appendField(" ")
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/sempre.png", 40, 40, "*"));
     this.setNextStatement(true, null);
     this.setTooltip('REPITA PARA SEMPRE');
   }
@@ -54,7 +54,7 @@ Blockly.Blocks['delay'] = {
     this.setColour(cor_delay_parar);     
     this.appendDummyInput("milisegundos")
         //.setAlign(Blockly.ALIGN_CENTRE)
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/delay.png", 90, 60, "*"))
+        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/delay.png", 40, 40, "*"))
         //.appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
         .appendField(new Blockly.FieldTextInput("Olá"), "texto");
     this.setPreviousStatement(true, null);
@@ -104,10 +104,10 @@ Blockly.Blocks['condicional_simples'] = {
     this.setColour(cor_selecao );
     this.appendDummyInput()
       .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/interrogacao_se.png", 40, 40, "*"));
-    this.appendValueInput("condicao")
-       .appendField("Se");
-    this.appendDummyInput()
-        .appendField("então");
+    // this.appendValueInput("condicao")
+    //    .appendField("Se");
+    // this.appendDummyInput()
+    //     .appendField("então");
 		   //.appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/interrogacao_se.png", 40, 40, "*"));
     this.appendStatementInput("codigo_condicional");
     this.setInputsInline(true);
