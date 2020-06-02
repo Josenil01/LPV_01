@@ -447,7 +447,7 @@ Blockly.Bubble.prototype.getBubbleSize = function() {
 Blockly.Bubble.prototype.setBubbleSize = function(width, height) {
   var doubleBorderWidth = 2 * Blockly.Bubble.BORDER_WIDTH;
   // Minimum size of a bubble.
-  width = Math.max(width, doubleBorderWidth + 45);
+  width = Math.max(width, doubleBorderWidth + 40);
   height = Math.max(height, doubleBorderWidth + 20);
   this.width_ = width;
   this.height_ = height;

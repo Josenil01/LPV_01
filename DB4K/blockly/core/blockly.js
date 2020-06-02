@@ -56,7 +56,7 @@ goog.require('goog.userAgent');
 
 
 // Turn off debugging when compiled.
-var CLOSURE_DEFINES = {'goog.DEBUG': false};
+var CLOSURE_DEFINES = {'goog.DEBUG': false };
 
 /**
  * The main workspace most recently used.

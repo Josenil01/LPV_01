@@ -176,7 +176,7 @@ Blockly.RenderedConnection.prototype.highlight = function() {
   }
   var xy = this.sourceBlock_.getRelativeToSurfaceXY();
   var x = this.x_ - xy.x; //Os valores aqui podem ser ajustados aqui
-  var y = this.y_ - xy.y-50;//Os valores aqui podem ser ajustados aqui
+  var y = this.y_ - xy.y+15;//Os valores da posição do conector podem ser ajustados aqui
   Blockly.Connection.highlightedPath_ = Blockly.createSvgElement('path',
       {'class': 'blocklyHighlightedConnectionPath',
        'd': steps,

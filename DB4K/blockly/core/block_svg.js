@@ -392,7 +392,7 @@ Blockly.BlockSvg.prototype.getHeightWidth = function() {
   if (nextBlock) {
     var nextHeightWidth = nextBlock.getHeightWidth();
     height += nextHeightWidth.height - 4;  // Height of tab.
-    width = Math.max(width, nextHeightWidth.width);
+    width += nextHeightWidth.width -4; //alterado para comportar a conexão horizontal
   } else if (!this.nextConnection && !this.outputConnection) {
     // Add a bit of margin under blocks with no bottom tab.
     height += 2;
