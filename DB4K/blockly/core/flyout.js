@@ -70,7 +70,7 @@ Blockly.Flyout = function(workspaceOptions) {
    * @private
    */
   this.toolboxPosition_ = workspaceOptions.toolboxPosition;
-
+  //console.log(this.toolboxPosition_);
   /**
    * Opaque data that can be passed to Blockly.unbindEvent_.
    * @type {!Array.<!Array>}
@@ -634,14 +634,16 @@ Blockly.Flyout.prototype.layoutBlocks_ = function(blocks, gaps) {
       cursorX += tab;
     }
     block.moveBy(cursorX,cursorY);
+    //Posição dos blocos dentro do flyout estão organizados em cinco colunas
+    //Podendo conter até 15 blocos
     if (this.horizontalLayout_) {
-      
+      cursorX += (blockHW.width + gaps[i] - tab);
       if(i == 5 )
       {
-        cursorY += oldHeight-20;
+        cursorY += oldHeight+40;
         cursorX = margin + Blockly.BlockSvg.TAB_WIDTH;
       }
-      cursorX += (blockHW.width + gaps[i] - tab);
+      
     } else {
        
      cursorY += blockHW.height + gaps[i];
@@ -972,22 +974,28 @@ Blockly.Flyout.prototype.getClientRect = function() {
   // BIG_NUM is offscreen padding so that blocks dragged beyond the shown flyout
   // area are still deleted.  Must be larger than the largest screen size,
   // but be smaller than half Number.MAX_SAFE_INTEGER (not available on IE).
-  var BIG_NUM = 1000000000;
+  var BIG_NUM = 100;
   var x = flyoutRect.left;
   var y = flyoutRect.top;
   var width = flyoutRect.width;
   var height = flyoutRect.height;
-
+  //console.log("atenção delete area");
   if (this.toolboxPosition_ == Blockly.TOOLBOX_AT_TOP) {
+    console.log("atenção top");
     return new goog.math.Rect(-BIG_NUM, y - BIG_NUM, BIG_NUM * 2,
         BIG_NUM + height);
   } else if (this.toolboxPosition_ == Blockly.TOOLBOX_AT_BOTTOM) {
+    console.log("atenção bottom");
     return new goog.math.Rect(-BIG_NUM, y, BIG_NUM * 2,
         BIG_NUM + height);
   } else if (this.toolboxPosition_ == Blockly.TOOLBOX_AT_LEFT) {
-    return new goog.math.Rect(x - BIG_NUM, -BIG_NUM, BIG_NUM + width,
-        BIG_NUM * 2);
+   //console.log("atenção left",x,' ');
+
+    return new goog.math.Rect(200,350,800,350);
+    //ajustando a area de deleção dos blocos dentro do flayout;
+    //return new goog.math.Rect(x - BIG_NUM, -BIG_NUM, BIG_NUM + width,BIG_NUM * 2);
   } else {  // Right
+    //console.log("atenção right");
     return new goog.math.Rect(x, -BIG_NUM, BIG_NUM + width, BIG_NUM * 2);
   }
 };
@@ -1024,24 +1032,27 @@ Blockly.Flyout.terminateDrag_ = function() {
  * @param {!Array<!Blockly.Block>} blocks The blocks to reflow.
  */
 Blockly.Flyout.prototype.reflowHorizontal = function(blocks) {
+  //console.log("Os blocos estão organizados hoorizontalmente");
   this.workspace_.scale = this.targetWorkspace_.scale;
   var flyoutHeight = 0;
+  var aux =0;
   for (var i = 0, block; block = blocks[i]; i++) {
     flyoutHeight = Math.max(flyoutHeight, block.getHeightWidth().height);
   }
+  
   flyoutHeight += this.MARGIN * 1.5;
   flyoutHeight *= this.workspace_.scale;
   flyoutHeight += Blockly.Scrollbar.scrollbarThickness;
   if (this.height_ != flyoutHeight) {
     for (var i = 0, block; block = blocks[i]; i++) {
       var blockHW = block.getHeightWidth();
+      
       if (block.flyoutRect_) {
         block.flyoutRect_.setAttribute('width', blockHW.width);
         block.flyoutRect_.setAttribute('height', blockHW.height);
         // Rectangles behind blocks with output tabs are shifted a bit.
         var tab = block.outputConnection ? Blockly.BlockSvg.TAB_WIDTH : 0;
-        var blockXY = block.getRelativeToSurfaceXY();
-        block.flyoutRect_.setAttribute('y', blockXY.y);
+        var blockXY = block.getRelativeToSurfaceXY();     
         block.flyoutRect_.setAttribute('x',
             this.RTL ? blockXY.x - blockHW.width + tab : blockXY.x - tab);
         // For hat blocks we want to shift them down by the hat height
@@ -1051,8 +1062,9 @@ Blockly.Flyout.prototype.reflowHorizontal = function(blocks) {
         if (hatOffset) {
           block.moveBy(0, hatOffset);
         }
-        block.flyoutRect_.setAttribute('y', blockXY.y);
-      }
+        aux=blockXY.y;
+        block.moveBy(0, aux);   
+      }       
     }
     // Record the height for .getMetrics_ and .position.
     this.height_ = flyoutHeight;
@@ -1095,8 +1107,7 @@ Blockly.Flyout.prototype.reflowVertical = function(blocks) {
         // Blocks with output tabs are shifted a bit.
         var tab = block.outputConnection ? Blockly.BlockSvg.TAB_WIDTH : 0;
         var blockXY = block.getRelativeToSurfaceXY();
-        block.flyoutRect_.setAttribute('x',
-            this.RTL ? blockXY.x - blockHW.width + tab : blockXY.x - tab);
+        block.flyoutRect_.setAttribute('x',blockXY.x - tab);
         // For hat blocks we want to shift them down by the hat height
         // since the y coordinate is the corner, not the top of the hat.
         var hatOffset =
@@ -1121,7 +1132,8 @@ Blockly.Flyout.prototype.reflow = function() {
   if (this.horizontalLayout_) {
     this.reflowHorizontal(blocks);
   } else {
-    this.reflowVertical(blocks);
+    //@13 Desativado para teste 
+    //this.reflowVertical(blocks);
   }
 };
 
@@ -1149,7 +1161,7 @@ Blockly.Flyout.prototype.offsetHorizontalRtlBlocks = function(blocks) {
     for (var i = 0, block; block = blocks[i]; i++) {
       block.moveBy(offset, 0);
       if (block.flyoutRect_) {
-        block.flyoutRect_.setAttribute('x',
+            block.flyoutRect_.setAttribute('x',
             offset + Number(block.flyoutRect_.getAttribute('x')));
       }
     }

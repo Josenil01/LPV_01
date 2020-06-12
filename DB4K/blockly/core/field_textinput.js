@@ -228,7 +228,7 @@ Blockly.FieldTextInput.prototype.resizeEditor_ = function() {
   var div = Blockly.WidgetDiv.DIV;
   var bBox = this.fieldGroup_.getBBox();
   //O tamanho da textarea
-  div.style.width = '40px';
+  div.style.width = '100px'; //Alterado para adicionar mais texto
   div.style.height = '40px'//bBox.height * this.workspace_.scale + 'px';
   var xy = this.getAbsoluteXY_();
   // In RTL mode block fields and LTR input fields the left edge moves,

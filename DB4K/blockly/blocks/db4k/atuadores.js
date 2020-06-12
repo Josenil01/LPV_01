@@ -52,10 +52,8 @@ Blockly.Blocks['acender_led'] = {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_acender_led);
     this.appendDummyInput("acender_led")
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_on.png", 90, 60, "*"))
-        // .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
-        .appendField(new Blockly.FieldTextInput("oi"), "texto");
-        
+        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_on.png", 40, 40, "*"))
+        .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");        
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Acende o LED na porta indicada.');
@@ -67,9 +65,8 @@ Blockly.Blocks['apagar_led'] = {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_apagar_led);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_off_long.png", 90, 60, "*"))
+        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_off_long.png", 40, 40, "*"))
         .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
-        //.appendField(new Blockly.FieldDropdown([['D534535353413', "13"]]), "cor_led");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Apaga o LED na porta indicada.');
@@ -85,16 +82,14 @@ Blockly.Blocks['piscar_led'] = {
     this.setColour(cor_piscar_led);
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_blink.png", 40, 40, "*"))
-        .appendField("Piscar o LED")
-        .appendField(new Blockly.FieldDropdown([['D13', "13"],["D12", "12"],["D8", "8"],["D7", "7"],["D6", "6"],["D5", "5"],["D4", "4"],["D3", "3"]]), "cor_led")
-	    	.appendField(new Blockly.FieldDropdown([[val_3, "high"],[val_2, "middle"],[val_1, "low"]]), "velocidade_blink");
+        .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
+        //.appendField(new Blockly.FieldDropdown([['D13', "13"],["D12", "12"],["D8", "8"],["D7", "7"],["D6", "6"],["D5", "5"],["D4", "4"],["D3", "3"]]), "cor_led")
+        //.appendField(new Blockly.FieldDropdown([[val_3, "high"],[val_2, "middle"],[val_1, "low"]]), "velocidade_blink");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Pisca o LED da cor indicada.');
   }
 };
-
-
 
 
 Blockly.Blocks['girar_motor'] = {

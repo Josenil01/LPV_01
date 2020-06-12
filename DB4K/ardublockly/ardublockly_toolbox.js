@@ -14,11 +14,40 @@ var Ardublockly = Ardublockly || {};
 Ardublockly.TOOLBOX_XML =
 '<xml>'+
 '<sep></sep>' +
-'<category name="Controle">' +
-    '   <block type="sempre"></block>' +
-    '   <block type="delay"></block>' +
+'   <block type="sempre"></block>' +
+'   <block type="delay"></block>' +
+'   <block type="acender_led"></block>' +
+'   <block type="apagar_led"></block>' +
+'   <block type="piscar_led"></block>' +
+'   <block type="condicional_simples"></block>' +
+'   <block type="sempre"></block>' +
+'   <block type="delay"></block>' +
+'   <block type="acender_led"></block>' +
+'   <block type="apagar_led"></block>' +
+'   <block type="piscar_led"></block>' +
+'   <block type="condicional_simples"></block>' +
+// '   <block type="condicional_simples"></block>' +
+// '   <block type="condicional_simples"></block>' +
+// '   <block type="tocar_nota_buzzer"></block>' +
+// '   <block type="parar_som_buzzer"></block>' +
+// '   <block type="mover_servomotor"></block>' +
+// '   <block type="girar_motor"></block>' +
+// '   <block type="mover_carrinho_para_frente"></block>' +
+// '   <block type="mover_carrinho_para_tras"></block>' +
+// '   <block type="virar_carrinho_para_direita"></block>' +
+// '   <block type="virar_carrinho_para_esquerda"></block>' +
+// '   <block type="finalizar_circuito"></block>' +
+// '   <block type="sensor_distancia"></block>' +
+// '   <block type="sensor_luz"></block>' +
+// '   <block type="sensor_toque"></block>' +
+// '   <block type="sensor_magnetico"></block>' +
+// '   <block type="inicializar_braco"></block>' +
+// '   <block type="girar_braco_robotico_direita"></block>' +
+/*'<category name="Controle">' +
+    
+    
     '   <block type="condicional_simples"></block>' +
-// '   <block type="soma"></block>' +
+    '   <block type="soma"></block>' +
 // '   <block type="subtracao"></block>' +
 // '   <block type="divisao"></block>' +
 // '   <block type="multiplicao"></block>' +
@@ -31,10 +60,10 @@ Ardublockly.TOOLBOX_XML =
 // '   <block type="n6"></block>' +
 // '   <block type="n7"></block>' +
 // '   <block type="n8"></block>' +
-// '   <block type="n9"></block>' +//*/
+// '   <block type="n9"></block>' +
 '</category>' +
 '<category name="LED">' +
-// '   <block type="acender_led"></block>' +
+ '   <block type="acender_led"></block>' +
 // '   <block type="apagar_led"></block>' +
 //'   <block type="piscar_led"></block>' +
 //'<block type="led_rgb"></block>' +
@@ -53,7 +82,7 @@ Ardublockly.TOOLBOX_XML =
 // '   <block type="n6"></block>' +
 // '   <block type="n7"></block>' +
 // '   <block type="n8"></block>' +
-// '   <block type="n9"></block>' +//*/
+// '   <block type="n9"></block>' +
 '</category>' +
 '<category name="Motores">' +
  //'   <block type="mover_servomotor"></block>' +
@@ -66,7 +95,7 @@ Ardublockly.TOOLBOX_XML =
 '<block type="escrever_display_7s"></block>' +
 '<block type="limpar_display_7s"></block>' +
 '</category>' +
-'<sep></sep>' +*/
+'<sep></sep>' +
 '<category name="Som">' +
 // '   <block type="tocar_nota_buzzer"></block>' +
 // '   <block type="parar_som_buzzer"></block>' +
@@ -99,6 +128,6 @@ Ardublockly.TOOLBOX_XML =
 // '   <block type="pegar_objeto"></block>' +
 // '   <block type="soltar_objeto"></block>' +
 // '   <block type="finalizar_braco"></block>' +
-'</category>' +
+'</category>' +*/
 '</xml>';
 //-----------------------------------------------------------------------------
