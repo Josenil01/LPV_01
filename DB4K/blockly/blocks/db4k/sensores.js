@@ -31,6 +31,11 @@ var cor_sensores = 65;
 
 Blockly.Blocks['sensor_luz'] = {
   init: function() {
+    var options = [
+      ['none', 'NONE'],
+      [{'src': 'canada.png', 'width': 50, 'height': 25, 'alt': 'Canada'}, 'CANADA'],
+      [{'src': 'usa.png', 'width': 50, 'height': 25, 'alt': 'USA'}, 'USA'],
+      [{'src': 'mexico.png', 'width': 50, 'height': 25, 'alt': 'Mexico'}, 'MEXICO']];
 	var val_1 = '\u25CB' + "  " + "Fraca";
 	var val_2 = '\u25CE' + "  " + "Ambiente";
 	var val_3 = '\u25CF' + "  " + "Forte";
@@ -42,6 +47,7 @@ Blockly.Blocks['sensor_luz'] = {
 	    .appendField(new Blockly.FieldDropdown([[val_3, "forte"],[val_2,"ambiente"],[val_1, "fraca"]]), "luminosidade")
 		  .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 8, 40, "*"))
       .appendField("Porta")
+      //.appendField(new Blockly.FieldDropdown(options), 'FLAG');
       .appendField(new Blockly.FieldDropdown([['A0',"A0"],['A1',"A1"],['A2',"A2"],['A3',"A3"],['A4',"A4"],['A5',"A5"]]), "porta_analogica");
     this.setInputsInline(true);
     this.setOutput(true);

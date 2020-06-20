@@ -95,6 +95,28 @@ Blockly.FieldDropdown.prototype.init = function() {
   this.text_ = null;
   this.setText(text);
 };
+/**
+ * Dropdown image properties.
+ * @typedef {{
+  *            src:string,
+  *            alt:string,
+  *            width:number,
+  *            height:number
+  *          }}
+  */
+
+ Blockly.FieldDropdown.ImageProperties;
+//https://github.com/google/blockly/blob/master/core/field_dropdown.js
+ /**
+  * Construct a FieldDropdown from a JSON arg object.
+  * @param {!Object} options A JSON object with options (options).
+  * @return {!Blockly.FieldDropdown} The new field instance.
+  * @package
+  * @nocollapse
+  */
+ Blockly.FieldDropdown.fromJson = function(options) {
+   return new Blockly.FieldDropdown(options['options'], undefined, options);
+ };
 
 /**
  * Create a dropdown menu under the text.
