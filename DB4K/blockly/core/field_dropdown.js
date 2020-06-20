@@ -60,10 +60,40 @@ Blockly.FieldDropdown = function(menuGenerator, opt_validator) {
 };
 goog.inherits(Blockly.FieldDropdown, Blockly.Field);
 
+//adiconando as variaveis de imagens 
+
+/**
+ * The y offset from the top of the field to the top of the image, if an image
+ * is selected.
+ * @type {number}
+ * @const
+ * @private
+ */
+Blockly.FieldDropdown.IMAGE_Y_OFFSET = 5;
+
+/**
+ * The total vertical padding above and below an image.
+ * @type {number}
+ * @const
+ * @private
+ */
+Blockly.FieldDropdown.IMAGE_Y_PADDING =
+    Blockly.FieldDropdown.IMAGE_Y_OFFSET * 2;
+
+
+
+
+
+
+
 /**
  * Horizontal distance that a checkmark ovehangs the dropdown.
  */
 Blockly.FieldDropdown.CHECKMARK_OVERHANG = 25;
+
+
+
+
 
 /**
  * Android can't (in 2014) display "▾", so use "▼" instead.
