@@ -157,7 +157,7 @@
         <!------------------------------------------------------------------------------------->
         <!--*********************************************************************************-->
         <!-- (modified by  RLQ DB4K ) button left and button middle -- included div display = none -->
-        <div style="display:none">
+        <div>
           <a id="button_ide_left"
             class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i
               id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
@@ -221,12 +221,11 @@
       <div id="button_ide_desable" class="preloader-wrapper active ide_loader" style="display:none"> </div>
       <!------------------------------------------------------------------------------------------->
       <!-- Blockly Panel -->
-      <div class="card-panel white z-depth-0 style=" padding: 0">
+      <div class="card-panel white z-depth-0" style="padding: 0">
         <div id="blocks_panel" class="content blocks_panel_large">
           <div id="content_blocks" class="content z-depth-0 border-0"></div>
         </div>
       </div>
-      <div include-html="components/toolbox.html" class="hide"></div>
     </div>
   </div>
 
@@ -307,6 +306,7 @@
   </div>
   <div include-html="components/about.html"></div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <!-- Desktop version of Ardublockly JS, needs to be loaded first. -->
   <script src="ardublockly_desktop.js"></script>
   <!-- jQuery and Materialize JS -->
@@ -322,6 +322,10 @@
   <!-- Prettify JS -->
   <script src="prettify/prettify.js"></script>
 
+  <script>
+    includeHTML();
+    $('.collapsible').collapsible();
+  </script>
   <!-- Ardublockly app -->
   <script src="ardublocklyserver_ajax.js"></script>
   <script src="ardublockly_lang.js"></script>
@@ -335,10 +339,10 @@
 
   <script>
     window.addEventListener('load', function load(event) {
-      window.removeEventListener('load', load, false);
       Ardublockly.init();
     });
-    includeHTML();
+
   </script>
 </body>
+
 </html>
