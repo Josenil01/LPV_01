@@ -39,7 +39,7 @@ elVideo.addEventListener('click', function () {
   swal.fire({
     title: 'Desafio: '+ desafio.titulo,
     html: finalHTMLConfig,
-    width:'70%',
+    width:'60%',
 
   });
 
@@ -47,6 +47,10 @@ elVideo.addEventListener('click', function () {
 
 var elClearBlocks = document.getElementById('btn_clearblocks');
 elClearBlocks.addEventListener('click', function () {
+  if (Ardublockly.isWorkspaceEmpty()) {
+    swal.fire('Calma!', 'Vamos programar algo primeiro!', 'warning');
+    return;
+  }
   swal.fire({
     title: 'Muita calma nessa hora!',
     text: 'Você realmente quer deletar todos os blocos da tela?',
@@ -55,10 +59,6 @@ elClearBlocks.addEventListener('click', function () {
     confirmButtonText: 'Sim, quero remover os blocos',
     cancelButtonText: 'Não, mudei de ideia'
   }).then((result) => {
-    if (Ardublockly.isWorkspaceEmpty()) {
-      swal.fire('Calma!', 'Vamos programar algo primeiro!', 'warning');
-      return;
-    }
     if (result.value == true) {
       Ardublockly.workspace.clear();
       swal.fire('Feito!', 'Todos os blocos foram removidos!', 'success');

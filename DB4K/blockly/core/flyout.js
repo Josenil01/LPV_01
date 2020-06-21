@@ -355,7 +355,6 @@ Blockly.Flyout.prototype.position = function() {
   //aterado  manualmente a posição da caixa de blocos
   this.svgGroup_.setAttribute('transform', 'translate(' + x + ',' + y + ')');
   //this.svgGroup_.setAttribute('transform', 'translate(' + 150 + ',' + 250 + ')');
-
   // Record the height for Blockly.Flyout.getMetrics_, or width if the layout is
   // horizontal.
   if (this.horizontalLayout_) {
@@ -991,9 +990,11 @@ Blockly.Flyout.prototype.getClientRect = function() {
     return new goog.math.Rect(-BIG_NUM, y, BIG_NUM * 2,
         BIG_NUM + height);
   } else if (this.toolboxPosition_ == Blockly.TOOLBOX_AT_LEFT) {
-    return new goog.math.Rect(200,350,800,350);
+    //return new goog.math.Rect(200,350,800,350)
     //ajustando a area de deleção dos blocos dentro do flayout;
-    //return new goog.math.Rect(x - BIG_NUM, -BIG_NUM, BIG_NUM + width,BIG_NUM * 2);
+   // return new goog.math.Rect(x - BIG_NUM, -BIG_NUM, BIG_NUM + width,BIG_NUM * 2);
+   console.log(-BIG_NUM," ", y," ", BIG_NUM * 2," ", BIG_NUM + height);
+   return new goog.math.Rect(+BIG_NUM-BIG_NUM, y, width, BIG_NUM + height);
   } else {  // Right
     
     return new goog.math.Rect(x, -BIG_NUM, BIG_NUM + width, BIG_NUM * 2);

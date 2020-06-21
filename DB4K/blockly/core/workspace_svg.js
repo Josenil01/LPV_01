@@ -747,7 +747,7 @@ Blockly.WorkspaceSvg.prototype.showContextMenu_ = function(e) {
   }
 
   // Add a little animation to collapsing and expanding.
-  var DELAY = 10;
+  var DELAY = 1;
   if (this.options.collapse) {
     var hasCollapsedBlocks = false;
     var hasExpandedBlocks = false;
