@@ -1,6 +1,8 @@
 var el = document.getElementById('btn_opencode');
 el.addEventListener('click', function () {
   let text = Ardublockly.generateArduino();
+  // let text = Ardublockly.generateXml();
+  // let text = Ardublockly.replaceBLocksfromXml();
   if (typeof text == 'undefined') {
     swal('Muita calma nessa hora!', 'Você precisa colocar blocos na tela para ver o código', 'warning');
   } else {
