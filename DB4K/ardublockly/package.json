@@ -5,7 +5,8 @@
   "main": "index.html",
   "dependencies": {
     "jquery": "^3.5.1",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^9.15.1"
   },
   "devDependencies": {
     "http-server": "^0.12.3",
