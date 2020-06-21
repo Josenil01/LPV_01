@@ -70,7 +70,7 @@ Blockly.Flyout = function(workspaceOptions) {
    * @private
    */
   this.toolboxPosition_ = workspaceOptions.toolboxPosition;
-  //console.log(this.toolboxPosition_);
+ 
   /**
    * Opaque data that can be passed to Blockly.unbindEvent_.
    * @type {!Array.<!Array>}
@@ -349,9 +349,12 @@ Blockly.Flyout.prototype.position = function() {
     y += metrics.viewHeight;
     y -= this.height_;
   }
-  //aterado  manualmente a posição
-  // this.svgGroup_.setAttribute('transform', 'translate(' + x + ',' + y + ')');
-  this.svgGroup_.setAttribute('transform', 'translate(' + 150 + ',' + 250 + ')');
+  //ajustado para rezise automático 
+  y += metrics.viewHeight; 
+  y -= this.height_/0.125;
+  //aterado  manualmente a posição da caixa de blocos
+  this.svgGroup_.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  //this.svgGroup_.setAttribute('transform', 'translate(' + 150 + ',' + 250 + ')');
 
   // Record the height for Blockly.Flyout.getMetrics_, or width if the layout is
   // horizontal.
@@ -431,8 +434,8 @@ Blockly.Flyout.prototype.setBackgroundPathVertical_ = function(width, height) {
  */
 Blockly.Flyout.prototype.setBackgroundPathHorizontal_ =
     function(width, height) {
-  var width = 800;//alterei manualmente o tamanho da area dos blocos em x
-  var height= 200;//alterei manualmente o tamanho da area dos blocos em y
+  var width =width;//alterei manualmente o tamanho da area dos blocos em x
+  var height= height*7;//alterei manualmente o tamanho da area dos blocos em y
   var atTop = this.toolboxPosition_ == Blockly.TOOLBOX_AT_TOP;
   // Start at top left.
   var path = ['M 0,' + (atTop ? 0 : this.CORNER_RADIUS)];
@@ -596,7 +599,7 @@ Blockly.Flyout.prototype.show = function(xmlList) {
   this.filterForCapacity_();
 
   // Fire a resize event to update the flyout's scrollbar.
-  console.log('workespaço',this.workspace_);
+  
   Blockly.svgResize(this.workspace_);
   this.reflowWrapper_ = this.reflow.bind(this);
   this.workspace_.addChangeListener(this.reflowWrapper_);
@@ -626,8 +629,7 @@ Blockly.Flyout.prototype.layoutBlocks_ = function(blocks, gaps) {
     var blockHW = block.getHeightWidth();
     if(oldHeight < blockHW.height)
     {
-      oldHeight = blockHW.height + gaps[i]
-      console.log("oldheight",oldHeight);
+      oldHeight = blockHW.height + gaps[i];
     }
     var tab = block.outputConnection ? Blockly.BlockSvg.TAB_WIDTH : 0;
     if (this.horizontalLayout_) {
@@ -638,7 +640,7 @@ Blockly.Flyout.prototype.layoutBlocks_ = function(blocks, gaps) {
     //Podendo conter até 15 blocos
     if (this.horizontalLayout_) {
       cursorX += (blockHW.width + gaps[i] - tab);
-      if(i == 5 )
+      if(i == 9 || i == 19)
       {
         cursorY += oldHeight+40;
         cursorX = margin + Blockly.BlockSvg.TAB_WIDTH;
@@ -979,23 +981,21 @@ Blockly.Flyout.prototype.getClientRect = function() {
   var y = flyoutRect.top;
   var width = flyoutRect.width;
   var height = flyoutRect.height;
-  //console.log("atenção delete area");
+ 
   if (this.toolboxPosition_ == Blockly.TOOLBOX_AT_TOP) {
-    console.log("atenção top");
+    
     return new goog.math.Rect(-BIG_NUM, y - BIG_NUM, BIG_NUM * 2,
         BIG_NUM + height);
   } else if (this.toolboxPosition_ == Blockly.TOOLBOX_AT_BOTTOM) {
-    console.log("atenção bottom");
+   
     return new goog.math.Rect(-BIG_NUM, y, BIG_NUM * 2,
         BIG_NUM + height);
   } else if (this.toolboxPosition_ == Blockly.TOOLBOX_AT_LEFT) {
-   //console.log("atenção left",x,' ');
-
     return new goog.math.Rect(200,350,800,350);
     //ajustando a area de deleção dos blocos dentro do flayout;
     //return new goog.math.Rect(x - BIG_NUM, -BIG_NUM, BIG_NUM + width,BIG_NUM * 2);
   } else {  // Right
-    //console.log("atenção right");
+    
     return new goog.math.Rect(x, -BIG_NUM, BIG_NUM + width, BIG_NUM * 2);
   }
 };
@@ -1032,7 +1032,6 @@ Blockly.Flyout.terminateDrag_ = function() {
  * @param {!Array<!Blockly.Block>} blocks The blocks to reflow.
  */
 Blockly.Flyout.prototype.reflowHorizontal = function(blocks) {
-  //console.log("Os blocos estão organizados hoorizontalmente");
   this.workspace_.scale = this.targetWorkspace_.scale;
   var flyoutHeight = 0;
   var aux =0;

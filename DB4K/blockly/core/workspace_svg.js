@@ -519,8 +519,7 @@ Blockly.WorkspaceSvg.prototype.paste = function(xmlBlock) {
  * Make a list of all the delete areas for this workspace.
  */
 Blockly.WorkspaceSvg.prototype.recordDeleteAreas = function() {
-  //console.log('Trash can', this.trashcan);
-  if (this.trashcan) {
+    if (this.trashcan) {
     this.deleteAreaTrash_ = this.trashcan.getClientRect();
   } else {
     this.deleteAreaTrash_ = null;

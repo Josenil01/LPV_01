@@ -390,12 +390,8 @@ Blockly.BlockSvg.prototype.renderCompute_ = function (iconWidth) {
     if (input.connection && input.connection.isConnected()) {
       var linkedBlock = input.connection.targetBlock();
       var bBox = linkedBlock.getHeightWidth();
-      console.log('390 linked=', linkedBlock);
-      console.log('391 bBox=', bBox);
-      console.log('392 w=', bBox.width, ' y=', bBox.height);
       input.renderHeight = Math.max(input.renderHeight, bBox.height);
       input.renderWidth = Math.max(input.renderWidth, bBox.width);
-      console.log('394 w=', input.renderWidth, ' y=', input.renderHeight);
     }
     // Blocks have a one pixel shadow that should sometimes overhang.
     if (!isInline && i == inputList.length - 1) {
@@ -409,7 +405,6 @@ Blockly.BlockSvg.prototype.renderCompute_ = function (iconWidth) {
 
     row.height = Math.max(row.height, input.renderHeight);
     row.width = Math.max(row.width, input.renderWidth);
-    console.log('411 testando a propriedade w= ', row.width)
     input.fieldWidth = 0;
     if (inputRows.length == 1) {
       // The first row gets shifted to accommodate any icons.
@@ -549,7 +544,8 @@ Blockly.BlockSvg.prototype.renderDraw_ = function (iconWidth, inputRows) {
   this.svgPath_.setAttribute('d', pathString);
   this.svgPathDark_.setAttribute('d', pathString);
   pathString = highlightSteps.join(' ') + '\n' + highlightInlineSteps.join(' ');
-  this.svgPathLight_.setAttribute('d', pathString);
+  //this.svgPathLight_.setAttribute('d', pathString)// removi o destaque
+  
   if (this.RTL) {
     // Mirror the block's path.
     this.svgPath_.setAttribute('transform', 'scale(-1 1)');
@@ -590,15 +586,10 @@ Blockly.BlockSvg.prototype.renderDrawTop_ =
 
     // Top edge.
     if (this.previousConnection) {
-      // steps.push('H', Blockly.BlockSvg.NOTCH_WIDTH - 15);
-      // highlightSteps.push('H', Blockly.BlockSvg.NOTCH_WIDTH - 15);
-      // steps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT);
-      // highlightSteps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT_HIGHLIGHT);
-      // Create previous block connection.
+     
       // Alterado temporariamente para corresponder ao lado direito
       var connectionX = connectionsXY.x - (this.RTL ?       -Blockly.BlockSvg.NOTCH_WIDTH :0);
       var connectionY = connectionsXY.y ;// temporario
-      console.log('602 ', connectionX,' ' ,connectionY );
       this.previousConnection.moveTo(connectionX, connectionY);
       // This connection will be tightened when the parent renders.
     }
@@ -840,36 +831,9 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function (steps, highlightSteps,
         Blockly.BlockSvg.TAB_WIDTH + row.width);
       inlineSteps.push('z');
 
-      // steps.push(Blockly.BlockSvg.INNER_TOP_LEFT_CORNER);
-      // steps.push('v', row.height - 2 * Blockly.BlockSvg.CORNER_RADIUS);
-      // steps.push(Blockly.BlockSvg.INNER_BOTTOM_LEFT_CORNER);
-
-      // steps.push('H', 50);
-      if (this.RTL) {
-        highlightSteps.push('M',
-          (cursorX - Blockly.BlockSvg.NOTCH_WIDTH +
-            Blockly.BlockSvg.DISTANCE_45_OUTSIDE) +
-          ',' + (cursorY + Blockly.BlockSvg.DISTANCE_45_OUTSIDE));
-        highlightSteps.push(
-          Blockly.BlockSvg.INNER_TOP_LEFT_CORNER_HIGHLIGHT_RTL);
-        highlightSteps.push('v',
-          row.height - 2 * Blockly.BlockSvg.CORNER_RADIUS);
-        highlightSteps.push(
-          Blockly.BlockSvg.INNER_BOTTOM_LEFT_CORNER_HIGHLIGHT_RTL);
-        highlightSteps.push('H', inputRows.rightEdge - 0.5);
-      } else {
-        // highlightSteps.push('M',
-        //     (cursorX - Blockly.BlockSvg.NOTCH_WIDTH +
-        //      Blockly.BlockSvg.DISTANCE_45_OUTSIDE) + ',' +
-        //     (cursorY + row.height - Blockly.BlockSvg.DISTANCE_45_OUTSIDE));
-        // highlightSteps.push(
-        //     Blockly.BlockSvg.INNER_BOTTOM_LEFT_CORNER_HIGHLIGHT_LTR);
-        // highlightSteps.push('H', inputRows.rightEdge - 0.5);
-      }
       // Create statement connection.
       connectionX = connectionsXY.x + (this.RTL ? -cursorX : cursorX +27); // aqui só funciona para o primeiro stat
       connectionY = connectionsXY.y + 11;
-      console.log('864 correção do connection x', connectionX, ' y', connectionY);
       input.connection.moveTo(connectionX, connectionY);
       if (input.connection.isConnected()) {
         input.connection.tighten_();
@@ -879,20 +843,18 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function (steps, highlightSteps,
       if (y == inputRows.length - 1 ||
         inputRows[y + 1].type == Blockly.NEXT_STATEMENT) {
         cursorX = 100;
-        console.log('882',cursorX);
+    
         // If the final input is a statement stack, add a small row underneath.
         // Consecutive statement stacks are also separated by a small divider.
         // steps.push('v', Blockly.BlockSvg.SEP_SPACE_Y);
-        if (this.RTL) {
-          // highlightSteps.push('v', Blockly.BlockSvg.SEP_SPACE_Y - 1);
-        }
+       
         //cursorY += Blockly.BlockSvg.SEP_SPACE_Y;
       }
     }
-    console.log('861 render dentro do next w=', row.width, ' y=', row.height);
+   
     cursorY = row.height;
    // cursorX = row.width;
-    console.log('895',cursorX);
+  
   }
   if (!inputRows.length) {
         cursorX=40;
@@ -914,28 +876,15 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function (steps, highlightSteps,
  */
 Blockly.BlockSvg.prototype.renderDrawBottom_ =
   function (steps, highlightSteps, connectionsXY, cursorX, inputRows) {
-    //this.height += cursorY + 1;  // Add one for the shadow.
     if (this.nextConnection) {
-      // steps.push('H', (Blockly.BlockSvg.NOTCH_WIDTH + (this.RTL ? 0.5 : - 0.5)) +
-      //   ' ' + Blockly.BlockSvg.NOTCH_PATH_RIGHT);
       // Create next block connection.
       var connectionX;
       if (this.RTL) {
         connectionX = connectionsXY.x - Blockly.BlockSvg.NOTCH_WIDTH;
       } else {
-        if(this.NEXT_STATEMENT)
-        {
-          console.log('olá mundão lascado');
-        }
-        else
-        {
-          console.log('lascado');
-        } console.log('olá x',cursorX, ' w', this.width);                                              // width
-          connectionX = connectionsXY.x+cursorX+this.width-10;
-        
+            connectionX = connectionsXY.x+cursorX+this.width-10;  
       }
       var connectionY = connectionsXY.y;
-      console.log('927 ', cursorX,' ' ,connectionY );
       this.nextConnection.moveTo(connectionX, connectionY);
       if (this.nextConnection.isConnected()) {
         this.nextConnection.tighten_();
