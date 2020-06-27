@@ -32,7 +32,7 @@ goog.require('Blockly.Blocks');
 *Blockly.FieldColour.COLUMNS = 4;
 */
 
-Blockly.FieldColour.COLOURS = ['#0f0','#ff0','#f00'];
+Blockly.FieldColour.COLOURS = ['#0f0', '#ff0', '#f00'];
 Blockly.FieldColour.COLUMNS = 3;
 
 var cor_acender_led = 160;
@@ -48,12 +48,12 @@ var cor_buzzer = 240;
 
 
 Blockly.Blocks['acender_led'] = {
-  init: function() {
+  init: function () {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_acender_led);
     this.appendDummyInput("acender_led")
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_on.png", 40, 40, "*"))
-        .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");        
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_on.png", 40, 40, "*"))
+      .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Acende o LED na porta indicada.');
@@ -61,12 +61,12 @@ Blockly.Blocks['acender_led'] = {
 };
 
 Blockly.Blocks['apagar_led'] = {
-  init: function() {
+  init: function () {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_apagar_led);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_off_long.png", 40, 40, "*"))
-        .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_off_long.png", 40, 40, "*"))
+      .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Apaga o LED na porta indicada.');
@@ -74,17 +74,17 @@ Blockly.Blocks['apagar_led'] = {
 };
 
 Blockly.Blocks['piscar_led'] = {
-  init: function() {
-	var val_1 = '\u25CF' + "  " + "Devagar";
-	var val_2 = '\u25CE' + "  " + "Velocidade Média";
+  init: function () {
+    var val_1 = '\u25CF' + "  " + "Devagar";
+    var val_2 = '\u25CE' + "  " + "Velocidade Média";
     var val_3 = '\u25CB' + "  " + "Rápido";
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_piscar_led);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_blink.png", 40, 40, "*"))
-        .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
-        //.appendField(new Blockly.FieldDropdown([['D13', "13"],["D12", "12"],["D8", "8"],["D7", "7"],["D6", "6"],["D5", "5"],["D4", "4"],["D3", "3"]]), "cor_led")
-        //.appendField(new Blockly.FieldDropdown([[val_3, "high"],[val_2, "middle"],[val_1, "low"]]), "velocidade_blink");
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_blink.png", 40, 40, "*"))
+      .appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
+    //.appendField(new Blockly.FieldDropdown([['D13', "13"],["D12", "12"],["D8", "8"],["D7", "7"],["D6", "6"],["D5", "5"],["D4", "4"],["D3", "3"]]), "cor_led")
+    //.appendField(new Blockly.FieldDropdown([[val_3, "high"],[val_2, "middle"],[val_1, "low"]]), "velocidade_blink");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Pisca o LED da cor indicada.');
@@ -93,35 +93,35 @@ Blockly.Blocks['piscar_led'] = {
 
 
 Blockly.Blocks['girar_motor'] = {
-  init: function() {
-	var val_1 = '\u25CB' + "  " + "Devagar";
-	var val_2 = '\u25CE' + "  " + "Velocidade Média";
+  init: function () {
+    var val_1 = '\u25CB' + "  " + "Devagar";
+    var val_2 = '\u25CE' + "  " + "Velocidade Média";
     var val_3 = '\u25CF' + "  " + "Rápido";
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_motor);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/motor_move_2.png", 40, 40, "*"))
-        .appendField("Girar Motor DC")
-        .appendField(new Blockly.FieldDropdown([[val_3, "high"],[val_2, "middle"],[val_1, "low"]]), "velocidade_motor")
-        .appendField("Porta Motor")
-        .appendField(new Blockly.FieldDropdown([['5 10', "1"],['6 11', "2"]]), "porta_motor");
-	this.setPreviousStatement(true);
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/motor_move_2.png", 40, 40, "*"))
+      .appendField("Girar Motor DC")
+      .appendField(new Blockly.FieldDropdown([[val_3, "high"], [val_2, "middle"], [val_1, "low"]]), "velocidade_motor")
+      .appendField("Porta Motor")
+      .appendField(new Blockly.FieldDropdown([['5 10', "1"], ['6 11', "2"]]), "porta_motor");
+    this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Faz o motor DC girar na velocidade indicada.');
   }
 };
 
 Blockly.Blocks['parar_motor'] = {
-  init: function() {
+  init: function () {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_motor);
     this.appendDummyInput()
-          .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/helice.png", 40, 40, "*"))
-		      .appendField("Parar Motor DC")
-		        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 63, 40, "*"))
-            .appendField("Porta Motor")
-            .appendField(new Blockly.FieldDropdown([['5 10', "1"],['6 11', "2"]]), "porta_motor");
-	this.setPreviousStatement(true);
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/helice.png", 40, 40, "*"))
+      .appendField("Parar Motor DC")
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 63, 40, "*"))
+      .appendField("Porta Motor")
+      .appendField(new Blockly.FieldDropdown([['5 10', "1"], ['6 11', "2"]]), "porta_motor");
+    this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Faz o Motor DC  parar');
   }
@@ -158,32 +158,32 @@ Blockly.Blocks['parar_motor'] = {
 }; **/
 
 Blockly.Blocks['mover_servomotor'] = {
-  init: function() {
+  init: function () {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_servo);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/servo_move.png", 40, 40, "*"))
-        .appendField("Mover Servo Motor para")
-        .appendField(new Blockly.FieldAngle(90), "posicao_ponteiro_servo")
-		    .appendField("graus")
-        .appendField("Porta")
-        .appendField(new Blockly.FieldDropdown([['D3',"3"],['D2',"2"],['D1',"1"],['D0',"0"]]), "porta_digital");
-	this.setPreviousStatement(true);
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/servo_move.png", 40, 40, "*"))
+      .appendField("Mover Servo Motor para")
+      .appendField(new Blockly.FieldAngle(90), "posicao_ponteiro_servo")
+      .appendField("graus")
+      .appendField("Porta")
+      .appendField(new Blockly.FieldDropdown([['D3', "3"], ['D2', "2"], ['D1', "1"], ['D0', "0"]]), "porta_digital");
+    this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Faz o ponteiro do Servo Motor mover-se para a posição indicada');
   }
 };
 
 Blockly.Blocks['escrever_lcd'] = {
-  init: function() {
+  init: function () {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_lcd);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/lcd4.png", 40, 40, "*"))
-        .appendField("Escrever")
-        .appendField(new Blockly.FieldTextInput("Oi"), "texto")
-        .appendField("na")
-        .appendField(new Blockly.FieldDropdown([["linha 1", "1"], ["linha 2", "2"]]), "numero_linha");
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/lcd4.png", 40, 40, "*"))
+      .appendField("Escrever")
+      .appendField(new Blockly.FieldTextInput("Oi"), "texto")
+      .appendField("na")
+      .appendField(new Blockly.FieldDropdown([["linha 1", "1"], ["linha 2", "2"]]), "numero_linha");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Escreve um texto no display de LCD na linha indicada (Máximo de 16 letras e espaços em cada linha)');
@@ -191,13 +191,13 @@ Blockly.Blocks['escrever_lcd'] = {
 };
 
 Blockly.Blocks['limpar_lcd'] = {
-  init: function() {
+  init: function () {
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_lcd);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/limpar_lcd4.png", 40, 40, "*"))
-		.appendField("Limpar Display")
-		.appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 70, 40, "*"));
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/limpar_lcd4.png", 40, 40, "*"))
+      .appendField("Limpar Display")
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 70, 40, "*"));
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Limpa o texto das duas linhas do discplay de LCD');
@@ -205,54 +205,54 @@ Blockly.Blocks['limpar_lcd'] = {
 
 };
 
-Blockly.Blocks['escrever_display_7s']={
-init:function(){
-this.setHelpUrl('http://www.example.com/');
-this.setColour(cor_7Seg);
-this.appendDummyInput()
-.appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/display7SegOn.png", 40, 40, "*"))
-.appendField("Escrever ")
-.appendField(new Blockly.FieldDropdown([["0","0"],["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["6","6"],["7","7"],["8","8"],["9","9"]]),"numerosD7S")
-.appendField("no Display de 7 Segmentos");
-this.setPreviousStatement(true);
-this.setNextStatement(true);
-this.setTooltip('');
-}
+Blockly.Blocks['escrever_display_7s'] = {
+  init: function () {
+    this.setHelpUrl('http://www.example.com/');
+    this.setColour(cor_7Seg);
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/display7SegOn.png", 40, 40, "*"))
+      .appendField("Escrever ")
+      .appendField(new Blockly.FieldDropdown([["0", "0"], ["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"]]), "numerosD7S")
+      .appendField("no Display de 7 Segmentos");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
 };
 
 
-Blockly.Blocks['limpar_display_7s']={
-init:function(){
-this.setHelpUrl('http://www.example.com/');
-this.setColour(cor_7Seg);
-this.appendDummyInput()
-.appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/display7SegOff.png", 40, 40,"*"))
-.appendField("Limpar Display de 7 Segmentos")
-.appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 63, 40, "*"));
-this.setPreviousStatement(true);
-this.setNextStatement(true);
-this.setTooltip('');
-}
+Blockly.Blocks['limpar_display_7s'] = {
+  init: function () {
+    this.setHelpUrl('http://www.example.com/');
+    this.setColour(cor_7Seg);
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/display7SegOff.png", 40, 40, "*"))
+      .appendField("Limpar Display de 7 Segmentos")
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 63, 40, "*"));
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
 };
 
 
 Blockly.Blocks['led_rgb'] = {
-  init: function() {
-var colourRed = new Blockly.FieldColour('#ffffff');
-colourRed.setColours(['#f00','#fff']).setColumns(2);
-var colourGreen = new Blockly.FieldColour('#ffffff');
-colourGreen.setColours(['#0f0','#fff']).setColumns(2);
-var colourBlue = new Blockly.FieldColour('#ffffff');
-colourBlue.setColours(['#00f','#fff']).setColumns(2);
+  init: function () {
+    var colourRed = new Blockly.FieldColour('#ffffff');
+    colourRed.setColours(['#f00', '#fff']).setColumns(2);
+    var colourGreen = new Blockly.FieldColour('#ffffff');
+    colourGreen.setColours(['#0f0', '#fff']).setColumns(2);
+    var colourBlue = new Blockly.FieldColour('#ffffff');
+    colourBlue.setColours(['#00f', '#fff']).setColumns(2);
     this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_ledRGB);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_RGB.png", 40, 40, "*"))
-        .appendField("Acender Luz  ")
-		.appendField(colourRed, "luzVermelha")
-		.appendField(colourGreen, "luzVerde")
-		.appendField(colourBlue, "luzAzul")
-        .appendField(" do LED RGB");
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/led_RGB.png", 40, 40, "*"))
+      .appendField("Acender Luz  ")
+      .appendField(colourRed, "luzVermelha")
+      .appendField(colourGreen, "luzVerde")
+      .appendField(colourBlue, "luzAzul")
+      .appendField(" do LED RGB");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('');
@@ -261,71 +261,106 @@ colourBlue.setColours(['#00f','#fff']).setColumns(2);
 
 
 Blockly.Blocks['tocar_nota_buzzer'] = {
-  init: function() {
+  init: function () {
 
     var grave = '\u25CF' + "  " + "Grave";
-	var medio = '\u25CE' + "  " + "Médio";
+    var medio = '\u25CE' + "  " + "Médio";
     var agudo = '\u25CB' + "  " + "Agudo";
 
-	var natural = '  '+ '\u0020' + '  Natural';
-    var bemol =  '  ' + '\u266D' + '  Bemol';
-    var sustenido = '  ' +'\u266F' + '  Sustenido';
+    var natural = '  ' + '\u0020' + '  Natural';
+    var bemol = '  ' + '\u266D' + '  Bemol';
+    var sustenido = '  ' + '\u266F' + '  Sustenido';
     // var options = [[medio, "4"],[grave, "3"], [agudo, "5"]];
     var options = [['none', 'NONE'],
-    [{'src': 'canada.png', 'width': 50, 'height': 25, 'alt': 'Canada'}, 'CANADA'],
-    [{'src': 'usa.png', 'width': 50, 'height': 25, 'alt': 'USA'}, 'USA'],
-    [{'src': 'mexico.png', 'width': 50, 'height': 25, 'alt': 'Mexico'}, 'MEXICO']];
+    [{ 'src': 'canada.png', 'width': 50, 'height': 25, 'alt': 'Canada' }, 'CANADA'],
+    [{ 'src': 'usa.png', 'width': 50, 'height': 25, 'alt': 'USA' }, 'USA'],
+    [{ 'src': 'mexico.png', 'width': 50, 'height': 25, 'alt': 'Mexico' }, 'MEXICO']];
 
-	this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_buzzer);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/buzzer_notas.png", 40, 40, "*"))
-        .appendField("Tocar nota")
-        .appendField(new Blockly.FieldDropdown(options, "nota_musical", true));
-        // .appendField(new Blockly.FieldDropdown([[medio, "4"],[grave, "3"], [agudo, "5"]]), "altura")
-        // .appendField(new Blockly.FieldDropdown([[natural, "n"],[bemol, "b"], [sustenido, "s"]]), "acidente")
-	      // .appendField("no Buzzer")
-		    // .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 26, 40, "*"))
-        // .appendField("Porta")
-        // .appendField(new Blockly.FieldDropdown([['D11',"11"],['D10',"10"],['D9',"9"],['D6',"6"],['D5',"5"],['D3',"3"]]), "porta_digital");
-	  this.setPreviousStatement(true);
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/buzzer_notas.png", 40, 40, "*"))
+      .appendField("Tocar nota")
+      .appendField(new Blockly.FieldDropdown(options, "nota_musical", true));
+    // .appendField(new Blockly.FieldDropdown([[medio, "4"],[grave, "3"], [agudo, "5"]]), "altura")
+    // .appendField(new Blockly.FieldDropdown([[natural, "n"],[bemol, "b"], [sustenido, "s"]]), "acidente")
+    // .appendField("no Buzzer")
+    // .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 26, 40, "*"))
+    // .appendField("Porta")
+    // .appendField(new Blockly.FieldDropdown([['D11',"11"],['D10',"10"],['D9',"9"],['D6',"6"],['D5',"5"],['D3',"3"]]), "porta_digital");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Faz o buzzer tocar a nota especificada');
+  }
+};
+
+Blockly.Blocks['teste_bandeiras'] = {
+  init: function () {
+
+    var grave = '\u25CF' + "  " + "Grave";
+    var medio = '\u25CE' + "  " + "Médio";
+    var agudo = '\u25CB' + "  " + "Agudo";
+    
+    var natural = '  ' + '\u0020' + '  Natural';
+    var bemol = '  ' + '\u266D' + ' <span></span> Bemol';
+    var sustenido = '  ' + '\u266F' + '  Sustenido';
+    var options = [[medio, "4"], [grave, "3"], [agudo, "5"]];
+  
+    // var options = [['none', 'NONE'],
+    // [{ 'src': 'canada.png', 'width': 50, 'height': 25, 'alt': 'Canada' }, 'CANADA'],
+    // [{ 'src': 'usa.png', 'width': 50, 'height': 25, 'alt': 'USA' }, 'USA'],
+    // [{ 'src': 'mexico.png', 'width': 50, 'height': 25, 'alt': 'Mexico' }, 'MEXICO']];
+
+    this.setHelpUrl('http://www.example.com/');
+    this.setColour(cor_buzzer);
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/buzzer_notas.png", 40, 40, "*"))
+      .appendField("Tocar nota")
+      .appendField(new Blockly.FieldDropdown(options, "nota_musical"))
+      .appendField(new Blockly.FieldDropdown([[medio, "4"], [grave, "3"], [agudo, "5"]]), "altura")
+      .appendField(new Blockly.FieldDropdown([[natural, "n"], [bemol, "b"], [sustenido, "s"]]), "acidente")
+      .appendField("no Buzzer")
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 26, 40, "*"))
+      .appendField("Porta")
+      .appendField(new Blockly.FieldDropdown([['D11', "11"], ['D10', "10"], ['D9', "9"], ['D6', "6"], ['D5', "5"], ['D3', "3"]]), "porta_digital");
+    this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Faz o buzzer tocar a nota especificada');
   }
 };
 
 Blockly.Blocks['parar_som_buzzer'] = {
-  init: function() {
+  init: function () {
 
 
-	this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_buzzer);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/buzzer_notone.png", 40, 40, "*"))
-        .appendField("Silenciar Buzzer")
-		    .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 28, 40, "*"))
-        .appendField("Porta")
-        .appendField(new Blockly.FieldDropdown([['D11',"11"],['D10',"10"],['D9',"9"],['D6',"6"],['D5',"5"],['D3',"3"]]), "porta_digital");
-	this.setPreviousStatement(true);
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/buzzer_notone.png", 40, 40, "*"))
+      .appendField("Silenciar Buzzer")
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 28, 40, "*"))
+      .appendField("Porta")
+      .appendField(new Blockly.FieldDropdown([['D11', "11"], ['D10', "10"], ['D9', "9"], ['D6', "6"], ['D5', "5"], ['D3', "3"]]), "porta_digital");
+    this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Faz o buzzer tocar a nota especificada');
   }
 };
 
 Blockly.Blocks['tocar_sirene_buzzer'] = {
-  init: function() {
-	var val_1 = '\u25CF' + "  " + "Lento";
-	var val_2 = '\u25CB' + "  " + "Rápido";
-	this.setHelpUrl('http://www.example.com/');
+  init: function () {
+    var val_1 = '\u25CF' + "  " + "Lento";
+    var val_2 = '\u25CB' + "  " + "Rápido";
+    this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_buzzer);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/buzzer_sirente.png", 40, 40, "*"))
-        .appendField("Tocar Sirene")
-        .appendField(new Blockly.FieldDropdown([[val_2, "0"],[val_1, "1"]]), "velocidade")
-	      .appendField("no Buzzer")
-        .appendField("Porta")
-        .appendField(new Blockly.FieldDropdown([['D11',"11"],['D10',"10"],['D9',"9"],['D6',"6"],['D5',"5"],['D3',"3"]]), "porta_digital");
-	this.setPreviousStatement(true);
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/buzzer_sirente.png", 40, 40, "*"))
+      .appendField("Tocar Sirene")
+      .appendField(new Blockly.FieldDropdown([[val_2, "0"], [val_1, "1"]]), "velocidade")
+      .appendField("no Buzzer")
+      .appendField("Porta")
+      .appendField(new Blockly.FieldDropdown([['D11', "11"], ['D10', "10"], ['D9', "9"], ['D6', "6"], ['D5', "5"], ['D3', "3"]]), "porta_digital");
+    this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Faz o buzzer tocar sirene na velocidade especificada');
   }
