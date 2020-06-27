@@ -49,10 +49,31 @@ goog.require('goog.userAgent');
  * @extends {Blockly.Field}
  * @constructor
  */
-Blockly.FieldDropdown = function(menuGenerator, opt_validator) {
-  this.menuGenerator_ = menuGenerator;
+Blockly.FieldDropdown = function(menuGenerator, opt_validator,imgNew) {
+  var options_x = menuGenerator;
+  console.log(options_x);
+  let options=[];
+     for (var i = 0; i < options_x.length; i++) {
+   options.push([]);
+   if(!options_x[i][0].alt)
+       {
+         console.log('aqui');
+        options[i][0]=options_x[i][0];
+        options[i][1]=(options_x[i][1]);
+        }
+        else
+        {
+      
+   options[i][0]= (options_x[i][0].alt);
+   options[i][1]=(options_x[i][1]);
+        }
+  }
+  console.log(options);
+  console.log(options_x);
+  this.menuGenerator_=options;
   this.trimOptions_();
   var firstTuple = this.getOptions_()[0];
+  this.imgNew_ = imgNew;
 
   // Call parent's constructor.
   Blockly.FieldDropdown.superClass_.constructor.call(this, firstTuple[1],
@@ -160,9 +181,10 @@ Blockly.FieldDropdown.prototype.showEditor_ = function() {
     var menuItem = e.target;
     if (menuItem) {
       var value = menuItem.getValue();
+      console.log(value);
       if (thisField.sourceBlock_ && thisField.validator_) {
         // Call any validation function, and allow it to override.
-        var override = thisField.validator_(value);
+        var override =value;
         if (override !== undefined) {
           value = override;
         }
@@ -174,13 +196,21 @@ Blockly.FieldDropdown.prototype.showEditor_ = function() {
     Blockly.WidgetDiv.hideIfOwner(thisField);
   }
 
+
   var menu = new goog.ui.Menu();
   menu.setRightToLeft(this.sourceBlock_.RTL);
   var options = this.getOptions_();
+  
   for (var x = 0; x < options.length; x++) {
+    console.log(this.options_x);
     var text = options[x][0];  // Human-readable text.
-    var value = options[x][1]; // Language-neutral value.
-    var menuItem = new goog.ui.MenuItem(text);
+    var value = options[x][1]; // Language-neutral value
+    
+    var menuItem =new goog.ui.MenuItem(text);// Blockly.createSvgElement('image',
+//     {'height': this.height_ + 'px',
+//      'width': this.width_ + 'px'}, this.fieldGroup_);
+// this.setValue(this.src_);
+    //
     menuItem.setRightToLeft(this.sourceBlock_.RTL);
     menuItem.setValue(value);
     menuItem.setCheckable(true);

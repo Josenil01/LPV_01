@@ -270,23 +270,24 @@ Blockly.Blocks['tocar_nota_buzzer'] = {
 	var natural = '  '+ '\u0020' + '  Natural';
     var bemol =  '  ' + '\u266D' + '  Bemol';
     var sustenido = '  ' +'\u266F' + '  Sustenido';
-
-
+    // var options = [[medio, "4"],[grave, "3"], [agudo, "5"]];
+    var options = [['none', 'NONE'],
+    [{'src': 'canada.png', 'width': 50, 'height': 25, 'alt': 'Canada'}, 'CANADA'],
+    [{'src': 'usa.png', 'width': 50, 'height': 25, 'alt': 'USA'}, 'USA'],
+    [{'src': 'mexico.png', 'width': 50, 'height': 25, 'alt': 'Mexico'}, 'MEXICO']];
 
 	this.setHelpUrl('http://www.example.com/');
     this.setColour(cor_buzzer);
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/buzzer_notas.png", 40, 40, "*"))
         .appendField("Tocar nota")
-        .appendField(new Blockly.FieldDropdown([["Dó", "do"], ["Ré", "re"], ["Mi", "mi"],
-												["Fá", "fa"], ["Sol", "sol"], ["Lá", "la"],
-												["Si", "si"]]), "nota_musical")
-        .appendField(new Blockly.FieldDropdown([[medio, "4"],[grave, "3"], [agudo, "5"]]), "altura")
-        .appendField(new Blockly.FieldDropdown([[natural, "n"],[bemol, "b"], [sustenido, "s"]]), "acidente")
-	      .appendField("no Buzzer")
-		    .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 26, 40, "*"))
-        .appendField("Porta")
-        .appendField(new Blockly.FieldDropdown([['D11',"11"],['D10',"10"],['D9',"9"],['D6',"6"],['D5',"5"],['D3',"3"]]), "porta_digital");
+        .appendField(new Blockly.FieldDropdown(options, "nota_musical", true));
+        // .appendField(new Blockly.FieldDropdown([[medio, "4"],[grave, "3"], [agudo, "5"]]), "altura")
+        // .appendField(new Blockly.FieldDropdown([[natural, "n"],[bemol, "b"], [sustenido, "s"]]), "acidente")
+	      // .appendField("no Buzzer")
+		    // .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/invisible.png", 26, 40, "*"))
+        // .appendField("Porta")
+        // .appendField(new Blockly.FieldDropdown([['D11',"11"],['D10',"10"],['D9',"9"],['D6',"6"],['D5',"5"],['D3',"3"]]), "porta_digital");
 	  this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Faz o buzzer tocar a nota especificada');

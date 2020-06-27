@@ -56,7 +56,7 @@ Blockly.Blocks['delay'] = {
         //.setAlign(Blockly.ALIGN_CENTRE)
         .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/delay.png", 40, 40, "*"))
         //.appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
-        .appendField(new Blockly.FieldTextInput("Olá"), "texto");
+        .appendField(new Blockly.FieldTextInput("123"), "texto");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     //this.setOutput(true, null);
