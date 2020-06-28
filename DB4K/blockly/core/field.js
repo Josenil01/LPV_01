@@ -359,6 +359,8 @@ Blockly.Field.prototype.setText = function(text) {
  * @private
  */
 Blockly.Field.prototype.updateTextNode_ = function() {
+  console.log("========================");
+  console.log(this.text_);
   if (!this.textElement_) {
     // Not rendered yet.
     return;
@@ -380,8 +382,13 @@ Blockly.Field.prototype.updateTextNode_ = function() {
     // Prevent the field from disappearing if empty.
     text = Blockly.Field.NBSP;
   }
+  console.log("========================");
+  console.log(this.text_); // a imagem já está aqui
   var textNode = document.createTextNode(text);
-  this.textElement_.appendChild(textNode);
+  this.textElement_.appendChild(this.text_); //coloca na tela (campinho)
+  console.log("========================");
+  console.log("========================");
+  console.log(this.textElement_);
 
   // Cached width is obsolete.  Clear it.
   this.size_.width = 0;
