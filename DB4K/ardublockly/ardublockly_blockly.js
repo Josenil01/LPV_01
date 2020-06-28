@@ -49,7 +49,7 @@ Ardublockly.injectBlockly = function(blocklyEl, toolboxXml, blocklyPath, typecla
       toolbox: Ardublockly.xmlTree,
       trashcan: true,
       zoom: {
-        controls: true,
+        controls: false,
         wheel: false,
         startScale: 1.0,
         maxScale: 2,

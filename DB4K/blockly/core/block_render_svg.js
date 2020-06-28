@@ -320,8 +320,18 @@ Blockly.BlockSvg.prototype.renderFields_ =
           cursorX -= Blockly.BlockSvg.SEP_SPACE_X;
         }
       } else {
+       if(t>0)
+       {
         root.setAttribute('transform',
-          'translate(' + (cursorX + field.renderSep) + ',' + cursorY + ')');
+          'translate(' + (30) + ',' + 40 + ')');
+          console.log('dentro do if');
+       }
+       else
+       {
+       root.setAttribute('transform',
+       'translate(' + (cursorX + field.renderSep) + ',' + cursorY + ')');
+        console.log('teste 1 do transform ',cursorX,' ',cursorY);
+       }
         if (field.renderWidth) {
           cursorX += field.renderSep + field.renderWidth +
             Blockly.BlockSvg.SEP_SPACE_X;

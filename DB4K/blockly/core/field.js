@@ -35,6 +35,7 @@ goog.require('goog.style');
 goog.require('goog.userAgent');
 
 
+
 /**
  * Abstract class for an editable field.
  * @param {string} text The initial content of the field.
@@ -138,18 +139,19 @@ Blockly.Field.prototype.init = function() {
 
   // Build the DOM.
   this.fieldGroup_ = Blockly.createSvgElement('g', {}, null);
+  console.log('1111', this.fieldGroup_);
   if (!this.visible_) {
     this.fieldGroup_.style.display = 'none';
   }
   this.borderRect_ = Blockly.createSvgElement('rect',
       {'rx': 5,
        'ry': 5,
-       'x': -50, // alterei essa linha também
-       'y':40,   // Posição dos campos em relação aos blocos
+       'x':0, // alterei essa linha também
+       'y':0,   // Posição dos campos em relação aos blocos
        'height': 30}, this.fieldGroup_, this.sourceBlock_.workspace);
   /** @type {!Element} */
    this.textElement_ = Blockly.createSvgElement('text',
-       {'class': 'blocklyText', 'y': this.size_.height + 35, 'x':-40},// aqui estava 12,5 por algum motivo que não lembro mais
+       {'class': 'blocklyText', 'y': this.size_.height-5, 'x':8},// aqui estava 12,5 por algum motivo que não lembro mais
        this.fieldGroup_);
 
   this.updateEditable();
@@ -360,7 +362,7 @@ Blockly.Field.prototype.setText = function(text) {
  */
 Blockly.Field.prototype.updateTextNode_ = function() {
   console.log("========================");
-  console.log(this.text_);
+  console.log('carregando o field group',this.fieldGroup_);
   if (!this.textElement_) {
     // Not rendered yet.
     return;
@@ -368,27 +370,33 @@ Blockly.Field.prototype.updateTextNode_ = function() {
   var text = this.text_;
   if (text.length > this.maxDisplayLength) {
     // Truncate displayed string and add an ellipsis ('...').
-    text = text.substring(0, this.maxDisplayLength - 1) + '\u2026';
+    text = text.substring(0,  1) ;
   }
   // Empty the text element.
   goog.dom.removeChildren(/** @type {!Element} */ (this.textElement_));
   // Replace whitespace with non-breaking spaces so the text doesn't collapse.
-  text = text.replace(/\s/g, Blockly.Field.NBSP);
+ // text = text.replace(/\s/g, Blockly.Field.NBSP);
   if (this.sourceBlock_.RTL && text) {
     // The SVG is LTR, force text to be RTL.
-    text += '\u200F';
+    //text += '\u200F';
   }
   if (!text) {
     // Prevent the field from disappearing if empty.
     text = Blockly.Field.NBSP;
   }
   console.log("========================");
-  console.log(this.text_); // a imagem já está aqui
+  console.log("386  ",text); // a imagem já está aqui
+  var imageElement_ = Blockly.createSvgElement('image',
+  {'height': 40 + 'px',
+   'width': 40 + 'px'},this.fieldGroup_);
+   imageElement_.setAttributeNS('http://www.w3.org/1999/xlink',
+   'xlink:href', goog.isString( this.text_[0].currentSrc) ? this.text_[0].currentSrc: '');
   var textNode = document.createTextNode(text);
-  this.textElement_.appendChild(this.text_); //coloca na tela (campinho)
+  
+  this.textElement_.appendChild(textNode); //coloca na tela (campinho)
   console.log("========================");
   console.log("========================");
-  console.log(this.textElement_);
+  console.log("398",this.textElement_);
 
   // Cached width is obsolete.  Clear it.
   this.size_.width = 0;

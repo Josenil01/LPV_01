@@ -123,17 +123,10 @@ Blockly.FieldDropdown.prototype.init = function () {
   // Force a reset of the text to add the arrow.
   var text = this.text_;
   this.text_ = null;
+ // console.log(text);
   this.setText(text);
 };
-/**
- * Dropdown image properties.
- * @typedef {{
-  *            src:string,
-  *            alt:string,
-  *            width:number,
-  *            height:number
-  *          }}
-  */
+
 
 Blockly.FieldDropdown.ImageProperties;
 //https://github.com/google/blockly/blob/master/core/field_dropdown.js
@@ -169,6 +162,7 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
         }
       }
       if (value !== null) {
+        console.log('165',value);
         thisField.setValue(value);
       }
     }
@@ -200,7 +194,6 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
       menuItem.setValue(imagem);
       menuItem.content_ = imagem;
       console.log(menuItem);
-      // menuItem.element_.  += "imageItem";
       menu.addChild(menuItem, true);
       menuItem.setChecked(value == this.value_);
     } else {
@@ -357,6 +350,7 @@ Blockly.FieldDropdown.prototype.setValue = function (newValue) {
   }
   // Value not found.  Add it, maybe it will become valid once set
   // (like variable names).
+  console.log('new value ', newValue);
   this.setText(newValue);
 };
 
@@ -374,8 +368,8 @@ Blockly.FieldDropdown.prototype.setText = function (text) {
     return;
   }
   this.text_ = text;
-  // this.imagem_src_ = imagem_src;
-  console.log(this.menuGenerator_);
+  
+  console.log('372',this.menuGenerator_);
   this.updateTextNode_();
 
   if (this.textElement_) {
