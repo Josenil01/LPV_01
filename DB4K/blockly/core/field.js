@@ -139,7 +139,7 @@ Blockly.Field.prototype.init = function() {
 
   // Build the DOM.
   this.fieldGroup_ = Blockly.createSvgElement('g', {}, null);
-
+ // console.log('1111', this.fieldGroup_);
   if (!this.visible_) {
     this.fieldGroup_.style.display = 'none';
   }
@@ -151,7 +151,7 @@ Blockly.Field.prototype.init = function() {
        'height': 30}, this.fieldGroup_, this.sourceBlock_.workspace);
   /** @type {!Element} */
    this.textElement_ = Blockly.createSvgElement('text',
-       {'class': 'blocklyText', 'y': this.size_.height-5, 'x':8},// aqui estava 12,5 por algum motivo que não lembro mais
+       {'class': 'blocklyText', 'y': this.size_.height-5, 'x':20},// aqui estava 12,5 por algum motivo que não lembro mais
        this.fieldGroup_);
 
   this.updateEditable();

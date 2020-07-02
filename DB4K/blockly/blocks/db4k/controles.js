@@ -42,7 +42,8 @@ Blockly.Blocks['sempre'] = {
     this.appendValueInput("repita_sempre")
      // .setAlign(Blockly.ALIGN_CENTRE)
       //.appendField(" ")
-      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/sempre.png", 40, 40, "*"));
+      .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/sempre.png", 40, 40, "*"))
+      .appendField(" ");
     this.setNextStatement(true, null);
     this.setTooltip('REPITA PARA SEMPRE');
   }
@@ -56,7 +57,7 @@ Blockly.Blocks['delay'] = {
         //.setAlign(Blockly.ALIGN_CENTRE)
         .appendField(new Blockly.FieldImage("../blockly/blocks/db4k/icons/delay.png", 40, 40, "*"))
         //.appendField(new Blockly.FieldColour("#ff0000"), "cor_led");
-        .appendField(new Blockly.FieldTextInput("123"), "texto");
+        .appendField(new Blockly.FieldTextInput("T"), "texto");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     //this.setOutput(true, null);
