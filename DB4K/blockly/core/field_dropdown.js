@@ -153,7 +153,7 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
     var menuItem = e.target;
     if (menuItem) {
       var value = menuItem.getValue();
-      console.log(value);
+      //console.log(value);
       if (thisField.sourceBlock_ && thisField.validator_) {
         // Call any validation function, and allow it to override.
         var override = value;
@@ -162,7 +162,7 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
         }
       }
       if (value !== null) {
-        console.log('165',value);
+        ///console.log('165',value);
         thisField.setValue(value);
       }
     }
@@ -181,7 +181,7 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
     var imagem_src = options[x][2];
     var menuItem = new goog.ui.MenuItem(text);
 
-    console.log(menuItem);
+   // console.log(menuItem);
     menuItem.setRightToLeft(this.sourceBlock_.RTL);
     // menuItem.setValue(value);
     
@@ -193,7 +193,7 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
       imagem[0].className = 'ImagemDropdown';
       menuItem.setValue(imagem);
       menuItem.content_ = imagem;
-      console.log(menuItem);
+      //console.log(menuItem);
       menu.addChild(menuItem, true);
       menuItem.setChecked(value == this.value_);
     } else {
@@ -257,6 +257,7 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
       xy.x = windowSize.width + scrollOffset.x - menuSize.width;
     }
   }
+  //onde o menu aparece
   Blockly.WidgetDiv.position(xy.x, xy.y, windowSize, scrollOffset,
     this.sourceBlock_.RTL);
   menu.setAllowAutoFocus(true);
@@ -350,7 +351,7 @@ Blockly.FieldDropdown.prototype.setValue = function (newValue) {
   }
   // Value not found.  Add it, maybe it will become valid once set
   // (like variable names).
-  console.log('new value ', newValue);
+  //console.log('new value ', newValue);
   this.setText(newValue);
 };
 
@@ -369,7 +370,7 @@ Blockly.FieldDropdown.prototype.setText = function (text) {
   }
   this.text_ = text;
   
-  console.log('372',this.menuGenerator_);
+  //console.log('372',this.menuGenerator_);
   this.updateTextNode_();
 
   if (this.textElement_) {
@@ -382,7 +383,7 @@ Blockly.FieldDropdown.prototype.setText = function (text) {
   }
 
   if (this.sourceBlock_ && this.sourceBlock_.rendered) {
-    this.sourceBlock_.render();
+    this.sourceBlock_.render();//------------
     this.sourceBlock_.bumpNeighbours_();
   }
 };

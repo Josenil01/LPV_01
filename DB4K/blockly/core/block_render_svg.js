@@ -323,18 +323,18 @@ Blockly.BlockSvg.prototype.renderFields_ =
        if(t>0)
        {
         root.setAttribute('transform',
-          'translate(' + (30) + ',' + 40 + ')');
-          console.log('dentro do if');
+          'translate(' +20+ ',' +50 + ')');
+         
        }
        else
        {
        root.setAttribute('transform',
-       'translate(' + (cursorX + field.renderSep) + ',' + cursorY + ')');
-        console.log('teste 1 do transform ',cursorX,' ',cursorY);
+       'translate(' + 20 + ',' + (cursorY) + ')');
        }
         if (field.renderWidth) {
-          cursorX += field.renderSep + field.renderWidth +
-            Blockly.BlockSvg.SEP_SPACE_X;
+          // desativei essa opção
+          // cursorX += field.renderSep + field.renderWidth +
+          //   Blockly.BlockSvg.SEP_SPACE_X;
         }
       }
     }
@@ -429,7 +429,7 @@ Blockly.BlockSvg.prototype.renderCompute_ = function (iconWidth) {
       var fieldSize = field.getSize();
       field.renderWidth = fieldSize.width;
       field.renderSep = (previousFieldEditable && field.EDITABLE) ?
-        Blockly.BlockSvg.SEP_SPACE_X : 0;
+        Blockly.BlockSvg.SEP_SPACE_X + 20: 0;//20 adicionado para  compensar o tamanho
       input.fieldWidth += field.renderWidth + field.renderSep;
       row.height = Math.max(row.height, fieldSize.height);
       previousFieldEditable = field.EDITABLE;
@@ -468,7 +468,6 @@ Blockly.BlockSvg.prototype.renderCompute_ = function (iconWidth) {
   // This is the width of a block where statements are nested.
   inputRows.statementEdge = 2 * Blockly.BlockSvg.SEP_SPACE_X +
     fieldStatementWidth;
-
   // Compute the preferred right edge.  Inline blocks may extend beyond.
   // This is the width of the block where external inputs connect.
 
@@ -625,6 +624,8 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function (steps, highlightSteps,
   inlineSteps, highlightInlineSteps, connectionsXY, inputRows, iconWidth) {
   var cursorX;
   var cursorY = 0;
+  var qual;
+  var u =0;
   var connectionX, connectionY;
   for (var y = 0, row; row = inputRows[y]; y++) {
     cursorX = Blockly.BlockSvg.SEP_SPACE_X;
@@ -642,7 +643,7 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function (steps, highlightSteps,
       steps.push(Blockly.BlockSvg.JAGGED_TEETH);
       highlightSteps.push('h 8');
       var remainder = row.height - Blockly.BlockSvg.JAGGED_TEETH_HEIGHT;
-      steps.push('v', remainder);
+      steps.push('v', remainder);  
       if (this.RTL) {
         highlightSteps.push('v 3.9 l 7.2,3.4 m -14.5,8.9 l 7.3,3.5');
         highlightSteps.push('v', remainder - 0.7);
@@ -724,7 +725,7 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function (steps, highlightSteps,
       this.width = Math.max(this.width, cursorX);
       steps.push('H', cursorX);
       highlightSteps.push('H', cursorX - 0.5);
-      steps.push('v', row.height);
+      //steps.push('v', row.height);
       if (this.RTL) {
         highlightSteps.push('v', row.height - 1);
       }
@@ -824,35 +825,36 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function (steps, highlightSteps,
       }
       this.renderFields_(input.fieldRow, fieldX, fieldY);
       cursorX = inputRows.statementEdge + Blockly.BlockSvg.NOTCH_WIDTH;
-      steps.push('v ', -50);
-      steps.push('H', row.width + 110);
+      
+      // steps.push('v ', 25);
+      // steps.push('v ', -50);
+      steps.push('H', row.width + 100);//tamanho do bloco em x
       steps.push('v ', 15);
       //desenha o encaixe do lado direito
       steps.push(Blockly.BlockSvg.TAB_PATH_DOWN);
       steps.push('v ', 15);
       var aux = row.width + 80;
       inlineSteps.push('M ' + aux + ',10');
-      inlineSteps.push('h', Blockly.BlockSvg.TAB_WIDTH - 2 - 10 - row.width);
+      inlineSteps.push('h', Blockly.BlockSvg.TAB_WIDTH   - 8 - row.width);
       inlineSteps.push('v 15');
-      inlineSteps.push(Blockly.BlockSvg.TAB_PATH_DOWN);
-      inlineSteps.push('v', 25 -
-        Blockly.BlockSvg.TAB_HEIGHT);
-      inlineSteps.push('h', 10 + 2 -
+      inlineSteps.push(Blockly.BlockSvg.TAB_PATH_DOWN);//desenha o encaixe interno
+      inlineSteps.push('v', 5);
+      inlineSteps.push('h', 10 +  -
         Blockly.BlockSvg.TAB_WIDTH + row.width);
       inlineSteps.push('z');
 
       // Create statement connection.
-      connectionX = connectionsXY.x + (this.RTL ? -cursorX : cursorX +27); // aqui só funciona para o primeiro stat
+      connectionX = connectionsXY.x + (this.RTL ? -cursorX : cursorX +29); // aqui só funciona para o primeiro stat
       connectionY = connectionsXY.y + 11;
       input.connection.moveTo(connectionX, connectionY);
       if (input.connection.isConnected()) {
         input.connection.tighten_();
         this.width = Math.max(this.width, inputRows.statementEdge +
-          input.connection.targetBlock().getHeightWidth().width);
+          input.connection.targetBlock().getHeightWidth().width-10); 
       }
       if (y == inputRows.length - 1 ||
         inputRows[y + 1].type == Blockly.NEXT_STATEMENT) {
-        cursorX = 100;
+          //cursorX += this.width;
     
         // If the final input is a statement stack, add a small row underneath.
         // Consecutive statement stacks are also separated by a small divider.
@@ -860,19 +862,26 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function (steps, highlightSteps,
        
         //cursorY += Blockly.BlockSvg.SEP_SPACE_Y;
       }
+      
+        
+        cursorX = 90;
+        u = cursorX;
+      
+    
+      
     }
    
-    cursorY = row.height;
-   // cursorX = row.width;
-  
   }
   if (!inputRows.length) {
-        cursorX=40;
+       // cursorX=0;
+      // cursorX = this.width;
+        this.qual = false;
         //steps.push('V', cursorY);
     if (this.RTL) {
       //  highlightSteps.push('V', cursorY - 1);
     }
   }
+  cursorX = this.width+u;
   return cursorX;
 };
 
@@ -892,7 +901,7 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ =
       if (this.RTL) {
         connectionX = connectionsXY.x - Blockly.BlockSvg.NOTCH_WIDTH;
       } else {
-            connectionX = connectionsXY.x+cursorX+this.width-10;  
+         connectionX = connectionsXY.x+cursorX;  
       }
       var connectionY = connectionsXY.y;
       this.nextConnection.moveTo(connectionX, connectionY);

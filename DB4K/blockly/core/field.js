@@ -139,15 +139,15 @@ Blockly.Field.prototype.init = function() {
 
   // Build the DOM.
   this.fieldGroup_ = Blockly.createSvgElement('g', {}, null);
-  console.log('1111', this.fieldGroup_);
+
   if (!this.visible_) {
     this.fieldGroup_.style.display = 'none';
   }
   this.borderRect_ = Blockly.createSvgElement('rect',
       {'rx': 5,
        'ry': 5,
-       'x':0, // alterei essa linha também
-       'y':0,   // Posição dos campos em relação aos blocos
+       'x':1, // alterei essa linha também
+       'y':3,   // Posição dos campos em relação aos blocos
        'height': 30}, this.fieldGroup_, this.sourceBlock_.workspace);
   /** @type {!Element} */
    this.textElement_ = Blockly.createSvgElement('text',
@@ -361,16 +361,26 @@ Blockly.Field.prototype.setText = function(text) {
  * @private
  */
 Blockly.Field.prototype.updateTextNode_ = function() {
-  console.log("========================");
-  console.log('carregando o field group',this.fieldGroup_);
-  if (!this.textElement_) {
+   if (!this.textElement_) {
     // Not rendered yet.
     return;
   }
-  var text = this.text_;
+  // Essa variavel é responsavel pelo texto  que consequêntemente 
+  // altera o tamanho do bloco
+  var text=" ";
+  if(!goog.isArray(this.text_)&& (this.text_ != "[object Object]"))
+  {
+   text =this.text_ ;
+  }
+  else 
+  {
+    text="";
+  }
+  
+  
   if (text.length > this.maxDisplayLength) {
     // Truncate displayed string and add an ellipsis ('...').
-    text = text.substring(0,  1) ;
+    text = text.substring(0,  25) ;
   }
   // Empty the text element.
   goog.dom.removeChildren(/** @type {!Element} */ (this.textElement_));
@@ -384,20 +394,14 @@ Blockly.Field.prototype.updateTextNode_ = function() {
     // Prevent the field from disappearing if empty.
     text = Blockly.Field.NBSP;
   }
-  console.log("========================");
-  console.log("386  ",text); // a imagem já está aqui
-  var imageElement_ = Blockly.createSvgElement('image',
-  {'height': 40 + 'px',
-   'width': 40 + 'px'},this.fieldGroup_);
+   var imageElement_ = Blockly.createSvgElement('image',
+  {'height': 42 + 'px',
+   'width': 42 + 'px'},this.fieldGroup_);
    imageElement_.setAttributeNS('http://www.w3.org/1999/xlink',
    'xlink:href', goog.isString( this.text_[0].currentSrc) ? this.text_[0].currentSrc: '');
   var textNode = document.createTextNode(text);
   
   this.textElement_.appendChild(textNode); //coloca na tela (campinho)
-  console.log("========================");
-  console.log("========================");
-  console.log("398",this.textElement_);
-
   // Cached width is obsolete.  Clear it.
   this.size_.width = 0;
 };

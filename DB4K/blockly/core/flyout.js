@@ -993,7 +993,7 @@ Blockly.Flyout.prototype.getClientRect = function() {
     //return new goog.math.Rect(200,350,800,350)
     //ajustando a area de deleção dos blocos dentro do flayout;
    // return new goog.math.Rect(x - BIG_NUM, -BIG_NUM, BIG_NUM + width,BIG_NUM * 2);
-   console.log(-BIG_NUM," ", y," ", BIG_NUM * 2," ", BIG_NUM + height);
+   //console.log(-BIG_NUM," ", y," ", BIG_NUM * 2," ", BIG_NUM + height);
    return new goog.math.Rect(+BIG_NUM-BIG_NUM, y, width, BIG_NUM + height);
   } else {  // Right
     

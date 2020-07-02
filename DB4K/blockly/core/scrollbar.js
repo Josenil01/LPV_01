@@ -124,7 +124,7 @@ Blockly.ScrollbarPair.prototype.resize = function() {
       this.oldHostMetrics_.viewHeight != hostMetrics.viewHeight ||
       this.oldHostMetrics_.absoluteTop != hostMetrics.absoluteTop) {
     this.corner_.setAttribute('y', this.hScroll.yCoordinate);
-    console.log(this.hScroll.yCoordinate)
+    //console.log(this.hScroll.yCoordinate)
   }
 
   // Cache the current metrics to potentially short-cut the next resize event.

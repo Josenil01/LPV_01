@@ -383,6 +383,7 @@ Blockly.BlockSvg.prototype.snapToGrid = function() {
  * and any blocks stacked below it.
  * @return {!{height: number, width: number}} Object with height and width
  *    properties.
+ * Redimensiona o tamanho do bloco do statemen
  */
 Blockly.BlockSvg.prototype.getHeightWidth = function() {
   var height = this.height;
@@ -392,7 +393,7 @@ Blockly.BlockSvg.prototype.getHeightWidth = function() {
   if (nextBlock) {
     var nextHeightWidth = nextBlock.getHeightWidth();
     height += nextHeightWidth.height - 4;  // Height of tab.
-    width += nextHeightWidth.width -4; //alterado para comportar a conexão horizontal
+    width += nextHeightWidth.width; //alterado para comportar a conexão horizontal
   } else if (!this.nextConnection && !this.outputConnection) {
     // Add a bit of margin under blocks with no bottom tab.
     height += 2;
