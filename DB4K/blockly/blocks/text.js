@@ -502,6 +502,7 @@ Blockly.Blocks['text_getSubstring'] = {
    * @this Blockly.Block
    */
   updateAt_: function(n, isAt) {
+    console.log('dento de text',n);
     // Create or delete an input for the numeric index.
     // Destroy old 'AT' and 'ORDINAL' inputs.
     this.removeInput('AT' + n);

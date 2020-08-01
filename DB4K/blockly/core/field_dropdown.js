@@ -179,6 +179,7 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
     var text = options[x][0];  // Human-readable text.
     var value = options[x][1]; // Language-neutral value
     var imagem_src = options[x][2];
+    console.log(imagem_src);
     var menuItem = new goog.ui.MenuItem(text);
 
    // console.log(menuItem);
@@ -191,6 +192,7 @@ Blockly.FieldDropdown.prototype.showEditor_ = function () {
       var imagem = $("<img/>")
       imagem[0].src = imagem_src;
       imagem[0].className = 'ImagemDropdown';
+      imagem[0].value=value;
       menuItem.setValue(imagem);
       menuItem.content_ = imagem;
       //console.log(menuItem);
@@ -369,8 +371,7 @@ Blockly.FieldDropdown.prototype.setText = function (text) {
     return;
   }
   this.text_ = text;
-  
-  //console.log('372',this.menuGenerator_);
+  console.log('372  aquiiii ',this.text_);
   this.updateTextNode_();
 
   if (this.textElement_) {

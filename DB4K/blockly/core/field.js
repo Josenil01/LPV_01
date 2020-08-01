@@ -163,6 +163,7 @@ Blockly.Field.prototype.init = function() {
   if (Blockly.Events.isEnabled()) {
     Blockly.Events.fire(new Blockly.Events.Change(
         this.sourceBlock_, 'field', this.name, '', this.getValue()));
+        // console.log(this.getValue());
   }
 };
 
@@ -367,16 +368,8 @@ Blockly.Field.prototype.updateTextNode_ = function() {
   }
   // Essa variavel é responsavel pelo texto  que consequêntemente 
   // altera o tamanho do bloco
-  var text=" ";
-  if(!goog.isArray(this.text_)&& (this.text_ != "[object Object]"))
-  {
-   text =this.text_ ;
-  }
-  else 
-  {
-    text="";
-  }
-  
+  var text=this.text_;
+ 
   
   if (text.length > this.maxDisplayLength) {
     // Truncate displayed string and add an ellipsis ('...').
@@ -399,8 +392,16 @@ Blockly.Field.prototype.updateTextNode_ = function() {
    'width': 42 + 'px'},this.fieldGroup_);
    imageElement_.setAttributeNS('http://www.w3.org/1999/xlink',
    'xlink:href', goog.isString( this.text_[0].currentSrc) ? this.text_[0].currentSrc: '');
+   
+   if(this.text_[0].value!=undefined)
+   {
+      text=this.text_[0].value;
+   }
+   else
+   {
+    text=this.text_;
+ }
   var textNode = document.createTextNode(text);
-  
   this.textElement_.appendChild(textNode); //coloca na tela (campinho)
   // Cached width is obsolete.  Clear it.
   this.size_.width = 0;
@@ -433,6 +434,7 @@ Blockly.Field.prototype.setValue = function(newText) {
     Blockly.Events.fire(new Blockly.Events.Change(
         this.sourceBlock_, 'field', this.name, oldText, newText));
   }
+ 
   this.setText(newText);
 };
 

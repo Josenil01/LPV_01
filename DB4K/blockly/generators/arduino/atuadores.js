@@ -103,7 +103,7 @@ var tempo_sirene=10;
 //*******************************************************
 
 Blockly.Arduino['acender_led'] = function(block) {
-	var colour_cor_led = block.getFieldValue('cor_led');
+	var colour_cor_led = block.getFieldValue('cor_led');  
 	
   //Troca o Valor Hexadecimal da Cor pelo "pino" Referente à cor
 	  switch(colour_cor_led) {

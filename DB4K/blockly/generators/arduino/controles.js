@@ -70,13 +70,72 @@ Blockly.Arduino['parar_repeticao_do_programa'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['condicional_simples'] = function(block) {
-  var value_condicao =  Blockly.Arduino.valueToCode(block, 'condicao',
-      Blockly.Arduino.ORDER_NONE) || 'false';
+//teste - discutir isso com o Paulo
+function codigo_verifica_luminosidade(){
+
+  var codigo =
+      'int luminosidade = 0;\n' +
+       'for (int i = 0; i<10;++i){\n' +
+    'luminosidade = analogRead('+ "pino_analogico_LDR_luz" +') + luminosidade;\n' +
+    '}\n' +
+    'luminosidade = luminosidade/10;\n' +
+    'return luminosidade;\n';
+  return codigo;
+  
+  }
+  
+
+Blockly.Arduino['condicional_simples'] = function(block) { 
+  console.log('verdade',block);
+  if( !goog.isArray(block.getFieldValue("tipo_sensor")))
+  {
+    let aux=block.getFieldValue("tipo_sensor");
+    var sensor_tipo = aux[0].value;
+  }
+  if( !goog.isArray(block.getFieldValue("valor")))
+  {
+    let aux=block.getFieldValue("valor");
+    var sensor_valor = aux[0].value;
+  }
+  if(sensor_tipo==4)
+  {
+      var porta_analogica='13';
+      var dropdown_luz = sensor_valor;
+       //Declara a função que verifica a luminosidade
+       var nome_funcao = 'verifica_luminosidade' ;
+       var func = ['\n'+'int ' + Blockly.Arduino.DEF_FUNC_NAME + '()\n{\n' +
+       codigo_verifica_luminosidade() + '}\n'];
+       var funcName = Blockly.Arduino.addFunction(nome_funcao, func.join('\n'));
+     
+     
+       //Setup Calibrar
+       Blockly.Arduino.addSetup('io_' + "referencia_luz_alta", 'referencia_luz_alta = '+ funcName + '() + '  +  valor_margem_luz_alta + ';', false);
+       Blockly.Arduino.addSetup('io_' + "referencia_luz_baixa", 'referencia_luz_baixa = '+ funcName + '() - '  +  valor_margem_luz_baixa +';', false);
+     
+       //Definitions
+       Blockly.Arduino.definitions_['pino_analogico_LDR_luz'] ='int pino_analogico_LDR_luz = '+ porta_analogica +';'
+       Blockly.Arduino.definitions_['referencia_luz_alta'] ='int referencia_luz_alta;';
+       Blockly.Arduino.definitions_['referencia_luz_baixa'] ='int referencia_luz_baixa;';
+      //ReservaPinos
+      Blockly.Arduino.reservePin(
+      block, porta_analogica, Blockly.Arduino.PinTypes.INPUT, 'Analogue Read');
+      if (dropdown_luz == "3"){
+        var code =  '('+ funcName + '() >= referencia_luz_alta )' ;
+      }
+      if (dropdown_luz == "4"){
+        var code =  '((referencia_luz_baixa <'+ funcName + '())' + '&&(' + funcName + '()' + ' < referencia_luz_alta ))' ;
+      }
+      if (dropdown_luz == "5"){
+        var code =  '('+ funcName + '() <= referencia_luz_baixa )' ;
+      }
+  }
+  //console.log(code);
+  var value_condicao =  code;
+  
 
   var statements_codigo_condicional = Blockly.Arduino.statementToCode(block, 'codigo_condicional');
 
-  var code = 'if (' + value_condicao + ') {\n' + statements_codigo_condicional + '}';
+  var code = 'if (' + value_condicao + ') {\n ' + statements_codigo_condicional + '}';
   return code + '\n';
 
 };
