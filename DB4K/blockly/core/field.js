@@ -147,11 +147,11 @@ Blockly.Field.prototype.init = function() {
       {'rx': 5,
        'ry': 5,
        'x':1, // alterei essa linha também
-       'y':3,   // Posição dos campos em relação aos blocos
-       'height': 30}, this.fieldGroup_, this.sourceBlock_.workspace);
+       'y':0,   // Posição dos campos em relação aos blocos
+       'height': 30 }, this.fieldGroup_, this.sourceBlock_.workspace);
   /** @type {!Element} */
    this.textElement_ = Blockly.createSvgElement('text',
-       {'class': 'blocklyText', 'y': this.size_.height-5, 'x':20},// aqui estava 12,5 por algum motivo que não lembro mais
+       {'class': 'blocklyText', 'y': this.size_.height-5, 'x':12.5},// aqui estava 12,5 por algum motivo que não lembro mais
        this.fieldGroup_);
 
   this.updateEditable();

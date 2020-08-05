@@ -641,7 +641,7 @@ Blockly.Flyout.prototype.layoutBlocks_ = function(blocks, gaps) {
       cursorX += (blockHW.width + gaps[i] - tab);
       if(i == 9 || i == 19)
       {
-        cursorY += oldHeight+40;
+        cursorY += oldHeight+45;
         cursorX = margin + Blockly.BlockSvg.TAB_WIDTH;
       }
       

@@ -371,7 +371,7 @@ Blockly.FieldDropdown.prototype.setText = function (text) {
     return;
   }
   this.text_ = text;
-  console.log('372  aquiiii ',this.text_);
+  // console.log('372  aquiiii ',this.text_);
   this.updateTextNode_();
 
   if (this.textElement_) {
